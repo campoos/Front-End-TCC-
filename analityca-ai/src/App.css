@@ -1,0 +1,136 @@
+:root {
+  /* tema claro */
+  --roxo-primario-modo-claro: #7D53F3;
+  --roxo-secundario-modo-claro: #6844cc;
+  --texto-branco-modo-claro: #ffffff;
+  --texto-preto-modo-claro: #242424;
+  --texto-transparente-modo-claro: #9A9A9A;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+
+  overflow-x: hidden;
+}
+
+#container1 {
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+  width: 100vw;
+}
+
+#container1 #header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 8rem;
+}
+
+#container1 #header #logo h1 {
+  font-size: 1.5rem;
+
+  color: var(--roxo-primario-modo-claro);
+}
+
+#container1 #header #links {
+  display: flex;
+  gap: 3.75rem;
+}
+
+#container1 #header #links .link {
+  font-size: 1rem;
+  text-decoration: none;
+
+  color: var(--texto-preto-modo-claro);
+
+  transition: all 0.1s ease-in-out;
+}
+
+#container1 #header #links .link:hover {
+  color: var(--roxo-primario-modo-claro);
+
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+#container1 #header #botaoContainer #login {
+  background-color: var(--roxo-primario-modo-claro);
+  border: none;
+  color: var(--texto-branco-modo-claro);
+
+  height: 3.5rem;
+  width: 6rem;
+  border-radius: 30px;
+
+  font-size: 1rem;
+
+  transition: all 0.2s ease-in-out;
+}
+
+#container1 #header #botaoContainer #login:hover {
+  background-color: var(--roxo-secundario-modo-claro);
+  cursor: pointer;
+}
+
+#container1 #containerTextoHome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 54.5rem;
+}
+
+#container1 #containerTextoHome h1 {
+  font-size: 4rem;
+  text-align: center;
+
+  width: 40rem;
+
+  margin-bottom: 1rem;
+
+  color: var(--texto-preto-modo-claro);
+}
+
+#container1 #containerTextoHome h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+
+  margin-bottom: 3rem;
+
+  color: var(--texto-transparente-modo-claro);
+}
+
+#container1 #containerTextoHome #comecarAgora {
+  background-color: var(--roxo-primario-modo-claro);
+  border: none;
+  color: var(--texto-branco-modo-claro);
+
+  height: 3.5rem;
+  width: 13.5rem;
+  border-radius: 30px;
+
+  font-size: 1rem;
+
+  transition: all 0.2s ease-in-out;
+}
+
+#container1 #containerTextoHome #comecarAgora:hover {
+  background-color: var(--roxo-secundario-modo-claro);
+
+  cursor: pointer;
+}
+
+#container2 {
+  height: 100vh;
+  width: 100vw;
+  background-color: #9A9A9A;
+}
+
