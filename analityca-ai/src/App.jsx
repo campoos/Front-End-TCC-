@@ -26,7 +26,47 @@ function App() {
         </div>
       </div>
       <div id="container2">
-
+        <h1 id='tituloRecursos'>Nossos Recursos</h1>
+        <div id="containersRecursos">
+          <div className="containerRecurso">
+            <h1>📊</h1>
+            <h2>Dashboard de Performance</h2>
+            <span>Gráficos e relatórios interativos para visualizar o progresso de forma clara e intuitiva.</span>
+          </div>
+          <div className="containerRecurso">
+            <h1>📝</h1>
+            <h2>Planos Personalizados</h2>
+            <span>Planos de estudo sob medida, adaptados ao ritmo e às necessidades de cada usuário.</span>
+          </div>
+          <div className="containerRecurso">
+            <h1>🧠</h1>
+            <h2>Análise de IA</h2>
+            <span>Insights gerados por inteligência artificial para otimizar o desempenho acadêmico.</span>
+          </div>
+        </div>
+      </div>
+      <div id="container3">
+        <div id="containerMain">
+          <h1>Benefícios para Todos</h1>
+          <div id="containerTextos">
+            <div className="containerTexto">
+              <h2>Famílias</h2>
+              <span>Tenha transparência total no acompanhamento do progresso dos seus filhos. Receba insights valiosos e relatórios personalizados para apoiar a jornada de aprendizado deles.</span>
+            </div>
+            <div className="containerTexto">
+              <h2>Famílias</h2>
+              <span>Tenha transparência total no acompanhamento do progresso dos seus filhos. Receba insights valiosos e relatórios personalizados para apoiar a jornada de aprendizado deles.</span>
+            </div>
+            <div className="containerTexto">
+              <h2>Famílias</h2>
+              <span>Tenha transparência total no acompanhamento do progresso dos seus filhos. Receba insights valiosos e relatórios personalizados para apoiar a jornada de aprendizado deles.</span>
+            </div>
+          </div>
+        </div>
+        <div id="footer">
+          <span>Contato: analyticaAI@gmail.com</span>
+          <span>© 2025 Analytica AI. Todos os direitos reservados</span>
+        </div>
       </div>
     </>
   )
