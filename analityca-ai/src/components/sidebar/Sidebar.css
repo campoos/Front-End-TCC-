@@ -1,0 +1,18 @@
+:root {
+    /* tema claro */
+    --roxo-primario-modo-claro: #7D53F3;
+    --roxo-secundario-modo-claro: #714ed3;
+    --texto-branco-modo-claro: #ffffff;
+    --texto-preto-modo-claro: #242424;
+    --texto-transparente-modo-claro: #9A9A9A;
+    --background-claro-modo-claro: #ffffff;
+  }
+  
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+  
+    overflow-x: hidden;
+  }

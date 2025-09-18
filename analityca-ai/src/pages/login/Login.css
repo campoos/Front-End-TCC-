@@ -1,0 +1,185 @@
+:root {
+    /* tema claro */
+    --roxo-primario-modo-claro: #7D53F3;
+    --roxo-secundario-modo-claro: #714ed3;
+    --texto-branco-modo-claro: #ffffff;
+    --texto-preto-modo-claro: #242424;
+    --texto-transparente-modo-claro: #9A9A9A;
+    --background-claro-modo-claro: #ffffff;
+    --background-cinza-modo-claro: #F3F3F3;
+    --background-input-modo-claro: #F9F9F9;
+    --borda-input-modo-claro: #E1E1E1;
+    --texto-input-modo-claro: #A89295;
+  }
+  
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+
+    overflow-x: hidden;
+}
+
+main {
+    height: 100dvh;
+    width: 100dvw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--background-cinza-modo-claro);
+}
+
+#loginContainer {
+    background-color: var(--background-claro-modo-claro);
+
+    height: 34.75rem;
+    width: 32.6875rem;
+    border-radius: 15px;
+    padding: 2rem 2.25rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.12);
+}
+
+#loginContainer #botaoVoltar {
+    height: 3rem;
+    width: 3rem;
+    margin: 0.625rem;
+
+    overflow: hidden;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#loginContainer #botaoVoltar #imagemBotaoVoltar {
+    height: 100%;
+    width: 100%;
+}
+
+#loginContainer #loginConteudo {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#loginContainer #loginConteudo #loginDescricao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#loginContainer #loginConteudo #loginDescricao h2 {
+    font-size: 2.25rem;
+    color: var(--texto-preto-modo-claro);
+
+    margin-bottom: 0.6875rem;
+}
+
+#loginContainer #loginConteudo #loginDescricao p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--texto-transparente-modo-claro);
+}
+
+#loginContainer #loginConteudo form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 100%;
+}
+
+#loginContainer #loginConteudo form .grupoInput {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+#loginContainer #loginConteudo form .grupoInput label {
+    color: var(--texto-preto-modo-claro);
+    
+    font-size: 1rem;
+
+    margin-bottom: 0.625rem;
+}
+
+#loginContainer #loginConteudo form .grupoInput input {
+    height: 4.1875rem;
+
+    border-radius: 15px;
+    outline: none;
+    border: 1px solid var(--borda-input-modo-claro);
+
+    background-color: var(--background-input-modo-claro);
+
+    font-size: 1rem;
+    color: var(--texto-preto-modo-claro);
+
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+#loginContainer #loginConteudo form .grupoInput input::placeholder {
+    color: var(--texto-input-modo-claro);
+}
+
+#loginContainer #loginConteudo form #opcoesForm {
+    margin-top: 1rem;
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#loginContainer #loginConteudo form #opcoesForm #remember {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.5rem;
+}
+
+#loginContainer #loginConteudo form #opcoesForm #remember input {
+    accent-color: var(--roxo-primario-modo-claro);
+
+    height: 1rem;
+    width: 1rem;
+}
+
+#loginContainer #loginConteudo form #opcoesForm #remember label {
+    font-size: 0.75rem;
+    color: var(--texto-preto-modo-claro);
+}
+
+#loginContainer #loginConteudo form #opcoesForm a {
+    font-size: 0.75rem;
+    color: var(--texto-preto-modo-claro);
+}
+
+#loginContainer #loginConteudo form button {
+    width: 100%;
+    height: 4.1875rem;
+
+    border-radius: 35px;
+    border: none;
+    background-color: var(--roxo-primario-modo-claro);
+
+    color: var(--texto-branco-modo-claro);
+    font-size: 1rem;
+
+    margin-top: 2rem;
+}
