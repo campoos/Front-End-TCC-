@@ -33,8 +33,10 @@ function LoginPage() {
               </div>
               <a href="/">Esqueceu a senha?</a>
             </div>
-
-            <button type='submit' id='loginSubmitButton'>Entrar</button>
+            
+            <Link to={"/dashboards"} id='loginSubmitButtonContainer'>
+              <button type='submit' id='loginSubmitButton'>Entrar</button>
+            </Link>
           </form>
         </div>
       </div>

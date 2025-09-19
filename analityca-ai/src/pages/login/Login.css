@@ -9,7 +9,7 @@
     --background-cinza-modo-claro: #F3F3F3;
     --background-input-modo-claro: #F9F9F9;
     --borda-input-modo-claro: #E1E1E1;
-    --texto-input-modo-claro: #A89295;
+    --texto-input-modo-claro: #979797;
   }
   
 * {
@@ -130,6 +130,7 @@ main {
     color: var(--texto-preto-modo-claro);
 
     padding-left: 1rem;
+    padding-right: 1rem;
     margin-bottom: 1rem;
 }
 
@@ -170,7 +171,11 @@ main {
     color: var(--texto-preto-modo-claro);
 }
 
-#loginContainer #loginConteudo form button {
+#loginContainer #loginConteudo form #loginSubmitButtonContainer {
+    width: 100%;
+}
+
+#loginContainer #loginConteudo form a button {
     width: 100%;
     height: 4.1875rem;
 
@@ -182,4 +187,12 @@ main {
     font-size: 1rem;
 
     margin-top: 2rem;
+
+    transition: all 0.2s ease-in-out;
 }
+
+#loginContainer #loginConteudo form a button:hover {
+    cursor: pointer;
+    background-color: var(--roxo-secundario-modo-claro);
+}
+
