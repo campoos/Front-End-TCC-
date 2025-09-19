@@ -1,16 +1,16 @@
-import './Recursos.css'
+import './Ranking.css'
 import Sidebar from '../../components/sidebar/Sidebar'
 
-function RecursosPage() {
+function RankingPage() {
   return (
     <>
         <Sidebar/>
 
-        <div className="containerRecursos">
-            Recursos
+        <div className="containerRanking">
+            Ranking
         </div>
     </>
   )
 }
 
-export default RecursosPage
+export default RankingPage
