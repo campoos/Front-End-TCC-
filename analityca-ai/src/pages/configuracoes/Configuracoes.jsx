@@ -4,10 +4,12 @@ import Sidebar from '../../components/sidebar/Sidebar'
 function ConfiguracoesPage() {
   return (
     <>
-        <Sidebar/>
+        <div id="telaConfiguracoes">
+            <Sidebar/>
 
-        <div className="containerConfiguracoes">
-            Configuracoes
+            <div id="containerConfiguracoes">
+                <h1>Configurações</h1>
+            </div>
         </div>
     </>
   )

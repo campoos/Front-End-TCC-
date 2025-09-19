@@ -4,10 +4,11 @@ import Sidebar from '../../components/sidebar/Sidebar'
 function DashboardsPage() {
   return (
     <>
-        <Sidebar/>
-
-        <div className="containerDashboards">
-            dashboards
+        <div id="telaDashboards">
+            <Sidebar/>
+            <div id="containerDashboards">
+                <h1>Dashboards</h1>
+            </div>
         </div>
     </>
   )

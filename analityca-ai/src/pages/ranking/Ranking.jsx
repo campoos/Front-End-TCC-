@@ -4,10 +4,12 @@ import Sidebar from '../../components/sidebar/Sidebar'
 function RankingPage() {
   return (
     <>
-        <Sidebar/>
+        <div id="telaRanking">
+            <Sidebar/>
 
-        <div className="containerRanking">
-            Ranking
+            <div id="containerRanking">
+                <h1>Ranking</h1>
+            </div>
         </div>
     </>
   )

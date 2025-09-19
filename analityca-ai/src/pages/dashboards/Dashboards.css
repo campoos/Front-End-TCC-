@@ -20,3 +20,23 @@
 
     overflow-x: hidden;
 }
+
+#telaDashboards {
+    height: 100dvh;
+    width: 100dvw;
+    display: flex;
+
+    gap: 1.25rem;
+}
+
+#telaDashboards #containerDashboards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-grow: 1;
+}
+
+#telaDashboards #containerDashboards h1 {
+    font-size: 10rem;
+}

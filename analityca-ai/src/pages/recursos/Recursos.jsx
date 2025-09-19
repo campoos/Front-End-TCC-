@@ -4,10 +4,12 @@ import Sidebar from '../../components/sidebar/Sidebar'
 function RecursosPage() {
   return (
     <>
-        <Sidebar/>
+        <div id="telaRecursos">
+            <Sidebar/>
 
-        <div className="containerRecursos">
-            recursos
+            <div id="containerRecursos">
+                <h1>Recursos</h1>
+            </div>
         </div>
     </>
   )

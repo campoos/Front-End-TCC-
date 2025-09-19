@@ -21,3 +21,21 @@
     overflow-x: hidden;
 }
 
+#telaRanking {
+    height: 100dvh;
+    width: 100dvw;
+    display: flex;
+
+    gap: 1.25rem;
+}
+
+#telaRanking #containerRanking {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+#telaRanking #containerRanking h1 {
+    font-size: 10rem;
+}
