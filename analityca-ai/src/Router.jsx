@@ -15,7 +15,6 @@ function AppRoutes() {
         <Routes>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
-            
             <Route path="/dashboards" element={<DashboardsPage />}></Route>
             <Route path="/recursos" element={<RecursosPage />}></Route>
             <Route path="/ranking" element={<RankingPage />}></Route>
