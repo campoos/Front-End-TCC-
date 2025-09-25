@@ -117,7 +117,208 @@
     background-color: #714ed3;
 
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
 
-    height: 5000px;
+    height: 23.25rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho {
+    display: flex;
+    flex-direction: column;
+
+    background-color: violet;
+
+    justify-content: space-between;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #informacoesGerais {
+    height: 10.3125rem;
+    width: 20.8125rem;
+    padding: 1rem;
+    gap: 1rem;
+
+    border-radius: 7px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: yellowgreen;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #informacoesGerais #informacoesTitle {
+    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #informacoesGerais #informacoesTitle img {
+    height: 1.625rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #informacoesGerais #informacoesTitle label {
+    font-weight: bold;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #informacoesGerais #informacoesContent {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.2rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #informacoesGerais #informacoesContent span {
+    font-size: 0.75rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho {
+    height: 10.3125rem;
+    width: 20.8125rem;
+    padding: 1rem;
+
+    border-radius: 7px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-color: yellowgreen;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #desempenhoTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #desempenhoTitle img {
+    height: 1.625rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #desempenhoTitle label {
+    font-weight: bold;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #informacoesContent #notaMedia {
+    display: flex;
+    align-items: center;
+    
+    background-color: aquamarine;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #informacoesContent #notaMedia h1 {
+    font-size: 2.25rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #informacoesContent #notaMedia h2 {
+    padding-left: 0.5rem;
+    padding-right: 0.25rem;
+
+    color: var(--roxo-primario-modo-claro);
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #informacoesContent #notaMedia span {
+    color: var(--roxo-primario-modo-claro);
+
+    font-size: 1rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho h4 {
+    font-size: 1rem;
+    font-weight: 300;
+
+    text-decoration: underline;
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia {
+    height: 100%;
+    width: 20.8125rem;
+
+    border-radius: 7px;
+
+    padding: 1rem;
+
+    background-color: yellowgreen;
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia #frequenciaTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    margin-bottom: 3.1875rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia #frequenciaTitle img {
+    height: 1.625rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia #frequenciaTitle label {
+    font-weight: bold;
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia #graficoContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: bisque;
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia #graficoContainer #grafico {
+    height: 10.375rem;
+    width: 10.375rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia #graficoContainer #textoGrafico {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia #graficoContainer #textoGrafico h1 {
+    font-size: 3rem;
+    font-weight: 300;
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia #graficoContainer #textoGrafico label {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia #labelsFrequencia {
+    background-color: violet;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia .label {
+    background-color: aliceblue;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0.5rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia .label #circlePresenca {
+    height: 2rem;
+    width: 2rem;
+
+    border-radius: 50px;
+
+    background-color: var(--roxo-primario-modo-claro);
+}
+
+#telaDashboards #containerDashboards #dashboards #notas {
+    height: 18.3125rem;
+    width: 20.8125rem;
+
+    border-radius: 7px;
+
+    background-color: yellowgreen;
 }
