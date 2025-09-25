@@ -22,6 +22,8 @@
 }
 
 #containerSidebar {
+  position: fixed;
+
   height: 100dvh;
   width: 22.25rem;
 

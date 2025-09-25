@@ -10,6 +10,7 @@
     --background-input-modo-claro: #F9F9F9;
     --borda-input-modo-claro: #E1E1E1;
     --texto-input-modo-claro: #979797;
+    --shadobox-modo-claro: #BEBEBE;
   }
   
 * {
@@ -17,26 +18,106 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-
-    overflow-x: hidden;
 }
 
 #telaDashboards {
-    height: 100dvh;
+    min-height: 100dvh;
     width: 100dvw;
     display: flex;
 
     gap: 1.25rem;
+    padding-right: 0.5625rem;;
 }
 
 #telaDashboards #containerDashboards {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
 
-    flex-grow: 1;
+    min-height: 100%;
+    width: 100%;
+
+    padding-left: 23.50rem;
+
+    overflow-y: auto;
 }
 
-#telaDashboards #containerDashboards h1 {
-    font-size: 10rem;
+#telaDashboards #containerDashboards #title {
+    font-size: 2rem;
+
+    width: 100%;
+    padding: 2.75rem 0rem;
+
+    color: var(--texto-preto-modo-claro);
+}
+
+#telaDashboards #containerDashboards hr {
+    width: 100%;
+
+    color: var(--texto-input-modo-claro);
+}
+
+#telaDashboards #containerDashboards #usuarioContainer {
+    background-color: #714ed3;
+
+    display: flex;
+    align-items: center;
+
+    padding: 1.25rem 0rem;
+}
+
+#telaDashboards #containerDashboards #usuarioContainer img {
+    height: 4.0625rem;
+
+    padding-right: 0.5rem;
+}
+
+#telaDashboards #containerDashboards #usuarioContainer #userContent {
+    background-color: aqua;
+}
+
+#telaDashboards #containerDashboards #usuarioContainer #userContent h1 {
+    font-size: 1.25rem;
+}
+
+#telaDashboards #containerDashboards #usuarioContainer #userContent span {
+    font-size: 1rem;
+}
+
+#telaDashboards #containerDashboards #filtros {
+    display: flex;
+    gap: 2.6875rem;
+
+    margin-bottom: 1.25rem;
+
+    background-color: yellowgreen;
+}
+
+#telaDashboards #containerDashboards #filtros .filtro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+
+#telaDashboards #containerDashboards #filtros .filtro label {
+    font-size: 1.25rem;
+}
+
+#telaDashboards #containerDashboards #filtros .filtro select {
+    font-size: 1.25rem;
+
+    padding: 0.2rem 1rem 0.2rem 0.5rem;
+    
+    border-radius: 5px;
+    box-shadow: 1px solid var(--texto-input-modo-claro)
+}
+
+#telaDashboards #containerDashboards #dashboards {
+    background-color: #714ed3;
+
+    display: flex;
+    flex-direction: row;
+
+    height: 5000px;
 }
