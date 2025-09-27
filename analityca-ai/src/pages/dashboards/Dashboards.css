@@ -40,6 +40,7 @@
     padding-left: 23.50rem;
 
     overflow-y: auto;
+    overflow: visible;
 }
 
 #telaDashboards #containerDashboards #title {
@@ -72,10 +73,12 @@
 
 #telaDashboards #containerDashboards #usuarioContainer #userContent h1 {
     font-size: 1.25rem;
+    color: var(--texto-preto-modo-claro);
 }
 
 #telaDashboards #containerDashboards #usuarioContainer #userContent span {
     font-size: 1rem;
+    color: var(--texto-preto-modo-claro);
 }
 
 #telaDashboards #containerDashboards #filtros {
@@ -98,6 +101,7 @@
 
 #telaDashboards #containerDashboards #filtros .filtro label {
     font-size: 1.25rem;
+    color: var(--texto-preto-modo-claro);
 }
 
 #telaDashboards #containerDashboards #filtros .filtro select {
@@ -118,6 +122,8 @@
     flex-direction: row;
 
     height: 23.25rem;
+
+    margin-bottom: 3rem;
 
     overflow: visible;
 }
@@ -157,6 +163,7 @@
 
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #informacoesGerais #informacoesTitle label {
     font-weight: bold;
+    color: var(--texto-preto-modo-claro);
 }
 
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #informacoesGerais #informacoesContent {
@@ -168,6 +175,7 @@
 
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #informacoesGerais #informacoesContent span {
     font-size: 0.75rem;
+    color: var(--texto-preto-modo-claro);
 }
 
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho {
@@ -196,6 +204,7 @@
 
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #desempenhoTitle label {
     font-weight: bold;
+    color: var(--texto-preto-modo-claro);
 }
 
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #informacoesContent #notaMedia {
@@ -205,6 +214,8 @@
 
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #informacoesContent #notaMedia h1 {
     font-size: 2.25rem;
+
+    color: var(--texto-preto-modo-claro);
 }
 
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #informacoesContent #notaMedia h2 {
@@ -223,6 +234,8 @@
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho h4 {
     font-size: 1rem;
     font-weight: 300;
+
+    color: var(--texto-preto-modo-claro);
 
     text-decoration: underline;
 }
@@ -252,6 +265,7 @@
 
 #telaDashboards #containerDashboards #dashboards #frequencia #frequenciaTitle label {
     font-weight: bold;
+    color: var(--texto-preto-modo-claro);
 }
 
 #telaDashboards #containerDashboards #dashboards #frequencia #graficoContainer {
@@ -277,11 +291,13 @@
 #telaDashboards #containerDashboards #dashboards #frequencia #graficoContainer #textoGrafico h1 {
     font-size: 3rem;
     font-weight: 600;
+    color: var(--texto-preto-modo-claro);
 }
 
 #telaDashboards #containerDashboards #dashboards #frequencia #graficoContainer #textoGrafico label {
     font-size: 1rem;
     font-weight: 300;
+    color: var(--texto-preto-modo-claro);
 }
 
 #telaDashboards #containerDashboards #dashboards #frequencia #labelsFrequencia {
@@ -299,6 +315,7 @@
 
 #telaDashboards #containerDashboards #dashboards #frequencia .label span {
     font-size: 0.75rem;
+    color: var(--texto-preto-modo-claro);
 }
 
 #telaDashboards #containerDashboards #dashboards #frequencia .label #circlePresenca {
@@ -307,7 +324,7 @@
 
     border-radius: 50px;
 
-    background-color: var(--roxo-primario-modo-claro);
+    background-color: var(--roxo-terciario-modo-claro);
 }
 
 #telaDashboards #containerDashboards #dashboards #frequencia .label #circleFalta {
@@ -316,7 +333,7 @@
 
     border-radius: 50px;
 
-    background-color: var(--roxo-terciario-modo-claro);
+    background-color: var(--roxo-primario-modo-claro);
 }
 
 #telaDashboards #containerDashboards #dashboards #notas {
@@ -325,5 +342,47 @@
 
     border-radius: 7px;
 
-    background-color: yellowgreen;
+    padding: 1rem;
+
+    box-shadow: 2px 2px 6px 0px var(--shadowbox-modo-claro);
+}
+
+#telaDashboards #containerDashboards #dashboards #notas {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+
+    overflow: visible;
+}
+
+#telaDashboards #containerDashboards #dashboards #notas #notasTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+#telaDashboards #containerDashboards #dashboards #notas #notasTitle img {
+    height: 1.625rem;
+}
+
+#telaDashboards #containerDashboards #dashboards #notas #notasTitle label {
+    font-weight: bold;
+
+    color: var(--texto-preto-modo-claro);
+}
+
+#telaDashboards #containerDashboards #dashboards #notas #graficoBarra {
+    height: 13.6875rem;
+    width: 100%;
+
+    overflow: visible;
+}
+
+#telaDashboards #containerDashboards #containerInsights {
+    height: 130rem;
+    width: 100%;
+
+    background-color: #714ed3;
 }

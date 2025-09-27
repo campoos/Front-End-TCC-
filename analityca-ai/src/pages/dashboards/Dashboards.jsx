@@ -6,11 +6,26 @@ import UserIcon from "../../assets/usuario-icon.png"
 import InfoIcon from "../../assets/dashboards/info-icon.png"
 import CheckIcon from "../../assets/dashboards/check-icon.png"
 import ChartICon from "../../assets/dashboards/chart-icon.png"
+import PerformIcon from "../../assets/dashboards/perform-icon.png"
 
 import { Pie } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
+import { Bar } from "react-chartjs-2";
 
-ChartJS.register(ArcElement, Tooltip);
+import ChartDataLabels from "chartjs-plugin-datalabels";
+
+import {
+  Chart as ChartJS,
+  CategoryScale, // eixo X (nomes das categorias)
+  LinearScale,   // eixo Y (valores numéricos)
+  BarElement,    // o elemento "barra"
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend,
+  layouts,
+} from "chart.js";
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend, ChartDataLabels);
 
 
 function DashboardsPage() {
@@ -32,7 +47,65 @@ function DashboardsPage() {
       },
     ],
   };
- 
+
+  const dataBarra = {
+    labels: ["Atividade", "Prova", "Seminário", "Prova"], 
+    datasets: [
+      {
+        label: "Notas",
+        data: [8.0, 9.2, 7.3, 10.0], 
+        backgroundColor: "rgb(125, 83, 243)", 
+        borderRadius: 2,
+        barPercentage: 0.7,     
+        categoryPercentage: 0.6,
+      },
+    ]
+  };
+
+  const optionsPizza = {
+    plugins: {
+      legend: { display: false },
+      datalabels: {
+       display: false
+      }
+    }
+  };
+
+  const optionsBarra = {
+    maintainAspectRatio: false,
+    responsive: true,
+    layout: {
+      padding: {
+        top: 23
+      }
+    },
+    plugins: {
+      legend: { display: false },
+      datalabels: {
+      anchor: "end", // onde fica preso (start, center, end)
+      align: "top",  // posição em relação à barra (top, bottom, center)
+      color: "rgb()", // cor do texto
+      font: {
+        weight: "thin",
+        size: 14,
+      },
+      formatter: (value) => value.toFixed(1)
+    }
+    },
+    scales: {
+      x: {
+        ticks: { color: "#000" },
+        grid: { display: false },
+        barPercentage: 0.2,
+        categoryPercentage: 0.5
+      },
+      y: {
+        grid: { display: false },
+        beginAtZero: true
+      }
+    }
+  };
+
   return (
     <>
         <div id="telaDashboards">
@@ -50,16 +123,16 @@ function DashboardsPage() {
                 <div id="filtros">
                   <div className="filtro">
                     <label htmlFor="displicina">Disciplina:</label>
-                    <select name="disciplina" id="disciplina">
-                      <option value="Todas as Disciplinas" selected>Todas as Disciplinas</option>
+                    <select name="disciplina" id="disciplina" defaultValue={"Todas as Disciplinas"}>
+                      <option value="Todas as Disciplinas">Todas as Disciplinas</option>
                       <option value="Historia">História</option>
                       <option value="Geografia">Geografia</option>
                     </select>
                   </div>
                   <div className="filtro">
                     <label htmlFor="periodo">Período:</label>
-                    <select name="periodo" id="periodo">
-                      <option value="Todas os Periodos" selected>Todas os Períodos</option>
+                    <select name="periodo" id="periodo" defaultValue={"Todas os Periodos"}>
+                      <option value="Todas os Periodos">Todas os Períodos</option>
                       <option value="1 semestre">1º Semestre -2025</option>
                       <option value="2 semestre">2º Semestre - 2025</option>
                     </select>
@@ -97,31 +170,41 @@ function DashboardsPage() {
                   </div>
                   <div id="frequencia">
                     <div id="frequenciaTitle">
-                        <img src={ChartICon} alt="iconeChart"/>
-                        <label htmlFor="">Frequência no Período</label>
+                      <img src={ChartICon} alt="iconeChart"/>
+                      <label htmlFor="">Frequência no Período</label>
+                    </div>
+                    <div id="graficoContainer">
+                      <div id="grafico">
+                        <Pie data={dataPizza} options={optionsPizza}/>
                       </div>
-                      <div id="graficoContainer">
-                        <div id="grafico">
-                          <Pie data={dataPizza} />
-                        </div>
-                        <div id="textoGrafico">
-                          <h1>90%</h1>
-                          <label htmlFor="grafico">Frequência</label>
-                        </div>
+                      <div id="textoGrafico">
+                        <h1>90%</h1>
+                        <label htmlFor="grafico">Frequência</label>
                       </div>
-                      <div id="labelsFrequencia">
-                        <div id="labelPresenca" className='label'>
-                          <div id="circlePresenca"></div>
-                          <span>Presenças (90%)</span>
-                        </div>
-                        <div id="labelFalta" className='label'>
-                          <div id="circleFalta"></div>
-                          <span>Faltas (10%)</span>
-                        </div>
+                    </div>
+                    <div id="labelsFrequencia">
+                      <div id="labelPresenca" className='label'>
+                        <div id="circlePresenca"></div>
+                        <span>Presenças (90%)</span>
                       </div>
+                      <div id="labelFalta" className='label'>
+                        <div id="circleFalta"></div>
+                        <span>Faltas (10%)</span>
+                      </div>
+                    </div>
                   </div>
-                  <div id="notas"></div>
+                  <div id="notas">
+                    <div id="notasTitle">
+                      <img src={PerformIcon} alt="iconePerform"/>
+                      <label htmlFor="">Desempenho em “Máteria”</label>
+                    </div>
+                    <div id="graficoBarra">
+                      <Bar data={dataBarra} options={optionsBarra}/>
+                    </div>
+                  </div>
                 </div>
+                <hr/>
+                <div id="containerInsights"></div>
             </div>
         </div>
     </>
