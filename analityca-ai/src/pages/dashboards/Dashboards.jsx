@@ -7,58 +7,32 @@ import InfoIcon from "../../assets/dashboards/info-icon.png"
 import CheckIcon from "../../assets/dashboards/check-icon.png"
 import ChartICon from "../../assets/dashboards/chart-icon.png"
 
-import { useState, useEffect } from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
+import { Pie } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip);
+
 
 function DashboardsPage() {
 
-  const [chartData, setChartData] = useState({
-    datasets: [],
-  });
-  const [chartOptions, setChartOptions] = useState({});
-
-  useEffect(() => {
-    // Dados de exemplo, você irá substituir por dados reais da API
-    const presenca = 90;
-    const faltas = 10;
-
-    setChartData({
-      labels: ['Presença', 'Faltas'],
-      datasets: [
-        {
-          label: 'Frequência',
-          data: [presenca, faltas],
-          backgroundColor: [
-            '#9A78F5', // Cor para presença (roxo claro do design)
-            '#CFC4F8', // Cor para faltas (roxo escuro do design)
-          ],
-          borderWidth: 0, // Remove a borda branca
-        },
-      ],
-    });
-
-    setChartOptions({
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: '70%', // Faz o gráfico de rosca
-      plugins: {
-        legend: {
-          display: false, // Oculta a legenda padrão do Chart.js
-        },
-        tooltip: {
-          callbacks: {
-            label: function(tooltipItem) {
-              return `${tooltipItem.label}: ${tooltipItem.raw}%`;
-            }
-          }
-        }
-      }
-    });
-  }, []);
-
+  const dataPizza = {
+    labels: ["Presença", "Falta"],
+    datasets: [
+      {
+        label: "Frequência (%)",
+        data: [90, 10],
+        backgroundColor: [
+          "rgb(222, 212, 252)",
+          "rgb(125, 83, 243)"
+        ],
+        borderColor: [
+          "rgba(255, 255, 255, 1)"
+        ],
+        borderWidth: 4,
+      },
+    ],
+  };
+ 
   return (
     <>
         <div id="telaDashboards">
@@ -75,7 +49,7 @@ function DashboardsPage() {
                 </div>
                 <div id="filtros">
                   <div className="filtro">
-                    <label For="displicina">Disciplina:</label>
+                    <label htmlFor="displicina">Disciplina:</label>
                     <select name="disciplina" id="disciplina">
                       <option value="Todas as Disciplinas" selected>Todas as Disciplinas</option>
                       <option value="Historia">História</option>
@@ -83,7 +57,7 @@ function DashboardsPage() {
                     </select>
                   </div>
                   <div className="filtro">
-                    <label For="periodo">Período:</label>
+                    <label htmlFor="periodo">Período:</label>
                     <select name="periodo" id="periodo">
                       <option value="Todas os Periodos" selected>Todas os Períodos</option>
                       <option value="1 semestre">1º Semestre -2025</option>
@@ -96,7 +70,7 @@ function DashboardsPage() {
                     <div id="informacoesGerais">
                       <div id="informacoesTitle">
                         <img src={InfoIcon} alt="iconeInfo"/>
-                        <label for="">Informações Gerais</label>
+                        <label htmlFor="">Informações Gerais</label>
                       </div>
                       <div id="informacoesContent">
                         <span>Matrícula: 00000000</span>
@@ -109,7 +83,7 @@ function DashboardsPage() {
                     <div id="desempenho">
                       <div id="desempenhoTitle">
                         <img src={CheckIcon} alt="iconeDesempenho"/>
-                        <label for="">Desempenho na Matéria</label>
+                        <label htmlFor="">Desempenho na Matéria</label>
                       </div>
                       <div id="informacoesContent">
                         <div id="notaMedia">
@@ -124,15 +98,15 @@ function DashboardsPage() {
                   <div id="frequencia">
                     <div id="frequenciaTitle">
                         <img src={ChartICon} alt="iconeChart"/>
-                        <label for="">Frequência no Período</label>
+                        <label htmlFor="">Frequência no Período</label>
                       </div>
                       <div id="graficoContainer">
                         <div id="grafico">
-                          <Doughnut data={chartData} options={chartOptions} />
+                          <Pie data={dataPizza} />
                         </div>
                         <div id="textoGrafico">
                           <h1>90%</h1>
-                          <label For="grafico">Frequência</label>
+                          <label htmlFor="grafico">Frequência</label>
                         </div>
                       </div>
                       <div id="labelsFrequencia">
@@ -148,7 +122,6 @@ function DashboardsPage() {
                   </div>
                   <div id="notas"></div>
                 </div>
-                <hr/>
             </div>
         </div>
     </>
