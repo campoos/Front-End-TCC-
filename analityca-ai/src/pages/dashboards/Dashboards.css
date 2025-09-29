@@ -27,7 +27,7 @@
     display: flex;
 
     gap: 1.25rem;
-    padding-right: 0.5625rem;;
+    padding-right: 0.5625rem;
 }
 
 #telaDashboards #containerDashboards {
@@ -385,4 +385,13 @@
     width: 100%;
 
     background-color: #714ed3;
+}
+
+@media(min-width:1080px){
+    :root {
+        font-size: 17px;
+    }
+    #telaDashboards {
+        padding-right: 1.5625rem;
+    }
 }
