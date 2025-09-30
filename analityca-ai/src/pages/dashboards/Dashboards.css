@@ -387,11 +387,15 @@
     background-color: #714ed3;
 }
 
-@media(min-width:1080px){
+@media(min-width:1920px){
     :root {
         font-size: 17px;
     }
     #telaDashboards {
         padding-right: 2rem;
+    }
+    #telaDashboards #containerDashboards #dashboards {
+        justify-content: start;
+        gap: 7rem;
     }
 }
