@@ -1,9 +1,12 @@
 import './Login.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import setaVoltar from '../../assets/seta-voltar.png';
 
 function LoginPage() {
+
+  const navigate = useNavigate()
+  
   return (
     <main>
       <div id="loginContainer">
@@ -16,14 +19,19 @@ function LoginPage() {
             <p>Acesse sua conta para continuar</p>
           </div>
 
-          <form action="">
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            if (e.target.checkValidity()) {
+              navigate("/dashboards");
+            }
+          }}>
             <div className="grupoInput">
               <label for="email">E-mail</label>
               <input type="email" id='email' name='email' placeholder='seu.email@exemplo.com' required/>
             </div>
             <div className="grupoInput">
               <label for="senha">Senha</label>
-              <input type="password" id='senha' name='senha' placeholder='•••••••••••' required/>
+              <input type="password" id='senha' name='senha' placeholder='•••••••••••' minLength={6} required/>
             </div>
 
             <div id="opcoesForm">
@@ -34,9 +42,9 @@ function LoginPage() {
               <a href="/">Esqueceu a senha?</a>
             </div>
             
-            <Link to={"/dashboards"} id='loginSubmitButtonContainer'>
+            <a id='loginSubmitButtonContainer'>
               <button type='submit' id='loginSubmitButton'>Entrar</button>
-            </Link>
+            </a>
           </form>
         </div>
       </div>
