@@ -18,27 +18,35 @@ function LoginPage() {
       senha: senha
     }
 
-    fetch("http://localhost:8080/analytica-ai/usuario/login", {
+    fetch("http://localhost:8080/v1/analytica-ai/usuarios/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(dados)
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Erro no login")
+    .then(async response => {
+      if (response.ok) {
+        return response.json(); 
       }
-      return response.json()
+
+      let errorData;
+      try {
+        errorData = await response.json();
+      } catch (e) {
+        throw new Error(`Erro ${response.status}: Resposta inesperada do servidor.`);
+      }
+      throw new Error(errorData.message || 'Erro desconhecido.'); 
+      
     })
     .then(data =>{
-      console.log("Login realizado com sucesso!")
+      console.log("Login realizado com sucesso!");
       setErroLogin('');
       navigate("/dashboards");
     })
     .catch(error => {
-      console.error("Erro ao tentar logar", error)
-      setErroLogin('Erro ao realizar Login.');
+      console.error("Erro ao tentar logar", error.message);
+      setErroLogin(error.message);
     })
   }
   
@@ -69,7 +77,7 @@ function LoginPage() {
               <input type="password" id='senha' name='senha' placeholder='•••••••••••' value={senha} onChange={e=>setSenha(e.target.value)} required/>
             </div>
 
-            {/* {erroLogin && } */}
+            <p id='mensagemErro' className={erroLogin ? 'visibleError' : 'hiddenError'}>Erro ao realizar Login: {erroLogin}</p>
 
             <div id="opcoesForm">
               <div id="remember">

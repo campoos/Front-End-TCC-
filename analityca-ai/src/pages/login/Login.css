@@ -10,6 +10,7 @@
     --background-input-modo-claro: #F9F9F9;
     --borda-input-modo-claro: #E1E1E1;
     --texto-input-modo-claro: #979797;
+    --texto-erro-modo-claro: #FF0023;
   }
   
 * {
@@ -196,3 +197,13 @@ main {
     background-color: var(--roxo-secundario-modo-claro);
 }
 
+#loginContainer #loginConteudo form .hiddenError {
+    opacity: 0;
+}
+
+#loginContainer #loginConteudo form .visibleError {
+    opacity: 1;
+    color: var(--texto-erro-modo-claro);
+    font-size: 0.875rem;
+    font-weight: 300;
+}
