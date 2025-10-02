@@ -175,7 +175,7 @@ main {
     width: 100%;
 }
 
-#loginContainer #loginConteudo form a button {
+#loginContainer #loginConteudo form button {
     width: 100%;
     height: 4.1875rem;
 
@@ -191,7 +191,7 @@ main {
     transition: all 0.2s ease-in-out;
 }
 
-#loginContainer #loginConteudo form a button:hover {
+#loginContainer #loginConteudo form button:hover {
     cursor: pointer;
     background-color: var(--roxo-secundario-modo-claro);
 }

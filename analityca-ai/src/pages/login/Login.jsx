@@ -1,11 +1,46 @@
 import './Login.css'
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
 import setaVoltar from '../../assets/seta-voltar.png';
 
 function LoginPage() {
 
   const navigate = useNavigate()
+
+  const [credencial, setCredencial] = useState('');
+  const [senha, setSenha] = useState('');
+  const [erroLogin, setErroLogin] = useState('');
+
+  function validarDados(){
+    const dados = {
+      credencial: credencial,
+      senha: senha
+    }
+
+    fetch("http://localhost:8080/analytica-ai/usuario/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dados)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Erro no login")
+      }
+      return response.json()
+    })
+    .then(data =>{
+      console.log("Login realizado com sucesso!")
+      setErroLogin('');
+      navigate("/dashboards");
+    })
+    .catch(error => {
+      console.error("Erro ao tentar logar", error)
+      setErroLogin('Erro ao realizar Login.');
+    })
+  }
   
   return (
     <main>
@@ -22,29 +57,30 @@ function LoginPage() {
           <form onSubmit={(e) => {
             e.preventDefault();
             if (e.target.checkValidity()) {
-              navigate("/dashboards");
+              validarDados()
             }
           }}>
             <div className="grupoInput">
-              <label for="matricula">Matrícula</label>
-              <input type="text" id='matricula' name='matricula' placeholder='0000000000' required/>
+              <label htmlFor="matricula">Matrícula</label>
+              <input type="text" id='matricula' name='matricula' placeholder='0000000000' value={credencial} onChange={e=>setCredencial(e.target.value)} required/>
             </div>
             <div className="grupoInput">
-              <label for="senha">Senha</label>
-              <input type="password" id='senha' name='senha' placeholder='•••••••••••' required/>
+              <label htmlFor="senha">Senha</label>
+              <input type="password" id='senha' name='senha' placeholder='•••••••••••' value={senha} onChange={e=>setSenha(e.target.value)} required/>
             </div>
+
+            {/* {erroLogin && } */}
 
             <div id="opcoesForm">
               <div id="remember">
                 <input type="checkbox" id='lembrar' name='lembrarDeMim'/>
-                <label for="lembrar">Lembrar de mim</label>
+                <label htmlFor="lembrar">Lembrar de mim</label>
               </div>
               <a href="/">Esqueceu a senha?</a>
             </div>
             
-            <a id='loginSubmitButtonContainer'>
-              <button type='submit' id='loginSubmitButton'>Entrar</button>
-            </a>
+            <button type='submit' id='loginSubmitButton'>Entrar</button>
+
           </form>
         </div>
       </div>
