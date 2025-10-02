@@ -1,28 +1,11 @@
 import './Login.css'
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from 'react';
 
 import setaVoltar from '../../assets/seta-voltar.png';
 
 function LoginPage() {
 
   const navigate = useNavigate()
-
-  const [matricula, setMatricula] = useState('');
-
-  const handleOnlyNumbers = (e) => {
-      const onlyNums = e.target.value.replace(/\D/g, ''); 
-      
-      setMatricula(onlyNums.substring(0, 11));
-  };
-
-  const handleSubmit = (e) => {
-      e.preventDefault();
-
-      if (e.target.checkValidity()) {
-          navigate("/dashboards");
-      }
-  };
   
   return (
     <main>
@@ -36,14 +19,19 @@ function LoginPage() {
             <p>Acesse sua conta para continuar</p>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            if (e.target.checkValidity()) {
+              navigate("/dashboards");
+            }
+          }}>
             <div className="grupoInput">
               <label for="matricula">Matrícula</label>
-              <input type="text" id='matricula' name='matricula' placeholder='0000000000' maxLength={10} minLength={10} value={matricula} onChange={handleOnlyNumbers} required/>
+              <input type="text" id='matricula' name='matricula' placeholder='0000000000' required/>
             </div>
             <div className="grupoInput">
               <label for="senha">Senha</label>
-              <input type="password" id='senha' name='senha' placeholder='•••••••••••' minLength={8} maxLength={20} required/>
+              <input type="password" id='senha' name='senha' placeholder='•••••••••••' required/>
             </div>
 
             <div id="opcoesForm">
