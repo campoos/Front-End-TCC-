@@ -297,3 +297,39 @@
   font-weight: 400;
   height: 1.3rem;
 }
+
+    @media(max-width:412px){
+      :root{
+        font-size: 10px;
+      }
+
+      div #container1 #header {
+        padding: 2rem;
+      }
+
+      div #container1 #header #links {
+        display: none;
+      }
+
+      div #container1 #containerTextoHome {
+        flex-grow: 1;
+      }
+
+      div #container2 #containersRecursos {
+        flex-direction: column;
+        align-items: center;
+
+        gap: 4rem;
+      }
+
+      div #container3 #containerMain {
+        flex-grow: 1;
+      }
+
+      div #container3 #containerMain #containerTextos {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 4rem;
+      }
+    }

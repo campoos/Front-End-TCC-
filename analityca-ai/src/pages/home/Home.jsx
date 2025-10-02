@@ -59,12 +59,12 @@ function HomePage() {
               <span>Tenha transparência total no acompanhamento do progresso dos seus filhos. Receba insights valiosos e relatórios personalizados para apoiar a jornada de aprendizado deles.</span>
             </div>
             <div className="containerTexto">
-              <h2>Famílias</h2>
-              <span>Tenha transparência total no acompanhamento do progresso dos seus filhos. Receba insights valiosos e relatórios personalizados para apoiar a jornada de aprendizado deles.</span>
+              <h2>Escolas</h2>
+              <span>Otimize a gestão e a avaliação do desempenho de grupos e turmas. Obtenha insights profundos para identificar tendências e tomar decisões pedagógicas mais eficazes.</span>
             </div>
             <div className="containerTexto">
-              <h2>Famílias</h2>
-              <span>Tenha transparência total no acompanhamento do progresso dos seus filhos. Receba insights valiosos e relatórios personalizados para apoiar a jornada de aprendizado deles.</span>
+              <h2>Alunos</h2>
+              <span>Aproveite planos de estudo personalizados e receba feedback contínuo. Entenda seus pontos fortes e fracos, e acelere seu desenvolvimento de forma inteligente.</span>
             </div>
           </div>
         </div>
