@@ -30,10 +30,21 @@ function LoginPage() {
         return response.json(); 
       }
 
+      if (response.status === 401) {
+        throw new Error("Serviço de login não encontrado. Tente novamente mais tarde.");
+      }
+      if (response.status === 404) {
+        throw new Error("Credenciais inválidas. Verifique sua matrícula e senha.");
+      }
+
       let errorData;
       try {
         errorData = await response.json();
       } catch (e) {
+        if (response.status >= 500) {
+          setErroLogin("Falha interna do servidor.")
+           throw new Error(`Erro ${response.status}: Falha interna do servidor. Tente novamente mais tarde.`);
+        }
         throw new Error(`Erro ${response.status}: Resposta inesperada do servidor.`);
       }
       throw new Error(errorData.message || 'Erro desconhecido.'); 
@@ -46,7 +57,14 @@ function LoginPage() {
     })
     .catch(error => {
       console.error("Erro ao tentar logar", error.message);
-      setErroLogin(error.message);
+
+      const errorMessage = error.message;
+
+      if (errorMessage.includes('Failed to fetch') || errorMessage.includes('NetworkError')) {
+        setErroLogin("Problemas de conexão. Tente novamente mais tarde.");
+      } else {
+          setErroLogin(errorMessage);
+      }
     })
   }
   
@@ -77,7 +95,7 @@ function LoginPage() {
               <input type="password" id='senha' name='senha' placeholder='•••••••••••' value={senha} onChange={e=>setSenha(e.target.value)} required/>
             </div>
 
-            <p id='mensagemErro' className={erroLogin ? 'visibleError' : 'hiddenError'}>Erro ao realizar Login: {erroLogin}</p>
+            <p id='mensagemErro' className={erroLogin ? 'visibleError' : 'hiddenError'}> {erroLogin}</p>
 
             <div id="opcoesForm">
               <div id="remember">
