@@ -88,11 +88,11 @@ function LoginPage() {
           }}>
             <div className="grupoInput">
               <label htmlFor="matricula">Matrícula</label>
-              <input type="text" id='matricula' name='matricula' placeholder='0000000000' value={credencial} onChange={e=>setCredencial(e.target.value)} required/>
+              <input type="text" id='matricula' className='inputLogin' name='matricula' placeholder='0000000000' value={credencial} onChange={e=>setCredencial(e.target.value)} required/>
             </div>
             <div className="grupoInput">
               <label htmlFor="senha">Senha</label>
-              <input type="password" id='senha' name='senha' placeholder='•••••••••••' value={senha} onChange={e=>setSenha(e.target.value)} required/>
+              <input type="password" id='senha' className='inputLogin' name='senha' placeholder='•••••••••••' value={senha} onChange={e=>setSenha(e.target.value)} required/>
             </div>
 
             <div id="containerErro">

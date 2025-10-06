@@ -1,26 +1,23 @@
 :root {
-    /* tema claro */
-    --roxo-primario-modo-claro: #7D53F3;
-    --roxo-secundario-modo-claro: #714ed3;
-    --texto-branco-modo-claro: #ffffff;
-    --texto-preto-modo-claro: #242424;
-    --texto-transparente-modo-claro: #9A9A9A;
-    --background-claro-modo-claro: #ffffff;
-    --background-cinza-modo-claro: #F3F3F3;
-    --background-input-modo-claro: #F9F9F9;
-    --borda-input-modo-claro: #E1E1E1;
-    --texto-input-modo-claro: #979797;
-  }
-  
+  /* tema claro */
+  --roxo-primario-modo-claro: #7D53F3;
+  --roxo-secundario-modo-claro: #714ed3;
+  --texto-branco-modo-claro: #ffffff;
+  --texto-preto-modo-claro: #242424;
+  --texto-transparente-modo-claro: #9A9A9A;
+  --background-claro-modo-claro: #ffffff;
+  --background-cinza-modo-claro: #F3F3F3;
+  --background-input-modo-claro: #F9F9F9;
+  --borda-input-modo-claro: #E1E1E1;
+  --texto-input-modo-claro: #979797;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-
-    overflow-x: hidden;
 }
-
 
 #container1 {
   display: flex;
@@ -298,38 +295,42 @@
   height: 1.3rem;
 }
 
-    @media(max-width:412px){
-      :root{
-        font-size: 10px;
-      }
+@media(max-width:412px){
+  :root{
+    font-size: 11px;
+  }
 
-      div #container1 #header {
-        padding: 2rem;
-      }
+  div #container1 #header {
+    padding: 2rem;
+  }
 
-      div #container1 #header #links {
-        display: none;
-      }
+  div #container1 #header #links {
+    display: none;
+  }
 
-      div #container1 #containerTextoHome {
-        flex-grow: 1;
-      }
+  div #container1 #containerTextoHome {
+    flex-grow: 1;
+  }
 
-      div #container2 #containersRecursos {
-        flex-direction: column;
-        align-items: center;
+  div #container1 #containerTextoHome h1 {
+    font-size: 3.5rem;
+  }
 
-        gap: 4rem;
-      }
+  div #container2 #containersRecursos {
+    flex-direction: column;
+    align-items: center;
 
-      div #container3 #containerMain {
-        flex-grow: 1;
-      }
+    gap: 4rem;
+  }
 
-      div #container3 #containerMain #containerTextos {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 4rem;
-      }
-    }
+  div #container3 #containerMain {
+    flex-grow: 1;
+  }
+
+  div #container3 #containerMain #containerTextos {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4rem;
+  }
+}

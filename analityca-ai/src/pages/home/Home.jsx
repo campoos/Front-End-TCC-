@@ -10,9 +10,9 @@ function HomePage() {
             <h1>Analytica AI</h1>
           </div>
           <div id="links">
-            <a href="" className="link">Recursos</a>
-            <a href="" className="link">Benefícios</a>
-            <a href="" className="link">Contato</a>
+            <a href="#container2" className="link">Recursos</a>
+            <a href="#container3" className="link">Benefícios</a>
+            <a href="#footer" className="link">Contato</a>
           </div>
           <div id="botaoContainer">
             <Link to="/login" id="login">
