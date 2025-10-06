@@ -197,11 +197,19 @@ main {
     background-color: var(--roxo-secundario-modo-claro);
 }
 
-#loginContainer #loginConteudo form .hiddenError {
+#loginContainer #loginConteudo form #containerErro {
+    height: 1.2rem;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+#loginContainer #loginConteudo form #containerErro .hiddenError {
     opacity: 0;
 }
 
-#loginContainer #loginConteudo form .visibleError {
+#loginContainer #loginConteudo form #containerErro .visibleError {
     opacity: 1;
     color: var(--texto-erro-modo-claro);
     font-size: 0.875rem;

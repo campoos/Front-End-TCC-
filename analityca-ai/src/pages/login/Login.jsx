@@ -95,7 +95,9 @@ function LoginPage() {
               <input type="password" id='senha' name='senha' placeholder='•••••••••••' value={senha} onChange={e=>setSenha(e.target.value)} required/>
             </div>
 
-            <p id='mensagemErro' className={erroLogin ? 'visibleError' : 'hiddenError'}> {erroLogin}</p>
+            <div id="containerErro">
+              <p id='mensagemErro' className={erroLogin ? 'visibleError' : 'hiddenError'}> {erroLogin}</p>
+            </div>
 
             <div id="opcoesForm">
               <div id="remember">
