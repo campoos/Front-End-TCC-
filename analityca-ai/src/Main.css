@@ -14,3 +14,16 @@
     --shadowbox-modo-claro: #BEBEBE;
     --texto-erro-modo-claro: #FF0023;
 }
+
+@media(max-width:600px){
+    :root {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+    :root {
+      font-size: 15px;
+    }
+  }
+  

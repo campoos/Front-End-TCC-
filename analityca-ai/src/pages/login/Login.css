@@ -208,9 +208,6 @@ main {
 }
 
 @media(max-width:412px){
-    :root {
-        font-size: 13px;
-    }
     main {
         padding: 1rem;
     }

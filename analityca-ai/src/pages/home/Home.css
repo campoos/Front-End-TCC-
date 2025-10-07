@@ -83,7 +83,7 @@
   align-items: center;
   justify-content: center;
 
-  height: 54.5rem;
+  flex-grow: 1;
 }
 
 #container1 #containerTextoHome h1 {
@@ -232,6 +232,8 @@
   justify-content: center;
   height: 56rem;
   width: 100%;
+
+  flex-grow: 1;
 }
 
 #container3 #containerMain h1 {
@@ -283,11 +285,7 @@
   height: 1.3rem;
 }
 
-@media(max-width:412px){
-  :root{
-    font-size: 11px;
-  }
-
+@media(max-width:600px){
   div #container1 #header {
     padding: 2rem;
   }
@@ -295,24 +293,88 @@
   div #container1 #header #links {
     display: none;
   }
-
-  div #container1 #containerTextoHome {
-    flex-grow: 1;
+  
+  div #container1 #containerTextoHome h1 {
+    font-size: 2.5rem;
+    width: 100%;
   }
 
-  div #container1 #containerTextoHome h1 {
-    font-size: 3.5rem;
+  div #container1 #containerTextoHome h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    width: 100%;
+  }
+
+  div #container2 #tituloRecursos {
+    font-size: 2rem;
+    margin-bottom: 1rem;
   }
 
   div #container2 #containersRecursos {
     flex-direction: column;
     align-items: center;
 
+    gap: 2rem;
+  }
+
+  div #container2 #containersRecursos .containerRecurso {
+    height: 15rem;
+    width: 22rem;
+  }
+
+  div #container2 #containersRecursos .containerRecurso h1 {
+    font-size: 2rem;
+  }
+
+  div #container3 #containerMain h1 {
+    font-size: 2rem;
+    margin-bottom: 5rem;
+  }
+
+  div #container3 #containerMain #containerTextos .containerTexto {
+    width: 20rem;
+  }
+
+  div #container3 #containerMain #containerTextos .containerTexto h2 {
+    font-size: 1.5rem;
+  }
+
+  div #container3 #containerMain #containerTextos .containerTexto span {
+    font-size: 1rem;
+  }
+
+  div #container3 #containerMain #containerTextos {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: 4rem;
   }
 
-  div #container3 #containerMain {
-    flex-grow: 1;
+  div #container3 #footer {
+    height: 6.5rem;
+
+    box-shadow: 0px -0.5px 0px 0.5px var(--texto-transparente-modo-claro);
+  }
+
+  div #container3 #footer span {
+    font-size: 0.8rem;
+  }
+}
+
+@media(max-width:768px){
+  div #container1 #header {
+    padding: 2rem;
+  }
+
+  div #container2 #containersRecursos {
+    flex-direction: column;
+    align-items: center;
+
+    gap: 2rem;
+  }
+
+  div #container3 #containerMain h1 {
+    margin-bottom: 5rem;
   }
 
   div #container3 #containerMain #containerTextos {
