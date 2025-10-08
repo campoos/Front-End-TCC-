@@ -21,14 +21,17 @@ import {
   ArcElement,
   Title,
   Tooltip,
-  Legend,
-  layouts,
+  Legend
 } from "chart.js";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend, ChartDataLabels);
 
 
 function DashboardsPage() {
+
+  const dataUser = JSON.parse(localStorage.getItem("userData"))
+
+  console.log(dataUser)
 
   const dataPizza = {
     labels: ["Presença", "Falta"],
@@ -111,13 +114,13 @@ function DashboardsPage() {
         <div id="telaDashboards">
             <Sidebar/>
             <div id="containerDashboards">
-                <h1 id='title'>Dashboard Do Aluno: “nome do aluno”</h1>
+                <h1 id='title'>Dashboard Do Aluno: {dataUser.nome}</h1>
                 <hr/>
                 <div id="usuarioContainer">
                   <img src={UserIcon} alt="" />
                   <div id="userContent">
-                    <h1>"Nome do Aluno"</h1>
-                    <span>1° Ano B</span>
+                    <h1>{dataUser.nome}</h1>
+                    <span>"1° Ano B"</span>
                   </div>
                 </div>
                 <div id="filtros">
@@ -146,11 +149,11 @@ function DashboardsPage() {
                         <label htmlFor="">Informações Gerais</label>
                       </div>
                       <div id="informacoesContent">
-                        <span>Matrícula: 00000000</span>
-                        <span>Data de Nascimeto: 00/00/0000</span>
+                        <span>Matrícula: {dataUser.matricula}</span>
+                        <span>Data de Nascimeto: {dataUser.data_nascimento}</span>
                         <span>Responsável: Nome da responsável</span>
-                        <span>Contato: 11 0 00000-0000</span>
-                        <span>Email: exemplo@gmail.com</span>
+                        <span>Contato: {dataUser.telefone}</span>
+                        <span>Email: {dataUser.email}</span>
                       </div>
                     </div>
                     <div id="desempenho">

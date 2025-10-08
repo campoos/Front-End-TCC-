@@ -51,6 +51,7 @@ function LoginPage() {
       
     })
     .then(data =>{
+      localStorage.setItem("userData", JSON.stringify(data.usuario))
       console.log("Login realizado com sucesso!");
       setErroLogin('');
       navigate("/dashboards");
