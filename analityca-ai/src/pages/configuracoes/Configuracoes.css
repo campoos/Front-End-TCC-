@@ -1,7 +1,7 @@
 @import url("../../Main.css");
 
 * {
-    padding: 0;
+    padding: 0; 
     margin: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
@@ -15,16 +15,81 @@
     display: flex;
 
     gap: 1.25rem;
+    padding-right: 1.25rem;
 }
 
 #telaConfiguracoes #containerConfiguracoes {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 
-    flex-grow: 1;
+    width: 100%;
+
+    padding-left: 23.50rem;
+
+    overflow-y: auto;
+    overflow: visible;
 }
 
-#telaConfiguracoes #containerConfiguracoes h1 {
-    font-size: 10rem;
+#telaConfiguracoes #containerConfiguracoes #title {
+    font-size: 2rem;
+
+    width: 100%;
+    padding: 2.75rem 0rem;
+
+    color: var(--texto-preto-modo-claro);
 }
+
+#telaConfiguracoes #containerConfiguracoes hr{
+    width: 100%;
+
+    color: var(--texto-input-modo-claro);
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes {
+    width: 100%;
+    height: 100%;
+
+    padding: 0 1.0625rem 0;
+    border-radius: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes #informacaoAluno {
+    padding: 1.375rem 0 1.375rem 0;
+
+    background-color: rgb(255, 206, 147);
+    
+    font-size: 1.5rem;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes {
+   background-color: rgb(231, 231, 231);
+
+   height: 100%;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput {
+    font-size: 1.25rem;
+ 
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput input {
+    color: var(--texto-preto-modo-claro);
+    
+    font-size: 1rem;
+
+    margin-bottom: 1rem;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput input::placeholder {
+    color: var(--texto-input-modo-claro);
+}
+
+
