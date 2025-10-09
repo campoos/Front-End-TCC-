@@ -7,6 +7,7 @@ import RecursosPage from "./pages/recursos/Recursos.jsx";
 import RankingPage from "./pages/ranking/Ranking.jsx";
 import ConfiguracoesPage from "./pages/configuracoes/Configuracoes.jsx";
 import RecuperarSenhaPage from "./pages/recuperar-senha/RecuperarSenha.jsx";
+import EmailEnviadoPage from "./pages/email-enviado/EmailEnviado.jsx";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -21,6 +22,7 @@ function AppRoutes() {
             <Route path="/ranking" element={<RankingPage />}></Route>
             <Route path="/configuracoes" element={<ConfiguracoesPage />}></Route>
             <Route path="/recuperar-senha" element={<RecuperarSenhaPage />}></Route>
+            <Route path="/email-enviado" element={<EmailEnviadoPage />}></Route>
         </Routes>
       </>
     )

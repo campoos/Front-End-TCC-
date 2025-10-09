@@ -1,5 +1,5 @@
 import './RecuperarSenha.css'
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import setaVoltar from '../../assets/seta-voltar.png';
 
@@ -26,8 +26,9 @@ function RecuperarSenhaPage() {
               <p id='mensagemErro'>Erro Placeholder</p>
             </div>
             
-            <button type='submit' id='recuperacaoSenhaSubmitButton'>Enviar</button>
-
+            <Link to={"/email-enviado"}>
+                <button type='submit' id='recuperacaoSenhaSubmitButton'>Enviar</button> 
+            </Link>
           </form>
         </div>
       </div>
