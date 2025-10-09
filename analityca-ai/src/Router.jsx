@@ -6,6 +6,7 @@ import DashboardsPage from "./pages/dashboards/Dashboards.jsx";
 import RecursosPage from "./pages/recursos/Recursos.jsx";
 import RankingPage from "./pages/ranking/Ranking.jsx";
 import ConfiguracoesPage from "./pages/configuracoes/Configuracoes.jsx";
+import RecuperarSenhaPage from "./pages/recuperar-senha/RecuperarSenha.jsx";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -19,6 +20,7 @@ function AppRoutes() {
             <Route path="/recursos" element={<RecursosPage />}></Route>
             <Route path="/ranking" element={<RankingPage />}></Route>
             <Route path="/configuracoes" element={<ConfiguracoesPage />}></Route>
+            <Route path="/recuperar-senha" element={<RecuperarSenhaPage />}></Route>
         </Routes>
       </>
     )

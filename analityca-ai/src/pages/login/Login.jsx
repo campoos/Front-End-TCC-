@@ -52,6 +52,7 @@ function LoginPage() {
     })
     .then(data =>{
       localStorage.setItem("userData", JSON.stringify(data.usuario))
+      console.log(JSON.parse(localStorage.getItem("userData")))
       console.log("Login realizado com sucesso!");
       setErroLogin('');
       navigate("/dashboards");
@@ -105,7 +106,9 @@ function LoginPage() {
                 <input type="checkbox" id='lembrar' name='lembrarDeMim'/>
                 <label htmlFor="lembrar">Lembrar de mim</label>
               </div>
-              <a href="/">Esqueceu a senha?</a>
+              <Link to={"/recuperar-senha"} id='esqueceu-senha'>
+                <a href="/">Esqueceu a senha?</a>
+              </Link>
             </div>
             
             <button type='submit' id='loginSubmitButton'>Entrar</button>
