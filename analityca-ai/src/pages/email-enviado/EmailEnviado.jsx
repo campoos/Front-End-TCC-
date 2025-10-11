@@ -1,8 +1,6 @@
 import './EmailEnviado.css'
 import { Link } from "react-router-dom";
 
-import setaVoltar from '../../assets/seta-voltar.png';
-
 function EmailEnviadoPage() {
   return (
     <main>

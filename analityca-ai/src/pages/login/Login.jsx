@@ -12,13 +12,13 @@ function LoginPage() {
   const [senha, setSenha] = useState('');
   const [erroLogin, setErroLogin] = useState('');
 
-  function validarDados(){
+  async function validarDados(){
     const dados = {
       credencial: credencial,
       senha: senha
     }
 
-    fetch("http://localhost:8080/v1/analytica-ai/usuarios/login", {
+    await fetch("http://localhost:8080/v1/analytica-ai/usuarios/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
