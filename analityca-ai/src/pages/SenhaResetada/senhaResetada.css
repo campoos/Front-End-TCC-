@@ -1,0 +1,107 @@
+@import url("../../Main.css");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+
+    overflow-x: hidden;
+}
+
+main {
+    height: 100dvh;
+    width: 100dvw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--background-cinza-modo-claro);
+}
+
+#senhaResetadaContainer {
+    background-color: var(--background-claro-modo-claro);
+
+    height: 22.3125rem;
+    width: 32.6875rem;
+    border-radius: 15px;
+    padding: 2rem 2.25rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.12);
+}
+
+#senhaResetadaContainer #senhaResetadaConteudo {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#senhaResetadaContainer #senhaResetadaConteudo #senhaResetadaDescricao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#senhaResetadaContainer #senhaResetadaConteudo #senhaResetadaDescricao h2 {
+    font-size: 2.25rem;
+    color: var(--texto-preto-modo-claro);
+
+    margin-bottom: 0.6875rem;
+}
+
+#senhaResetadaContainer #senhaResetadaConteudo #senhaResetadaDescricao p {
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: center;
+    width: 75%;
+    color: var(--texto-transparente-modo-claro);
+    margin: 1rem;
+}
+
+#senhaResetadaContainer #senhaResetadaConteudo a {
+    width: 100%;
+    height: 4.1875rem;
+}
+
+#senhaResetadaContainer #senhaResetadaConteudo a button {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 35px;
+    border: none;
+    background-color: var(--roxo-primario-modo-claro);
+
+    color: var(--texto-branco-modo-claro);
+    font-size: 1rem;
+
+    transition: all 0.2s ease-in-out;
+}
+
+#senhaResetadaContainer #senhaResetadaConteudo a button:hover {
+    cursor: pointer;
+    background-color: var(--roxo-secundario-modo-claro);
+}
+
+#senhaResetadaContainer #senhaResetadaConteudo form #containerErro {
+    height: 1.2rem;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+@media(max-width:412px){
+    main {
+        padding: 1rem;
+    }
+}
