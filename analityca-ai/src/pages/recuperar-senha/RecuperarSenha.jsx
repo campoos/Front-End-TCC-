@@ -11,7 +11,12 @@ function RecuperarSenhaPage() {
   const [credencial, setCredencial] = useState('');
   const [erroLogin, setErroLogin] = useState('');
 
+  const [estaCarregando, setEstaCarregando] = useState(false); 
+
   async function solicitarEmail(){
+    setEstaCarregando(true); 
+    setErroLogin('');
+
     const dados = {
       credencial: credencial
     }
@@ -48,6 +53,7 @@ function RecuperarSenhaPage() {
     .then(data =>{
       console.log("Solicitação de recuperação de senha feita com sucesso.");
       setErroLogin('');
+      setEstaCarregando(false)
       navigate("/email-enviado");
     })
     .catch(error => {
@@ -57,8 +63,10 @@ function RecuperarSenhaPage() {
 
       if (errorMessage.includes('Failed to fetch') || errorMessage.includes('NetworkError')) {
         setErroLogin("Problemas de conexão. Tente novamente mais tarde.");
+        setEstaCarregando(false)
       } else {
           setErroLogin(errorMessage);
+          setEstaCarregando(false)
       }
     })
   }
@@ -67,7 +75,7 @@ function RecuperarSenhaPage() {
     <main>
       <div id="recuperacaoSenhaContainer">
         <Link to={"/login"} id='botaoVoltar'>
-          <img src={setaVoltar} alt="" />
+          <img src={setaVoltar} alt="" style={{ pointerEvents: estaCarregando ? 'none' : 'auto' }}/>
         </Link>
         <div id="recuperacaoSenhaConteudo">
           <div id="recuperacaoSenhaDescricao">
@@ -77,20 +85,20 @@ function RecuperarSenhaPage() {
 
           <form onSubmit={(e) => {
             e.preventDefault();
-            if (e.target.checkValidity()) {
+            if (e.target.checkValidity() && !estaCarregando) {
               solicitarEmail()
             }
           }}>
             <div className="grupoInput">
               <label htmlFor="matricula">Matrícula</label>
-              <input type="text" id='matricula' className='input' name='matricula' placeholder='Sua matrícula...' value={credencial} onChange={e=>setCredencial(e.target.value)} required/>
+              <input type="text" id='matricula' className='input' name='matricula' placeholder='Sua matrícula...' value={credencial} onChange={e=>setCredencial(e.target.value)} disabled={estaCarregando} required/>
             </div>
 
             <div id="containerErro">
               <p id='mensagemErro' className={erroLogin ? 'visibleError' : 'hiddenError'}>{erroLogin}</p>
             </div>
             
-            <button type='submit' id='recuperacaoSenhaSubmitButton'>Enviar</button> 
+            <button type='submit' id='recuperacaoSenhaSubmitButton' disabled={estaCarregando} >{estaCarregando ? 'Enviando...' : 'Enviar'}</button> 
 
           </form>
         </div>

@@ -12,7 +12,10 @@ function LoginPage() {
   const [senha, setSenha] = useState('');
   const [erroLogin, setErroLogin] = useState('');
 
+  const [estaCarregando, setEstaCarregando] = useState(false); 
+
   async function validarDados(){
+    setEstaCarregando(true)
     const dados = {
       credencial: credencial,
       senha: senha
@@ -54,6 +57,7 @@ function LoginPage() {
       localStorage.setItem("userData", JSON.stringify(data.usuario))
       console.log("Login realizado com sucesso!");
       setErroLogin('');
+      setEstaCarregando(false)
       navigate("/dashboards");
     })
     .catch(error => {
@@ -63,8 +67,10 @@ function LoginPage() {
 
       if (errorMessage.includes('Failed to fetch') || errorMessage.includes('NetworkError')) {
         setErroLogin("Problemas de conexão. Tente novamente mais tarde.");
+        setEstaCarregando(false)
       } else {
           setErroLogin(errorMessage);
+          setEstaCarregando(false)
       }
     })
   }
@@ -110,7 +116,7 @@ function LoginPage() {
               </Link>
             </div>
             
-            <button type='submit' id='loginSubmitButton'>Entrar</button>
+            <button type='submit' id='loginSubmitButton'>{estaCarregando ? 'Entrando...' : 'Entrar'}</button>
 
           </form>
         </div>
