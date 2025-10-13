@@ -46,7 +46,7 @@ function ResetarSenhaPage() {
            setErroRedefinir(errorMessage)
            setStatusToken("invalido")
           } else {
-            setErroRedefinir("Ocorreu um erro ao verificar o token. Tente novamente.")
+            setErroRedefinir("Ocorreu um erro ao verificar o token.")
             setStatusToken('invalido');
           }
         } catch (error) {
