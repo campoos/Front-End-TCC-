@@ -112,7 +112,7 @@ function LoginPage() {
                 <label htmlFor="lembrar">Lembrar de mim</label>
               </div>
               <Link to={"/recuperar-senha"} id='esqueceu-senha'>
-                <a href="/">Esqueceu a senha?</a>
+                Esqueceu a senha?
               </Link>
             </div>
             
