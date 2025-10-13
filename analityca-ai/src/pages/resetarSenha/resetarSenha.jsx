@@ -15,13 +15,17 @@ function ResetarSenhaPage() {
 
   const [estaCarregando, setEstaCarregando] = useState(false); 
 
+  const [tokenVerificado, setTokenVerificado] = useState(false); 
+
   useEffect(() => {
     const tokenFromUrl = searchParams.get('token');
     if (tokenFromUrl) {
       setToken(tokenFromUrl);
+      setTokenVerificado(true); 
     } else {
       // Se não houver token na URL, redireciona ou mostra uma mensagem de erro
       setErroRedefinir('Token de redefinição não encontrado na URL.');
+      setTokenVerificado(true); 
     }
   }, [searchParams]);
 
@@ -105,6 +109,31 @@ function ResetarSenhaPage() {
           setEstaCarregando(false)
       }
     })
+  }
+  // 1. Renderização de carregamento inicial
+  if (!tokenVerificado) {
+    return (
+      <main>
+        <div id="redefinirContainerCarregando">
+            <p>Carregando...</p> 
+        </div>
+      </main>
+    );
+  }
+
+  if (!token) {
+    return (
+      <main>
+        <div id="redefinirContainerErro">
+          <div id="redefinirConteudo" className="erroFatal">
+            <h2>Ops! Link Inválido</h2>
+            <p id='mensagemErro' className='visibleError'>{erroRedefinir}</p>
+            <p>Por favor, utilize o link de redefinição completo enviado para o seu e-mail.</p>
+            <button onClick={() => navigate('/login')}>Ir para a página de Login</button>
+          </div>
+        </div>
+      </main>
+    )
   }
   
   return (
