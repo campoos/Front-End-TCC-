@@ -15,18 +15,49 @@ function ResetarSenhaPage() {
 
   const [estaCarregando, setEstaCarregando] = useState(false); 
 
-  const [tokenVerificado, setTokenVerificado] = useState(false); 
+  const [statusToken, setStatusToken] = useState('carregando'); 
 
   useEffect(() => {
     const tokenFromUrl = searchParams.get('token');
     if (tokenFromUrl) {
       setToken(tokenFromUrl);
-      setTokenVerificado(true); 
     } else {
       // Se não houver token na URL, redireciona ou mostra uma mensagem de erro
       setErroRedefinir('Token de redefinição não encontrado na URL.');
-      setTokenVerificado(true); 
+      setStatusToken('invalido');
     }
+
+    async function validarToken() {
+        try {
+          const response = await fetch(`http://localhost:8080/v1/analytica-ai/usuarios/verificar-token/${tokenFromUrl}`, {
+            method: "GET"
+          })
+
+          if (response.ok){
+            setStatusToken("valido")
+          } else if (response.status === 400 || response.status === 404){
+            let errorMessage = 'Token inválido ou expirado. Por favor, solicite uma nova recuperação de senha.';
+            try {
+              const errorData = await response.json();
+              errorMessage = errorData.message || errorMessage;
+           } catch (e) {
+
+           }
+           setErroRedefinir(errorMessage)
+           setStatusToken("invalido")
+          } else {
+            setErroRedefinir("Ocorreu um erro ao verificar o token. Tente novamente.")
+            setStatusToken('invalido');
+          }
+        } catch (error) {
+          console.error("Erro na validação inicial do token:", error);
+          setErroRedefinir("Problemas de conexão ou no servidor");
+          setStatusToken('conexao');
+        }
+    }
+
+    validarToken();
+
   }, [searchParams]);
 
 
@@ -46,6 +77,7 @@ function ResetarSenhaPage() {
 
     if (!token) {
         setErroRedefinir('Token inválido ou ausente.');
+        setStatusToken('invalido');
         return;
     }
 
@@ -71,9 +103,11 @@ function ResetarSenhaPage() {
       }
 
       if (response.status === 401) {
+        setStatusToken('invalido');
         throw new Error("Token inválido ou expirado. Por favor, solicite uma nova recuperação.");
       }
       if (response.status === 400) {
+        setStatusToken('invalido');
         throw new Error("Token e nova senha são obrigatórios.");
       }
 
@@ -102,7 +136,7 @@ function ResetarSenhaPage() {
       const errorMessage = error.message;
 
       if (errorMessage.includes('Failed to fetch') || errorMessage.includes('NetworkError')) {
-        setErroRedefinir("Problemas de conexão. Tente novamente mais tarde.");
+        setErroRedefinir("Problemas de conexão");
         setEstaCarregando(false)
       } else {
           setErroRedefinir(errorMessage);
@@ -111,7 +145,7 @@ function ResetarSenhaPage() {
     })
   }
   // 1. Renderização de carregamento inicial
-  if (!tokenVerificado) {
+  if (statusToken === "carregando") {
     return (
       <main>
         <div id="redefinirContainerCarregando">
@@ -121,14 +155,29 @@ function ResetarSenhaPage() {
     );
   }
 
-  if (!token) {
+  if (statusToken === "conexao") {
     return (
       <main>
         <div id="redefinirContainerErro">
           <div id="redefinirConteudo" className="erroFatal">
-            <h2>Ops! Link Inválido</h2>
-            <p id='mensagemErro' className='visibleError'>{erroRedefinir}</p>
-            <p>Por favor, utilize o link de redefinição completo enviado para o seu e-mail.</p>
+            <h2>Ops!</h2>
+            <span>{erroRedefinir}</span>
+            <p>Não conseguimos nos comunicar com o servidor. Verifique sua conexão de internet e tente novamente.</p>
+            <button onClick={() => navigate('/login')}>Ir para a página de Login</button>
+          </div>
+        </div>
+      </main>
+    )
+  }
+
+  if (statusToken === "invalido") {
+    return (
+      <main>
+        <div id="redefinirContainerErro">
+          <div id="redefinirConteudo" className="erroFatal">
+            <h2>Ops!</h2>
+            <span>{erroRedefinir}</span>
+            <p>Se o problema persistir, solicite uma nova recuperação de senha ou tente novamente mais tarde.</p>
             <button onClick={() => navigate('/login')}>Ir para a página de Login</button>
           </div>
         </div>
