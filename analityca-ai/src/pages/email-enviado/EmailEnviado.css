@@ -35,22 +35,6 @@ main {
 
     box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.12);
 }
-#emailEnviadoContainer #botaoVoltar {
-    height: 3rem;
-    width: 3rem;
-    margin: 0.625rem;
-
-    overflow: hidden;
-
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-#emailEnviadoContainer #botaoVoltar #imagemBotaoVoltar {
-    height: 100%;
-    width: 100%;
-}
 
 #emailEnviadoContainer #emailEnviadoConteudo {
     height: 100%;
