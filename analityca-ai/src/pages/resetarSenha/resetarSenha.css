@@ -242,6 +242,7 @@ main {
 
 .erroFatal p {
     width: 85%;
+    color: var(--texto-transparente-modo-claro);
 }
 
 .erroFatal button {
