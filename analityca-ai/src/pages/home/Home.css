@@ -264,7 +264,7 @@
   font-size: 1.25rem;
   font-weight: 100;
 
-  color: var(--texto-preto-modo-claro);
+  color: var(--texto-transparente-modo-claro);
 }
 
 #container3 #footer {
