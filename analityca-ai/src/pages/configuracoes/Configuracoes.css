@@ -33,14 +33,19 @@
 #telaConfiguracoes #containerConfiguracoes #title {
     font-size: 2rem;
 
+    display: flex;
+    align-items: center;
+
     width: 100%;
-    padding: 2.75rem 0rem;
+    height: 7.8125rem;
 
     color: var(--texto-preto-modo-claro);
 }
 
 #telaConfiguracoes #containerConfiguracoes hr{
     width: 100%;
+
+    margin-bottom: 1.625rem;
 
     color: var(--texto-input-modo-claro);
 }
@@ -50,46 +55,110 @@
     height: 100%;
 
     padding: 0 1.0625rem 0;
-    border-radius: 0.5rem;
+    border-radius: 8px 8px 0px 0px;
 
     display: flex;
     flex-direction: column;
     background-color: antiquewhite;
+
+    position: relative;
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #informacaoAluno {
-    padding: 1.375rem 0 1.375rem 0;
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes {
+   background-color: rgb(231, 231, 231);
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes #informacaoAluno {
+    height: 5.6875rem;
+
+    display: flex;
+    align-items: center;
 
     background-color: rgb(255, 206, 147);
     
     font-size: 1.5rem;
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes {
-   background-color: rgb(231, 231, 231);
-
-   height: 100%;
-}
-
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput {
-    font-size: 1.25rem;
- 
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput { 
     display: flex;
     flex-direction: column;
 
     width: 100%;
+    margin-bottom: 1rem;
+
+    gap: 0.625rem;
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput input {
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput label {
+    font-size: 1.375rem;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput .inputContainer {
+    width: 100%;
+    height: 3.6875rem;
+    position: relative;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput .inputContainer input {
     color: var(--texto-preto-modo-claro);
     
     font-size: 1rem;
-
-    margin-bottom: 1rem;
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput input::placeholder {
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput .inputContainer img {
+    height: 1.5625rem;
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+    padding-left: 0.6rem;
+
+    filter: opacity(0.5);
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput .inputContainer input {
+    color: var(--texto-preto-modo-claro);
+    
+    font-size: 1.25rem;
+
+    width: 100%;
+    height: 100%;
+
+    padding-left: 2.75rem;
+
+    border-radius: 8px;
+    border: 1px solid var(--borda-input-modo-claro);
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput .inputContainer input::placeholder {
     color: var(--texto-input-modo-claro);
 }
 
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerButton {
+    height: 3.125rem;
+    width: 14.9375rem;
 
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 1.5rem;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerButton button {
+    height: 100%;
+    width: 100%;
+
+    border-radius: 35px;
+    border: none;
+    background-color: var(--roxo-primario-modo-claro);
+
+    color: var(--texto-branco-modo-claro);
+    font-size: 1rem;
+
+    transition: all 0.2s ease-in-out;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerButton button:hover {
+    cursor: pointer;
+    background-color: var(--roxo-secundario-modo-claro);
+}
