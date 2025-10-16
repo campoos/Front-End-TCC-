@@ -59,6 +59,10 @@
   background-color: var(--roxo-primario-modo-claro);
 
   transition: all 0.2s ease-in-out;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #container1 #header #botaoContainer:hover {
@@ -71,10 +75,6 @@
   color: var(--texto-branco-modo-claro);
 
   font-size: 1rem;
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #container1 #containerTextoHome {
@@ -119,6 +119,10 @@
   font-weight: 600;
 
   transition: all 0.2s ease-in-out;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #container1 #containerTextoHome #botaoContainer:hover {
@@ -130,10 +134,6 @@
 #container1 #containerTextoHome #botaoContainer #comecarAgora {
   color: var(--texto-branco-modo-claro);
   text-decoration: none;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   font-size: 1rem;
   font-weight: 600;
@@ -147,7 +147,7 @@
   justify-content: center;
   align-items: center;
 
-  background-image: url("./assets/background-recursos-home.png");
+  background-image: url("../../assets/background-recursos-home.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
