@@ -3,9 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 function ResetarSenhaPage() {
-
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
   const [token, setToken] = useState('');
@@ -13,213 +11,198 @@ function ResetarSenhaPage() {
   const [confirmarSenha, setConfirmarSenha] = useState('');
   const [erroRedefinir, setErroRedefinir] = useState('');
 
-  const [estaCarregando, setEstaCarregando] = useState(false); 
+  const [estaCarregando, setEstaCarregando] = useState(false);
+  const [statusToken, setStatusToken] = useState('carregando');
 
-  const [statusToken, setStatusToken] = useState('carregando'); 
-
+  // ✅ Só valida o token ao carregar a página
   useEffect(() => {
     const tokenFromUrl = searchParams.get('token');
-    if (tokenFromUrl) {
-      setToken(tokenFromUrl);
-    } else {
-      // Se não houver token na URL, redireciona ou mostra uma mensagem de erro
+
+    if (!tokenFromUrl) {
       setErroRedefinir('Token de redefinição não encontrado na URL.');
-      setStatusToken('invalido');
+      setStatusToken('inexistente');
+      return; // não continua
     }
 
+    setToken(tokenFromUrl);
+
     async function validarToken() {
-        try {
-          const response = await fetch(`http://localhost:8080/v1/analytica-ai/usuarios/verificar-token/${tokenFromUrl}`, {
-            method: "GET"
-          })
+      try {
+        const response = await fetch(`http://localhost:8080/v1/analytica-ai/usuarios/verificar-token/${tokenFromUrl}`, {
+          method: "GET"
+        });
 
-          if (response.ok){
-            setStatusToken("valido")
-          } else if (response.status === 400 || response.status === 404){
-            let errorMessage = 'Token inválido ou expirado. Por favor, solicite uma nova recuperação de senha.';
-            try {
-              const errorData = await response.json();
-              errorMessage = errorData.message || errorMessage;
-           } catch (e) {
+        if (response.ok) {
+          setStatusToken("valido");
+        } else if (response.status === 400 || response.status === 404) {
+          let errorMessage = 'Token inválido ou expirado.';
 
-           }
-           setErroRedefinir(errorMessage)
-           setStatusToken("invalido")
-          } else {
-            setErroRedefinir("Ocorreu um erro ao verificar o token.")
-            setStatusToken('invalido');
-          }
-        } catch (error) {
-          console.error("Erro na validação inicial do token:", error);
-          setErroRedefinir("Problemas de conexão ou no servidor");
-          setStatusToken('conexao');
+          setErroRedefinir(errorMessage);
+          setStatusToken("invalido");
+        } else {
+          setErroRedefinir("Ocorreu um erro ao verificar o token.");
+          setStatusToken('invalido');
         }
+      } catch (error) {
+        console.error("Erro na validação inicial do token:", error);
+        setErroRedefinir("Problemas de conexão ou no servidor.");
+        setStatusToken('conexao');
+      }
     }
 
     validarToken();
-
   }, [searchParams]);
 
-
-
-  async function validarDados(){
-    
-     if (novaSenha !== confirmarSenha) {
+  // ✅ Função de redefinição de senha — só roda no clique do botão
+  async function validarDados() {
+    if (novaSenha !== confirmarSenha) {
       setErroRedefinir('As senhas não coincidem.');
       return;
     }
-    
-    // Validação de comprimento da senha (seguindo a regra do seu backend: 4 a 20)
-    if (novaSenha.length < 4 || novaSenha.length > 20) {
-      setErroRedefinir('A senha deve ter entre 4 e 20 caracteres.');
+
+    if (novaSenha.length < 8 || novaSenha.length > 20) {
+      setErroRedefinir('A senha deve ter entre 8 e 20 caracteres.');
       return;
     }
 
     if (!token) {
-        setErroRedefinir('Token inválido ou ausente.');
-        setStatusToken('invalido');
-        return;
+      setErroRedefinir('Token inválido ou ausente.');
+      setStatusToken('invalido');
+      return;
     }
 
-    setEstaCarregando(true)
+    setEstaCarregando(true);
 
     const dados = {
       token: token,
       nova_senha: novaSenha
-    }
+    };
 
-    console.log(dados)
+    try {
+      const response = await fetch("http://localhost:8080/v1/analytica-ai/usuarios/resetar-senha", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dados)
+      });
 
-    await fetch("http://localhost:8080/v1/analytica-ai/usuarios/resetar-senha", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(dados)
-    })
-    .then(async response => {
       if (response.ok) {
-        return response.json(); 
+        console.log("Redefinição de senha realizada com sucesso!");
+        setErroRedefinir('');
+        setEstaCarregando(false);
+        navigate("/senha-resetada");
+        return;
       }
 
-      if (response.status === 401) {
-        setStatusToken('invalido');
-        throw new Error("Token inválido ou expirado. Por favor, solicite uma nova recuperação.");
-      }
-      if (response.status === 400) {
-        setStatusToken('invalido');
-        throw new Error("Token e nova senha são obrigatórios.");
-      }
+      if (response.status === 401) throw new Error("Token inválido ou expirado. Por favor, solicite uma nova recuperação.");
+      if (response.status === 400) throw new Error("Token e nova senha são obrigatórios.");
 
-      let errorData;
-      try {
-        errorData = await response.json();
-      } catch (e) {
-        if (response.status >= 500) {
-          setErroRedefinir("Falha interna do servidor.")
-           throw new Error(`Erro ${response.status}: Falha interna do servidor. Tente novamente mais tarde.`);
-        }
-        throw new Error(`Erro ${response.status}: Resposta inesperada do servidor.`);
-      }
-      throw new Error(errorData.message || 'Erro desconhecido.'); 
-      
-    })
-    .then(data =>{
-      console.log("redefinição de senha realizada com sucesso!");
-      setErroRedefinir('');
-      setEstaCarregando(false)
-      navigate("/senha-resetada");
-    })
-    .catch(error => {
-      console.error("Erro ao tentar redefinir senha", error.message);
-
-      const errorMessage = error.message;
-
-      if (errorMessage.includes('Failed to fetch') || errorMessage.includes('NetworkError')) {
-        setErroRedefinir("Problemas de conexão");
-        setEstaCarregando(false)
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `Erro ${response.status}: Falha inesperada no servidor.`);
+    } catch (error) {
+      console.error("Erro ao tentar redefinir senha:", error);
+      if (error.message.includes("Failed to fetch") || error.message.includes("NetworkError")) {
+        setErroRedefinir("Problemas de conexão.");
       } else {
-          setErroRedefinir(errorMessage);
-          setEstaCarregando(false)
+        setErroRedefinir(error.message);
       }
-    })
+    } finally {
+      setEstaCarregando(false);
+    }
   }
-  // 1. Renderização de carregamento inicial
+
+  // ✅ Telas de estado
   if (statusToken === "carregando") {
+    return <main><div id="redefinirContainerCarregando"><p>Carregando...</p></div></main>;
+  }
+
+  if (statusToken === "inexistente") {
     return (
       <main>
-        <div id="redefinirContainerCarregando">
-            <p>Carregando...</p> 
+        <div id="redefinirContainerErro">
+          <div id="redefinirConteudo" className="erroFatal">
+            <h2>Ops!</h2>
+            <span>{erroRedefinir}</span>
+            <p>Verifique o link enviado para o seu e-mail e tente novamente.</p>
+            <button onClick={() => navigate('/login')}>Ir para a página de Login</button>
+          </div>
         </div>
       </main>
     );
   }
 
-  if (statusToken === "conexao") {
+  if (statusToken === "conexao" || statusToken === "invalido") {
     return (
       <main>
         <div id="redefinirContainerErro">
           <div id="redefinirConteudo" className="erroFatal">
             <h2>Ops!</h2>
             <span>{erroRedefinir}</span>
-            <p>Não conseguimos nos comunicar com o servidor. Verifique sua conexão de internet e tente novamente.</p>
+            <p>
+              {statusToken === "conexao"
+                ? "Não conseguimos nos comunicar com o servidor. Verifique sua conexão."
+                : "Se o problema persistir, solicite uma nova recuperação de senha."}
+            </p>
             <button onClick={() => navigate('/login')}>Ir para a página de Login</button>
           </div>
         </div>
       </main>
-    )
+    );
   }
 
-  if (statusToken === "invalido") {
-    return (
-      <main>
-        <div id="redefinirContainerErro">
-          <div id="redefinirConteudo" className="erroFatal">
-            <h2>Ops!</h2>
-            <span>{erroRedefinir}</span>
-            <p>Se o problema persistir, solicite uma nova recuperação de senha ou tente novamente mais tarde.</p>
-            <button onClick={() => navigate('/login')}>Ir para a página de Login</button>
-          </div>
-        </div>
-      </main>
-    )
-  }
-  
+  // ✅ Tela principal (token válido)
   return (
     <main>
       <div id="redefinirContainer">
         <div id="redefinirConteudo">
           <div id="redefinirDescricao">
             <h2>Redefinir Senha</h2>
-            <p>Crise sua nova senha</p>
+            <p>Crie sua nova senha</p>
           </div>
 
           <form onSubmit={(e) => {
             e.preventDefault();
-            if (e.target.checkValidity()) {
-              validarDados()
-            }
+            if (e.target.checkValidity()) validarDados();
           }}>
             <div className="grupoInput">
               <label htmlFor="novaSenha">Nova senha</label>
-              <input type="password" id='novaSenha' className='inputLogin' name='novaSenha' placeholder='•••••••••••' value={novaSenha} onChange={e=>setNovaSenha(e.target.value)} required/>
+              <input
+                type="password"
+                id="novaSenha"
+                className="inputLogin"
+                value={novaSenha}
+                onChange={e => setNovaSenha(e.target.value)}
+                placeholder="•••••••••••"
+                required
+              />
             </div>
+
             <div className="grupoInput">
               <label htmlFor="confirmarSenha">Confirmar senha</label>
-              <input type="password" id='confirmarSenha' className='inputLogin' name='confirmarSenha' placeholder='•••••••••••' value={confirmarSenha} onChange={e=>setConfirmarSenha(e.target.value)} required/>
+              <input
+                type="password"
+                id="confirmarSenha"
+                className="inputLogin"
+                value={confirmarSenha}
+                onChange={e => setConfirmarSenha(e.target.value)}
+                placeholder="•••••••••••"
+                required
+              />
             </div>
 
             <div id="containerErro">
-              <p id='mensagemErro' className={erroRedefinir ? 'visibleError' : 'hiddenError'}> {erroRedefinir}</p>
+              <p id="mensagemErro" className={erroRedefinir ? 'visibleError' : 'hiddenError'}>
+                {erroRedefinir}
+              </p>
             </div>
 
-            <button type='submit' id='redefinirSubmitButton'>{estaCarregando ? 'Redefinindo...' : 'Redefinir'}</button>
-
+            <button type="submit" id="redefinirSubmitButton">
+              {estaCarregando ? 'Redefinindo...' : 'Redefinir'}
+            </button>
           </form>
         </div>
       </div>
     </main>
-  )
+  );
 }
 
-export default ResetarSenhaPage
+export default ResetarSenhaPage;
