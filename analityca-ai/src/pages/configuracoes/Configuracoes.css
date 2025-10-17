@@ -59,13 +59,11 @@
 
     display: flex;
     flex-direction: column;
-    background-color: antiquewhite;
+    background-color: var(--background-claro-modo-claro);
+
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.12);
 
     position: relative;
-}
-
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes {
-   background-color: rgb(231, 231, 231);
 }
 
 #telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes #informacaoAluno {
@@ -73,13 +71,11 @@
 
     display: flex;
     align-items: center;
-
-    background-color: rgb(255, 206, 147);
     
     font-size: 1.5rem;
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput { 
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerInformacoes .grupoInput { 
     display: flex;
     flex-direction: column;
 
@@ -89,34 +85,34 @@
     gap: 0.625rem;
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput label {
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerInformacoes .grupoInput label {
     font-size: 1.375rem;
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput .inputContainer {
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerInformacoes .grupoInput .inputContainer {
     width: 100%;
     height: 3.6875rem;
     position: relative;
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput .inputContainer input {
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerInformacoes .grupoInput .inputContainer input {
     color: var(--texto-preto-modo-claro);
     
     font-size: 1rem;
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput .inputContainer img {
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerInformacoes .grupoInput .inputContainer img {
     height: 1.5625rem;
     position: absolute;
 
     top: 50%;
     transform: translateY(-50%);
-    padding-left: 0.6rem;
+    padding-left: 0.7rem;
 
     filter: opacity(0.5);
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput .inputContainer input {
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerInformacoes .grupoInput .inputContainer input {
     color: var(--texto-preto-modo-claro);
     
     font-size: 1.25rem;
@@ -124,17 +120,50 @@
     width: 100%;
     height: 100%;
 
-    padding-left: 2.75rem;
+    padding-left: 2.9rem;
 
     border-radius: 8px;
     border: 1px solid var(--borda-input-modo-claro);
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes form .grupoInput .inputContainer input::placeholder {
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerInformacoes .grupoInput .inputContainer input::placeholder {
     color: var(--texto-input-modo-claro);
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerButton {
+#telaConfiguracoes #containerConfiguracoes #configuracoes form hr {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerAparencia #containerTema {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerAparencia #containerTema #containerTextoTema {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.6875rem;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerAparencia #containerTema #containerTextoTema label {
+    font-size: 1.5rem;
+    color: var(--texto-preto-modo-claro);
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerAparencia #containerTema #containerTextoTema span {
+    font-size: 1.25rem;
+    color: var(--texto-preto-modo-claro);
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerAparencia #containerTema input {
+    height: 2rem;
+    width: 2rem;
+}
+
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerButton {
     height: 3.125rem;
     width: 14.9375rem;
 
@@ -144,7 +173,7 @@
     margin: 1.5rem;
 }
 
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerButton button {
+#telaConfiguracoes #containerConfiguracoes #configuracoes form #containerButton button {
     height: 100%;
     width: 100%;
 
