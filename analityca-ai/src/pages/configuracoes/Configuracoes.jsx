@@ -4,8 +4,22 @@ import iconUser from '../../assets/configuracoes-icons/user-icon.png'
 import iconEmail from '../../assets/configuracoes-icons/email-icon.png'
 import iconPhone from '../../assets/configuracoes-icons/phone-icon.png'
 
+import { useNavigate } from "react-router-dom";
+
 function ConfiguracoesPage() {
+
+  const handleLogout = () => {
+    localStorage.removeItem("userData");
+    sessionStorage.removeItem("userData");
+    
+    localStorage.removeItem("lembrarCredencial"); 
+
+    navigate("/login");
+  };
+
   const dataUser = JSON.parse(localStorage.getItem("userData"))
+  const navigate = useNavigate()
+
   return (
     <>
         <div id="telaConfiguracoes">
@@ -60,7 +74,7 @@ function ConfiguracoesPage() {
                 <button type='submit'>Salvar Alterações</button>
               </div>
               <div id='containerLogout'>
-                <button type='submit'>Sair da conta</button>
+                <button type='button' onClick={handleLogout}>Sair da conta</button>
               </div>
             </div>
         </div>

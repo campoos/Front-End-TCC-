@@ -64,9 +64,7 @@ function LoginPage() {
       
     })
     .then(data =>{
-      const storage = lembrarDeMim ? localStorage : sessionStorage;
-
-      storage.setItem("userData", JSON.stringify(data.usuario))
+      localStorage.setItem("userData", JSON.stringify(data.usuario))
 
       if (lembrarDeMim){
         localStorage.setItem("lembrarCredencial", credencial)
