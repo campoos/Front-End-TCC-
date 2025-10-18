@@ -12,7 +12,8 @@
     --borda-input-modo-claro: #E1E1E1;
     --texto-input-modo-claro: #979797;
     --shadowbox-modo-claro: #BEBEBE;
-    --texto-erro-modo-claro: #FF0023;
+    --texto-erro-modo-claro: #ff324e;
+    --background-slider-modo-claro: #D4D4D4;
 }
 
 @media(max-width:600px){

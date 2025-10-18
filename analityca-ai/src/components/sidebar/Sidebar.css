@@ -17,7 +17,9 @@
 
   padding: 0.5625rem;
 
-  box-shadow: 2px 4px 9.4px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 4px 9.4px 0px rgba(0, 0, 0, 0.2);
+
+  background-color: var(--background-claro-modo-claro);
 }
 
 #containerSidebar #sidebarHeader {
