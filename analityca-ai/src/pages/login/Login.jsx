@@ -1,6 +1,6 @@
 import './Login.css'
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import setaVoltar from '../../assets/seta-voltar.png';
 
@@ -8,11 +8,21 @@ function LoginPage() {
 
   const navigate = useNavigate()
 
+  const [lembrarDeMim, setLembrarDeMim] = useState(false);
+
   const [credencial, setCredencial] = useState('');
   const [senha, setSenha] = useState('');
   const [erroLogin, setErroLogin] = useState('');
 
   const [estaCarregando, setEstaCarregando] = useState(false); 
+
+  useEffect(() => {
+    const credencialSalva = localStorage.getItem("lembrarCredencial")
+    if (credencialSalva) {
+      setCredencial(credencialSalva)
+      setLembrarDeMim(true)
+    }
+  }, [])
 
   async function validarDados(){
     setEstaCarregando(true)
@@ -54,7 +64,16 @@ function LoginPage() {
       
     })
     .then(data =>{
-      localStorage.setItem("userData", JSON.stringify(data.usuario))
+      const storage = lembrarDeMim ? localStorage : sessionStorage;
+
+      storage.setItem("userData", JSON.stringify(data.usuario))
+
+      if (lembrarDeMim){
+        localStorage.setItem("lembrarCredencial", credencial)
+      }else {
+        localStorage.removeItem("lembrarCredencial")
+      }
+
       console.log("Login realizado com sucesso!");
       setErroLogin('');
       setEstaCarregando(false)
@@ -108,7 +127,7 @@ function LoginPage() {
 
             <div id="opcoesForm">
               <div id="remember">
-                <input type="checkbox" id='lembrar' name='lembrarDeMim'/>
+                <input type="checkbox" id='lembrar' name='lembrarDeMim' checked={lembrarDeMim} onChange={e => setLembrarDeMim(e.target.checked)}/>
                 <label htmlFor="lembrar">Lembrar de mim</label>
               </div>
               <Link to={"/recuperar-senha"} id='esqueceu-senha'>
