@@ -36,21 +36,21 @@ function ConfiguracoesPage() {
                     <label htmlFor="nome">Nome</label>
                     <div className="inputContainer">
                       <img src={iconUser} alt="" />
-                      <input type="text" id='nome' name='nome' placeholder='Nome do aluno' required/>
+                      <input type="text" id='nome' name='nome' placeholder='Nome do aluno' value={dataUser.nome} required/>
                     </div>
                   </div>
                   <div className='grupoInput'> 
                     <label htmlFor="email">Email de Contato</label>
                     <div className="inputContainer">
                       <img src={iconEmail} alt="" />
-                      <input type="email" id='email' name='email' placeholder='contato@modelo.com' required/>
+                      <input type="email" id='email' name='email' placeholder='contato@modelo.com' value={dataUser.email} required/>
                     </div>
                   </div>
                   <div className='grupoInput'> 
                     <label htmlFor="telefone">Telefone de Contato</label>
                     <div className="inputContainer">
                       <img src={iconPhone} alt="" />
-                      <input type="tel" id='telefone' name='telefone' placeholder='(00) 0 00000-0000' required/>
+                      <input type="tel" id='telefone' name='telefone' placeholder='(00) 0 00000-0000' value={dataUser.telefone} required/>
                     </div>
                   </div>
                 </div>
