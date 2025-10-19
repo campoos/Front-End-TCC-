@@ -120,7 +120,7 @@ function DashboardsPage() {
                   <img src={UserIcon} alt="" />
                   <div id="userContent">
                     <h1>{dataUser.nome}</h1>
-                    <span>"1° Ano B"</span>
+                    <span>{dataUser.turma.turma}</span>
                   </div>
                 </div>
                 <div id="filtros">
@@ -151,7 +151,6 @@ function DashboardsPage() {
                       <div id="informacoesContent">
                         <span>Matrícula: {dataUser.matricula}</span>
                         <span>Data de Nascimeto: {dataUser.data_nascimento}</span>
-                        <span>Responsável: Nome da responsável</span>
                         <span>Contato: {dataUser.telefone}</span>
                         <span>Email: {dataUser.email}</span>
                       </div>
