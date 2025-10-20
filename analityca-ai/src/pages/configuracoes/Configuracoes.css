@@ -327,15 +327,33 @@
 #modalContainer #modalContent #modalOptions {
     display: flex;
     justify-content: end;
+    align-items: center;
     gap: 1.25rem;
 }
 
 #modalContainer #modalContent #modalOptions #buttonCancelar {
+    position: relative;
     background-color: transparent;
+    height: 1.5rem;
     border: none;
     font-size: 1rem;
-
     color: var(--texto-preto-modo-claro);
+    transition: color 0.2s ease-in-out;
+}
+
+#modalContainer #modalContent #modalOptions #buttonCancelar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0; /* ajusta a posição do sublinhado */
+    width: 0%;
+    height: 2px; /* espessura da linha */
+    background-color: var(--texto-preto-modo-claro);
+    transition: width 0.3s ease-in-out;
+}
+
+#modalContainer #modalContent #modalOptions #buttonCancelar:hover::after {
+    width: 100%;
 }
 
 #modalContainer #modalContent #modalOptions #buttonCancelar:hover {
@@ -351,8 +369,11 @@
     height: 3.125rem;
     width: 8.5rem;
     border-radius: 25px;
+
+    transition: all 0.2s ease-in-out;
 }
 
 #modalContainer #modalContent #modalOptions #buttonConfirmar:hover {
     cursor: pointer;
+    background-color: var(--texto-erro-secundario-modo-claro);
 }
