@@ -7,6 +7,7 @@ import InfoIcon from "../../assets/dashboards/info-icon.png"
 import CheckIcon from "../../assets/dashboards/check-icon.png"
 import ChartICon from "../../assets/dashboards/chart-icon.png"
 import PerformIcon from "../../assets/dashboards/perform-icon.png"
+import relatoriosIcon from "../../assets/dashboards/relatorios-insights-icon.png"
 
 import { Pie } from "react-chartjs-2";
 import { Bar } from "react-chartjs-2";
@@ -206,7 +207,29 @@ function DashboardsPage() {
                   </div>
                 </div>
                 <hr/>
-                <div id="containerInsights"></div>
+                <div id="containerInsights">
+                  <div id="headerInsights">
+                    <img src={relatoriosIcon} alt="" />
+                    <h1>Relatórios e Insights por Matéria</h1>
+                  </div>
+                  <div id="insightsContainer">
+                    <div className="insight">
+                      <h2>Avaliação de matemática</h2>
+                      <h3>01/06/2025</h3>
+                      <span>Com excelente compreensão de álgebra e geometria. As notas de prova indicam grande domínio do conteúdo. As notas de prova indicam grande domínio do conteúdo e bom entendimento sobre o conteúdo aprendido. </span>
+                    </div>
+                    <div className="insight">
+                      <h2>Seminário de Matemática</h2>
+                      <h3>26/06/2025</h3>
+                      <span>As notas de prova indicam grande domínio do conteúdo e bom entendimento sobre o conteúdo aprendido. </span>
+                    </div>
+                    <div className="insight">
+                      <h2>Avaliação de matemática</h2>
+                      <h3>01/06/2025</h3>
+                      <span>Com excelente compreensão de álgebra e geometria. As notas de prova indicam grande domínio do conteúdo.</span>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
     </>

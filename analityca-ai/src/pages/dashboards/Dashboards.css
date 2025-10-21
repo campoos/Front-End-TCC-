@@ -14,6 +14,8 @@
 
     gap: 1.25rem;
     padding-right: 0.5625rem;
+
+    background-color: var(--background-cinza-modo-claro);
 }
 
 #telaDashboards #containerDashboards {
@@ -25,17 +27,18 @@
 
     padding-left: 23.50rem;
 
+    gap: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
     overflow-y: auto;
     overflow: visible;
-
-    background-color: var(--background-cinza-modo-claro);
 }
 
 #telaDashboards #containerDashboards #title {
     font-size: 2rem;
 
     width: 100%;
-    padding: 2.75rem 0rem;
 
     color: var(--texto-preto-modo-claro);
 }
@@ -49,8 +52,6 @@
 #telaDashboards #containerDashboards #usuarioContainer {
     display: flex;
     align-items: center;
-
-    padding: 1.25rem 0rem;
 }
 
 #telaDashboards #containerDashboards #usuarioContainer img {
@@ -74,8 +75,6 @@
 #telaDashboards #containerDashboards #filtros {
     display: flex;
     gap: 2.6875rem;
-
-    margin-bottom: 1.25rem;
 
     overflow: visible;
 }
@@ -114,8 +113,6 @@
     flex-direction: row;
 
     height: 23.25rem;
-
-    margin-bottom: 3rem;
 
     overflow: visible;
 }
@@ -379,10 +376,75 @@
 }
 
 #telaDashboards #containerDashboards #containerInsights {
-    height: 130rem;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    overflow: visible;
+}
 
-    background-color: #714ed3;
+#telaDashboards #containerDashboards #containerInsights #headerInsights {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#telaDashboards #containerDashboards #containerInsights #headerInsights img {
+    height: 2rem;
+    width: 2rem;
+    opacity: 0.9;
+}
+
+#telaDashboards #containerDashboards #containerInsights #headerInsights h1 {
+    font-size: 1.25rem;
+    color: var(--texto-preto-modo-claro);
+}
+
+#telaDashboards #containerDashboards #containerInsights #insightsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 1.25rem;
+    overflow: visible;
+}
+
+#telaDashboards #containerDashboards #containerInsights #insightsContainer .insight {
+    background-color: var(--background-claro-modo-claro);
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 0.5rem;
+
+    padding: 1rem;
+
+    width: 50.5rem;
+    min-height: 8.0625rem;
+    border-radius: 7px;
+    box-shadow: 2px 2px 4px 0px var(--shadowbox-modo-claro);
+}
+
+#telaDashboards #containerDashboards #containerInsights #insightsContainer .insight h2 {
+    font-size: 1rem;
+    font-weight: bold;
+
+    color: var(--texto-preto-modo-claro);
+}
+
+#telaDashboards #containerDashboards #containerInsights #insightsContainer .insight h3 {
+    font-size: 0.75rem;
+    font-weight: 100;
+
+    color: var(--texto-preto-modo-claro);
+}
+
+#telaDashboards #containerDashboards #containerInsights #insightsContainer .insight span {
+    font-size: 1rem;
+    font-weight: 100;
+
+    color: var(--texto-preto-modo-claro);
 }
 
 @media(min-width:1800px){
