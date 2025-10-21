@@ -18,9 +18,13 @@ function LoginPage() {
 
   useEffect(() => {
     const credencialSalva = localStorage.getItem("lembrarCredencial")
+    const senhaSalva = localStorage.getItem("lembrarSenha")
     if (credencialSalva) {
       setCredencial(credencialSalva)
-      setLembrarDeMim(true)
+      if (senhaSalva) {
+        setSenha(senhaSalva)
+        setLembrarDeMim(true)
+      }
     }
   }, [])
 
@@ -68,6 +72,7 @@ function LoginPage() {
 
       if (lembrarDeMim){
         localStorage.setItem("lembrarCredencial", credencial)
+        localStorage.setItem("lembrarSenha", senha)
       }else {
         localStorage.removeItem("lembrarCredencial")
       }
