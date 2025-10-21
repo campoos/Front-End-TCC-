@@ -5,7 +5,7 @@ import iconEmail from '../../assets/configuracoes-icons/email-icon.png'
 import iconPhone from '../../assets/configuracoes-icons/phone-icon.png'
 
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const FundoEscuro = ({ show }) => {
   if (!show) return null; 
@@ -33,6 +33,19 @@ const ModalConfirmacaoLogout = ({ show, onCancel, onConfirm }) => {
 function ConfiguracoesPage() {
 
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  useEffect(() => {
+    const className = 'no-scroll-global';
+    if (showLogoutModal) {
+      document.documentElement.classList.add(className);
+    } else {
+      document.documentElement.classList.remove(className);
+    }
+  
+    return () => {
+      document.documentElement.classList.remove(className);
+    };
+  }, [showLogoutModal]);
 
   const navigate = useNavigate();
   const dataUser = JSON.parse(localStorage.getItem("userData"));
@@ -113,17 +126,15 @@ function ConfiguracoesPage() {
             <div id='containerLogout'>
               <button type='button' onClick={handleOpenLogoutModal}>Sair da conta</button>
             </div>
-
-            <FundoEscuro 
-              show={showLogoutModal} 
-            />
-
             <ModalConfirmacaoLogout
               show={showLogoutModal}
               onCancel={handleCloseLogoutModal} 
               onConfirm={handleConfirmLogout} 
             />
           </div>
+          <FundoEscuro 
+              show={showLogoutModal} 
+            />
       </div>
     </>
   )
