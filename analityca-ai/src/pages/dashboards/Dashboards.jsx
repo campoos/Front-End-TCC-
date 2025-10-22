@@ -3,6 +3,8 @@ import Sidebar from '../../components/sidebar/Sidebar'
 
 import UserIcon from "../../assets/usuario-icon.png" 
 
+import React, { useState, useEffect } from 'react';
+
 import InfoIcon from "../../assets/dashboards/info-icon.png"
 import CheckIcon from "../../assets/dashboards/check-icon.png"
 import ChartICon from "../../assets/dashboards/chart-icon.png"
@@ -30,8 +32,104 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tool
 
 function DashboardsPage() {
 
+  const [materias, setMaterias] = useState([]);
+  const [turmas, setTurmas] = useState([]);
+  const [periodos, setPeriodos] = useState([]);
+
   const dataUser = JSON.parse(localStorage.getItem("userData"))
 
+  const userLevel = dataUser?.nivel_usuario
+
+  // --- 2. Função para buscar dados com a API fetch, usando os ENDPOINTS FORNECIDOS ---
+  const fetchData = async (endpoint, dataKey) => {
+    try {
+      const response = await fetch(endpoint);
+      if (!response.ok) {
+        // Se a resposta não for OK (ex: 404, 500), lança erro
+        throw new Error(`HTTP error! status: ${response.status} ao buscar ${endpoint}`);
+      }
+      const data = await response.json();
+      return data[dataKey] || [];
+    } catch (error) {
+      console.error(`Erro ao buscar dados do endpoint ${endpoint}:`, error);
+      // Retorna array vazio para evitar quebra ao iterar no .map
+      return []; 
+    }
+  };
+
+  // --- 3. useEffect para carregar os dados ao montar o componente ---
+  useEffect(() => {
+    const loadFilters = async () => {
+      if (!userLevel) return;
+
+      const visible = getVisibleFilters(userLevel);
+
+      // Fetch Matérias
+      if (visible.materia) {
+        // Usando o endpoint: http://localhost:8080/v1/analytica-ai/materia
+        const data = await fetchData('http://localhost:8080/v1/analytica-ai/materia', "materias"); 
+        setMaterias(data);
+      } 
+      // Fetch Turmas
+      if (visible.turma) {
+        // Usando o endpoint: http://localhost:8080/v1/analytica-ai/turma
+        const data = await fetchData('http://localhost:8080/v1/analytica-ai/turma', "turmas"); 
+        setTurmas(data);
+      } 
+      // Fetch Períodos (Semestres)
+      if (visible.periodo) {
+        // Usando o endpoint: http://localhost:8080/v1/analytica-ai/semestre
+        const data = await fetchData('http://localhost:8080/v1/analytica-ai/semestre', "semestres"); 
+        setPeriodos(data);
+      }
+    };
+  loadFilters();
+ }, [userLevel]);
+
+  const getVisibleFilters = (nivel) => {
+    switch (nivel) {
+        case 'aluno':
+            return { materia: true, periodo: true, turma: false };
+        case 'professor':
+            return { materia: false, periodo: true, turma: true };
+        case 'gestão':
+            return { materia: true, periodo: true, turma: true };
+    }
+  };
+
+  const getGeneralInfoContent = (user) => {
+    const info = [];
+
+    switch (user.nivel_usuario) {
+      case 'aluno':
+          info.push(
+              <span key="matricula">Matrícula: {user.matricula}</span>,
+              <span key="nascimento">Data de Nascimeto: {user.data_nascimento}</span>,
+              <span key="contato">Contato: {user.telefone}</span>,
+              <span key="email">Email: {user.email}</span>
+          );
+          break;
+      case 'professor':
+          info.push(
+              <span key="contato">Contato: {user.telefone}</span>,
+              <span key="nascimento">Data de Nascimeto: {user.data_nascimento}</span>,
+              <span key="email">Email: {user.email}</span>
+          );
+          break;
+      case 'gestão':
+          info.push(
+              <span key="email">Email: {user.email}</span>,
+              <span key="contato">Contato: {user.telefone}</span>,
+              <span key="nome">Nome Completo: {user.nome}</span> // Adicionando nome para Gestão
+          );
+          break; 
+    }
+      return info;
+  };
+
+  const generalInfoContent = getGeneralInfoContent(dataUser);
+
+  const visibleFilters = getVisibleFilters(userLevel);
   console.log(dataUser)
 
   const dataPizza = {
@@ -121,26 +219,61 @@ function DashboardsPage() {
                   <img src={UserIcon} alt="" />
                   <div id="userContent">
                     <h1>{dataUser.nome}</h1>
-                    <span>{dataUser.turma.turma}</span>
+                    {dataUser.turma?.turma && (
+                        <span>{dataUser.turma.turma}</span>
+                    )}
                   </div>
                 </div>
                 <div id="filtros">
-                  <div className="filtro">
-                    <label htmlFor="displicina">Disciplina:</label>
-                    <select name="disciplina" id="disciplina" defaultValue={"Todas as Disciplinas"}>
-                      <option value="Todas as Disciplinas">Todas as Disciplinas</option>
-                      <option value="Historia">História</option>
-                      <option value="Geografia">Geografia</option>
-                    </select>
-                  </div>
-                  <div className="filtro">
-                    <label htmlFor="periodo">Período:</label>
-                    <select name="periodo" id="periodo" defaultValue={"Todas os Periodos"}>
-                      <option value="Todas os Periodos">Todas os Períodos</option>
-                      <option value="1 semestre">1º Semestre -2025</option>
-                      <option value="2 semestre">2º Semestre - 2025</option>
-                    </select>
-                  </div>
+                  {visibleFilters.materia && (
+                      <div className="filtro">
+                          <label htmlFor="disciplina">Disciplina:</label>
+                          <select name="disciplina" id="disciplina" defaultValue={"Todas as Disciplinas"}>
+                              <option value="Todas as Disciplinas">Todas as Disciplinas</option>
+                              {/* Renderização Dinâmica das Matérias */}
+                              {materias.map((m) => (
+                                <option 
+                                  key={m.id_materia} 
+                                  value={m.materia}
+                                >
+                                  {m.materia}
+                                </option>
+                              ))}
+                          </select>
+                      </div>
+                  )}
+                  {visibleFilters.turma && (
+                      <div className="filtro">
+                          <label htmlFor="turma">Turma:</label>
+                          <select name="turma" id="turma" defaultValue={"Todas as Turmas"}>
+                              <option value="Todas as Turmas">Todas as Turmas</option>
+                              {turmas.map((t) => (
+                                <option 
+                                  key={t.id_turma} 
+                                  value={t.turma}
+                                >
+                                  {t.turma}
+                                </option>
+                              ))}
+                          </select>
+                      </div>
+                  )}
+                  {visibleFilters.periodo && (
+                      <div className="filtro">
+                          <label htmlFor="periodo">Período:</label>
+                          <select name="periodo" id="periodo" defaultValue={"Todas os Periodos"}>
+                              <option value="Todas os Periodos">Todas os Períodos</option>
+                              {periodos.map((p) => (
+                                <option 
+                                  key={p.id_semestre} 
+                                  value={p.semestre}
+                                >
+                                  {p.semestre}
+                                </option>
+                              ))}
+                          </select>
+                      </div>
+                  )}
                 </div>
                 <div id="dashboards">
                   <div id="containerInformacoesDesempenho">
@@ -150,10 +283,7 @@ function DashboardsPage() {
                         <label htmlFor="">Informações Gerais</label>
                       </div>
                       <div id="informacoesContent">
-                        <span>Matrícula: {dataUser.matricula}</span>
-                        <span>Data de Nascimeto: {dataUser.data_nascimento}</span>
-                        <span>Contato: {dataUser.telefone}</span>
-                        <span>Email: {dataUser.email}</span>
+                        {generalInfoContent}
                       </div>
                     </div>
                     <div id="desempenho">
