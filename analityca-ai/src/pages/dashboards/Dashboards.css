@@ -160,6 +160,8 @@
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #informacoesGerais #informacoesContent {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
 
     gap: 0.4rem;
 }
