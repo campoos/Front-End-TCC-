@@ -1,6 +1,6 @@
 import './Ranking.css'
 import Sidebar from '../../components/sidebar/Sidebar'
-
+import UserIcon from "../../assets/usuario-icon.png" 
 function RankingPage() {
   return (
     <>
@@ -17,7 +17,7 @@ function RankingPage() {
                       
                       <div class="header-info">
                           <div class="user-perfil">
-                              <i class="icon-user"></i> 
+                              <img src={UserIcon} alt="" />
                               <div class="user-informação-text">
                                   <span>Jheniffer de Souza Rodrigues </span>
                                   <small>3° Ano B</small>
