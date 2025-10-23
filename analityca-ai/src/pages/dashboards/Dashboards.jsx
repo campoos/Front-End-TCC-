@@ -236,7 +236,7 @@ function DashboardsPage() {
         align: "top",
         color: "#000",
         font: { weight: "thin", size: 14 },
-        formatter: (v) => v.toFixed(1),
+        formatter: (v) => v.toFixed(2),
       },
       tooltip: {
         callbacks: {
