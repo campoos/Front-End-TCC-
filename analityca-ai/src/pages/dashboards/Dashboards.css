@@ -284,7 +284,7 @@
 }
 
 #telaDashboards #containerDashboards #dashboards #frequencia #graficoContainer #textoGrafico h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--texto-preto-modo-claro);
 }
@@ -322,6 +322,15 @@
     background-color: var(--roxo-terciario-modo-claro);
 }
 
+#telaDashboards #containerDashboards #dashboards #frequencia .label #circlePresencaInativo {
+    height: 2rem;
+    width: 2rem;
+
+    border-radius: 50px;
+
+    background-color: #d3d3d3;
+}
+
 #telaDashboards #containerDashboards #dashboards #frequencia .label #circleFalta {
     height: 2rem;
     width: 2rem;
@@ -329,6 +338,15 @@
     border-radius: 50px;
 
     background-color: var(--roxo-primario-modo-claro);
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia .label #circleFaltaInativo {
+    height: 2rem;
+    width: 2rem;
+
+    border-radius: 50px;
+
+    background-color: #b5b5b5;
 }
 
 #telaDashboards #containerDashboards #dashboards #notas {
