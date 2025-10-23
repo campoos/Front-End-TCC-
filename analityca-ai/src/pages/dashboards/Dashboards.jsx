@@ -260,6 +260,8 @@ function DashboardsPage() {
     },
   };
 
+  console.log(dashboardData)
+
   const pieChartData = dashboardData
   ? {
       labels: ["Presença", "Falta"],
@@ -371,7 +373,7 @@ function DashboardsPage() {
                   </h2>
                   <span>
                     {dashboardData 
-                      ? "0.3 no último semestre"
+                      ? `Nota de ${dashboardData.desempenho[0].materia.materia}`
                       : ''
                     }
                   </span>
@@ -433,7 +435,12 @@ function DashboardsPage() {
           <div id="notas">
             <div id="notasTitle">
               <img src={PerformIcon} alt="iconePerform"/>
-              <label>Desempenho em “Máteria”</label>
+              <label> 
+                  {dashboardData
+                    ? `Desempenho em ${dashboardData.desempenho[0].materia.materia}` 
+                    : '-'
+                  }
+              </label>
             </div>
             <div id="graficoBarra"><Bar data={barChartData} options={optionsBarra}/></div>
           </div>
