@@ -226,16 +226,38 @@ function DashboardsPage() {
 
   const optionsPizza = { plugins: { legend: { display: false }, datalabels: { display: false } } };
   const optionsBarra = {
-    maintainAspectRatio: false, responsive: true,
+    maintainAspectRatio: false,
+    responsive: true,
     layout: { padding: { top: 23 } },
     plugins: {
       legend: { display: false },
-      datalabels: { anchor: "end", align: "top", color: "#000", font: { weight: "thin", size: 14 }, formatter: (v) => v.toFixed(1) }
+      datalabels: {
+        anchor: "end",
+        align: "top",
+        color: "#000",
+        font: { weight: "thin", size: 14 },
+        formatter: (v) => v.toFixed(1),
+      },
+      tooltip: {
+        callbacks: {
+          label: function (context) {
+            const index = context.dataIndex;
+            const atividade = dashboardData?.desempenho[0]?.atividades[index];
+            const categoria = atividade?.categoria || "Sem categoria disponível";
+            const nota = atividade?.nota ?? "-";
+            return [
+              `Atividade: ${atividade?.atividade || "—"}`,
+              `Nota: ${nota}`,
+              `Categoria: ${categoria}`,
+            ];
+          },
+        },
+      },
     },
     scales: {
       x: { ticks: { color: "#000" }, grid: { display: false }, barPercentage: 0.2, categoryPercentage: 0.5 },
-      y: { grid: { display: false }, beginAtZero: true }
-    }
+      y: { grid: { display: false }, beginAtZero: true },
+    },
   };
 
   const pieChartData = dashboardData
