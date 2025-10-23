@@ -409,26 +409,14 @@ function DashboardsPage() {
                     ? <div id="circlePresenca"></div>
                     : <div id="circlePresencaInativo"></div>
                   }
-                <span>
-                  Total de presenças: (
-                  {dashboardData
-                    ? dashboardData.desempenho[0].frequencia.presencas
-                    : "-"}
-                  )
-                </span>
+                <span> Total de presenças </span>
               </div>
               <div id="labelFalta" className='label'>
                 {dashboardData
                   ? <div id="circleFalta"></div>
                   : <div id="circleFaltaInativo"></div>
                 }
-                <span>
-                  Total de faltas: (
-                  {dashboardData
-                    ? dashboardData.desempenho[0].frequencia.faltas
-                    : "-"}
-                  )
-                </span>
+                <span> Total de faltas </span>
               </div>
             </div>
           </div>

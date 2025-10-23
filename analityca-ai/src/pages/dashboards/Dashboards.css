@@ -315,6 +315,11 @@
     color: var(--texto-preto-modo-claro);
 }
 
+#telaDashboards #containerDashboards #dashboards #frequencia .label span strong {
+    font-size: 1rem;
+    color: var(--texto-preto-modo-claro);
+}
+
 #telaDashboards #containerDashboards #dashboards #frequencia .label #circlePresenca {
     height: 2rem;
     width: 2rem;
