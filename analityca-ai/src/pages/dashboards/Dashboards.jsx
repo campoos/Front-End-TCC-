@@ -243,12 +243,14 @@ function DashboardsPage() {
           label: function (context) {
             const index = context.dataIndex;
             const atividade = dashboardData?.desempenho[0]?.atividades[index];
-            const categoria = atividade?.categoria || "Sem categoria disponível";
             const nota = atividade?.nota ?? "-";
+            const categoria = atividade?.categoria || "Sem categoria disponível";
+            const descricao = atividade?.descricao || "Sem descricao disponível";
             return [
               `Atividade: ${atividade?.atividade || "—"}`,
               `Nota: ${nota}`,
               `Categoria: ${categoria}`,
+              `Descricao: ${descricao}`
             ];
           },
         },
