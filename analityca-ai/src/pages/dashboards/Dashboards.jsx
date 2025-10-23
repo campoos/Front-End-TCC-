@@ -208,9 +208,9 @@ function DashboardsPage() {
         break;
       case 'gestão':
         info.push(
+          <span key="nome">Nome Completo: {user.nome}</span>,
           <span key="email">Email: {user.email}</span>,
-          <span key="contato">Contato: {user.telefone}</span>,
-          <span key="nome">Nome Completo: {user.nome}</span>
+          <span key="contato">Contato: {user.telefone}</span>
         );
         break;
     }
@@ -276,7 +276,7 @@ function DashboardsPage() {
     <div id="telaDashboards">
       <Sidebar/>
       <div id="containerDashboards">
-        <h1 id='title'>Dashboard Do Aluno: {dataUser.nome}</h1>
+        <h1 id='title'>Dashboard d{dataUser.nivel_usuario === "gestão" ? "a" : "o"} {dataUser.nivel_usuario}: <strong>{dataUser.nome}</strong></h1>
         <hr/>
         <div id="usuarioContainer">
           <img src={UserIcon} alt="" />
