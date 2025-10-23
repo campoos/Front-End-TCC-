@@ -397,7 +397,8 @@
     height: 13.6875rem;
     width: 100%;
 
-    overflow: visible;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 #telaDashboards #containerDashboards #containerInsights {

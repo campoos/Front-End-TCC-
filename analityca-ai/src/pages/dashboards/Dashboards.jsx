@@ -225,6 +225,12 @@ function DashboardsPage() {
   const emptyBarData = { labels: ["-", "-", "-", "-"], datasets: [{ data: [0, 0, 0, 0], backgroundColor: "#b5b5b5", borderRadius: 2, barPercentage: 0.7, categoryPercentage: 0.6 }] };
 
   const optionsPizza = { plugins: { legend: { display: false }, datalabels: { display: false } } };
+  
+  const atividades = dashboardData?.desempenho?.[0]?.atividades || [];
+
+  console.log(atividades)
+  const exibirLabels = atividades.length <= 10; // até 10 atividades mostra labels
+    
   const optionsBarra = {
     maintainAspectRatio: false,
     responsive: true,
@@ -232,11 +238,12 @@ function DashboardsPage() {
     plugins: {
       legend: { display: false },
       datalabels: {
+        display: exibirLabels,
         anchor: "end",
         align: "top",
         color: "#000",
         font: { weight: "thin", size: 14 },
-        formatter: (v) => v.toFixed(2),
+        formatter: (v) => v.toFixed(1),
       },
       tooltip: {
         callbacks: {
@@ -257,7 +264,7 @@ function DashboardsPage() {
       },
     },
     scales: {
-      x: { ticks: { color: "#000" }, grid: { display: false }, barPercentage: 0.2, categoryPercentage: 0.5 },
+      x: {ticks: {display:exibirLabels, color: "#000" , barPercentage: 0.2, categoryPercentage: 0.5 }},
       y: { grid: { display: false }, beginAtZero: true },
     },
   };
@@ -283,7 +290,7 @@ function DashboardsPage() {
 
   const barChartData = dashboardData
   ? {
-      labels: dashboardData.desempenho[0].atividades.map(a => a.atividade),
+      labels: atividades.map(a => a.categoria),
       datasets: [
         {
           label: "Notas",
@@ -363,7 +370,7 @@ function DashboardsPage() {
                 <div id="notaMedia">
                   <h1>
                     {dashboardData 
-                      ? dashboardData.desempenho[0].media 
+                      ? parseFloat(dashboardData.desempenho[0].media).toFixed(1)
                       : '-'
                     }
                   </h1>
@@ -374,14 +381,16 @@ function DashboardsPage() {
                     }
                   </h2>
                   <span>
-                    {dashboardData 
-                      ? `Nota de ${dashboardData.desempenho[0].materia.materia}`
-                      : ''
-                    }
+                    Média do Semestre
                   </span>
                 </div>
               </div>
-              <h4>Média do Semestre</h4>
+              <h4>
+                {dashboardData 
+                  ? `Nota de ${dashboardData.desempenho[0].materia.materia}`
+                  : ''
+                }
+              </h4>
             </div>
           </div>
 
