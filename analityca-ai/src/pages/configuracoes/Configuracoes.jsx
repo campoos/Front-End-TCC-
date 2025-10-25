@@ -55,6 +55,7 @@ function ConfiguracoesPage() {
     sessionStorage.removeItem("userData");
     localStorage.removeItem("lembrarCredencial");
     localStorage.removeItem("dashboardFilters");
+    localStorage.removeItem("rankingFilters");
     navigate("/login");
   };
 

@@ -19,7 +19,6 @@
     display: flex;
 
     gap: 1.25rem;
-    padding-right: 1.25rem;
 
     background-color: var(--background-cinza-modo-claro);
 }
@@ -36,7 +35,7 @@
     height: 100%;
 
     margin-left: 23.50rem;
-    padding-right: 1rem;
+    padding-right: 2.5rem;
 
     position: relative;
 
