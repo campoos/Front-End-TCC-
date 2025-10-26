@@ -380,9 +380,11 @@ function DashboardsPage() {
                       : ''
                     }
                   </h2>
-                  <span>
-                    Média do Semestre
-                  </span>
+     
+                  {dashboardData 
+                    ? <span>Média do Semestre</span>
+                    : <p>Média não disponível</p>
+                  }
                 </div>
               </div>
               <h4>
