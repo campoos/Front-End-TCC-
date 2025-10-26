@@ -53,14 +53,21 @@
 
 #telaConfiguracoes #containerConfiguracoes #containerTexto #title {
     font-size: 2rem;
-
     display: flex;
     align-items: center;
-
-    width: 100%;
-
+    width: 98%;
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
     color: var(--texto-preto-modo-claro);
 }
+
+  /* width: 200px;              define uma largura fixa 
+  white-space: nowrap;       impede a quebra de linha 
+  overflow: hidden;          oculta o texto que ultrapassar 
+  text-overflow: ellipsis;   adiciona as reticências (…) 
+  display: block;           garante que funcione corretamente */
 
 #telaConfiguracoes #containerConfiguracoes #containerTexto #desc {
     font-size: 1.25rem;
