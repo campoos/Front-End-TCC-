@@ -90,6 +90,11 @@ function DashboardsPage() {
     loadFilters();
   }, [userLevel]);
 
+  useEffect(() => {
+    setInsights(null);
+    setInsightsError(null);
+  }, [selectedMateria, selectedTurma, selectedPeriodo]);
+
   // --- 2️⃣ Restaurar filtros salvos ao carregar a página ---
   useEffect(() => {
     const savedFilters = JSON.parse(localStorage.getItem(STORAGE_KEY));
@@ -528,7 +533,7 @@ function DashboardsPage() {
             {isLoadingInsights && (
               <div className="insight">
                 <h2>Carregando insight...</h2>
-                <h3>00/00/0000</h3>
+                <h3></h3>
                 <span>...</span>
               </div>
             )}
@@ -559,9 +564,9 @@ function DashboardsPage() {
                   </div>
                 ) : (
                   <div className="insight">
-                    <h2>Erro ao gerar insight</h2>
-                    <h3>00/00/0000</h3>
-                    <span>Não foi possível gerar os insights</span>
+                    <h2>Sem insights</h2>
+                    <h3></h3>
+                    <span>Não foi possível gerar os insights para os filtros selecionados</span>
                   </div>
                 )}
               </>
