@@ -299,7 +299,7 @@ function RankingPage() {
                                     
                                     return (
                                         <tr key={index} className={rowClass}>
-                                            <td className='tabelaRanking'>{item.Ranking}°</td>
+                                            <td className='tabelaRanking'>{index + 1}°</td>
                                             {/* Usando as classes para o CSS aplicar ou remover o blur */}
                                             <td className={isUncensored ? 'tabelaMediaUncensored' : 'tabelaMediaCensored'}>
                                                 {Number(item.Média).toFixed(1)}
