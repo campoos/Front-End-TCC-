@@ -1,7 +1,7 @@
 import './Dashboards.css'
 import Sidebar from '../../components/sidebar/Sidebar'
 
-import UserIcon from "../../assets/usuario-icon.png" 
+import UserIcon from "../../assets/usuario-icon.png"
 
 import React, { useState, useEffect } from 'react';
 
@@ -43,6 +43,9 @@ function DashboardsPage() {
 
   const [restored, setRestored] = useState(false);
 
+  const [insights, setInsights] = useState(null);
+  const [isLoadingInsights, setIsLoadingInsights] = useState(false);
+  const [insightsError, setInsightsError] = useState(null);
 
   const dataUser = JSON.parse(localStorage.getItem("userData"));
   const userLevel = dataUser.nivel_usuario;
@@ -142,7 +145,7 @@ function DashboardsPage() {
 
     const fetchDashboardForUser = async () => {
       let url = '';
-      switch(userLevel) {
+      switch (userLevel) {
         case 'aluno':
           url = `http://localhost:8080/v1/analytica-ai/desempenho/aluno/${filtersJSON.id_perfil}?materia=${filtersJSON.materia}&semestre=${filtersJSON.periodo}`;
           break;
@@ -165,11 +168,28 @@ function DashboardsPage() {
           setDashboardData(null);
           return;
         }
-        
+
         if (!response.ok) throw new Error(`Erro ao buscar dados: ${response.status}`);
         const data = await response.json();
         setDashboardData(data);
         console.log('✅ Dados do dashboard:', data);
+
+        if (data?.desempenho?.length > 0) {
+          const materiaAtual = data.desempenho[0].materia?.id_materia || filtersJSON.materia;
+          const semestreAtual = filtersJSON.periodo;
+          const perfilAtual = filtersJSON.id_perfil;
+
+          const dashboardIDs = {
+            id_perfil: perfilAtual,
+            id_materia: materiaAtual,
+            id_semestre: semestreAtual,
+            data_dashboard: data.desempenho
+          };
+
+          console.log("📊 Dashboard carregado com sucesso! IDs atuais:", dashboardIDs);
+
+          sendDashboardToAI(dashboardIDs);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -177,6 +197,54 @@ function DashboardsPage() {
 
     fetchDashboardForUser();
   }, [filtersReady, filtersJSON, userLevel]);
+
+  const sendDashboardToAI = async (dashboardIDs) => {
+
+    setIsLoadingInsights(true);
+    setInsightsError(null);
+
+    try {
+      let aiEndpoint = "";
+
+      // 🔹 Define o endpoint correto com base no nível do usuário
+      switch (userLevel) {
+        case "aluno":
+          aiEndpoint = `http://localhost:8080/v1/analytica-ai/insights/aluno?materia=${dashboardIDs.id_materia}&semestre=${dashboardIDs.id_semestre}`;
+          break;
+        case "professor":
+          aiEndpoint = `http://localhost:8080/v1/analytica-ai/insights/professor?materia=${dashboardIDs.id_materia}&semestre=${dashboardIDs.id_semestre}`;
+          break;
+        case "gestão":
+          aiEndpoint = `http://localhost:8080/v1/analytica-ai/insights/gestao?materia=${dashboardIDs.id_materia}&semestre=${dashboardIDs.id_semestre}`;
+          break;
+        default:
+          console.error("❌ Nível de usuário inválido para envio à IA.");
+          return;
+      }
+
+      // 🔹 Faz o POST com os dados do dashboard
+      const response = await fetch(aiEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          desempenho: dashboardIDs.data_dashboard,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Erro ao enviar para IA: ${response.status}`);
+      }
+
+      const aiResponse = await response.json();
+      console.log("🤖 Resposta da IA:", aiResponse);
+      setInsights(aiResponse?.insight || []);
+    } catch (error) {
+      setInsightsError("Erro ao gerar insights. Tente novamente mais tarde.");
+      console.error("❌ Erro ao enviar dados para IA:", error);
+    } finally {
+      setIsLoadingInsights(false);
+    }
+  };
 
   // --- Helpers ---
   const getVisibleFilters = (nivel) => {
@@ -225,12 +293,12 @@ function DashboardsPage() {
   const emptyBarData = { labels: ["-", "-", "-", "-"], datasets: [{ data: [0, 0, 0, 0], backgroundColor: "#b5b5b5", borderRadius: 2, barPercentage: 0.7, categoryPercentage: 0.6 }] };
 
   const optionsPizza = { plugins: { legend: { display: false }, datalabels: { display: false } } };
-  
+
   const atividades = dashboardData?.desempenho?.[0]?.atividades || [];
 
   console.log(atividades)
   const exibirLabels = atividades.length <= 10; // até 10 atividades mostra labels
-    
+
   const optionsBarra = {
     maintainAspectRatio: false,
     responsive: true,
@@ -264,7 +332,7 @@ function DashboardsPage() {
       },
     },
     scales: {
-      x: {ticks: {display:exibirLabels, color: "#000" , barPercentage: 0.2, categoryPercentage: 0.5 }},
+      x: { ticks: { display: exibirLabels, color: "#000", barPercentage: 0.2, categoryPercentage: 0.5 } },
       y: { grid: { display: false }, beginAtZero: true },
     },
   };
@@ -272,7 +340,7 @@ function DashboardsPage() {
   console.log(dashboardData)
 
   const pieChartData = dashboardData
-  ? {
+    ? {
       labels: ["Presença", "Falta"],
       datasets: [
         {
@@ -286,10 +354,10 @@ function DashboardsPage() {
         }
       ]
     }
-  : emptyPieData;
+    : emptyPieData;
 
   const barChartData = dashboardData
-  ? {
+    ? {
       labels: atividades.map(a => a.categoria),
       datasets: [
         {
@@ -302,15 +370,15 @@ function DashboardsPage() {
         }
       ]
     }
-  : emptyBarData;
+    : emptyBarData;
 
 
   return (
     <div id="telaDashboards">
-      <Sidebar/>
+      <Sidebar />
       <div id="containerDashboards">
         <h1 id='title'>Dashboard d{dataUser.nivel_usuario === "gestão" ? "a" : "o"} {dataUser.nivel_usuario}: <strong>{dataUser.nome}</strong></h1>
-        <hr/>
+        <hr />
         <div id="usuarioContainer">
           <img src={UserIcon} alt="" />
           <div id="userContent">
@@ -356,39 +424,39 @@ function DashboardsPage() {
           <div id="containerInformacoesDesempenho">
             <div id="informacoesGerais">
               <div id="informacoesTitle">
-                <img src={InfoIcon} alt="iconeInfo"/>
+                <img src={InfoIcon} alt="iconeInfo" />
                 <label>Informações Gerais</label>
               </div>
               <div id="informacoesContent">{generalInfoContent}</div>
             </div>
             <div id="desempenho">
               <div id="desempenhoTitle">
-                <img src={CheckIcon} alt="iconeDesempenho"/>
+                <img src={CheckIcon} alt="iconeDesempenho" />
                 <label>Desempenho na Matéria</label>
               </div>
               <div id="informacoesContent">
                 <div id="notaMedia">
                   <h1>
-                    {dashboardData 
+                    {dashboardData
                       ? parseFloat(dashboardData.desempenho[0].media).toFixed(1)
                       : '-'
                     }
                   </h1>
                   <h2>
-                     {dashboardData 
+                    {dashboardData
                       ? "▪"
                       : ''
                     }
                   </h2>
-     
-                  {dashboardData 
+
+                  {dashboardData
                     ? <span>Média do Semestre</span>
                     : <p>Média não disponível</p>
                   }
                 </div>
               </div>
               <h4>
-                {dashboardData 
+                {dashboardData
                   ? `Nota de ${dashboardData.desempenho[0].materia.materia}`
                   : ''
                 }
@@ -399,11 +467,11 @@ function DashboardsPage() {
           {/* Frequência */}
           <div id="frequencia">
             <div id="frequenciaTitle">
-              <img src={ChartICon} alt="iconeChart"/>
+              <img src={ChartICon} alt="iconeChart" />
               <label>Frequência no Período</label>
             </div>
             <div id="graficoContainer">
-              <div id="grafico"><Pie data={pieChartData} options={optionsPizza}/></div>
+              <div id="grafico"><Pie data={pieChartData} options={optionsPizza} /></div>
               <div id="textoGrafico">
                 <h1>
                   {dashboardData
@@ -417,9 +485,9 @@ function DashboardsPage() {
             <div id="labelsFrequencia">
               <div id="labelPresenca" className='label'>
                 {dashboardData
-                    ? <div id="circlePresenca"></div>
-                    : <div id="circlePresencaInativo"></div>
-                  }
+                  ? <div id="circlePresenca"></div>
+                  : <div id="circlePresencaInativo"></div>
+                }
                 <span> Total de presenças </span>
               </div>
               <div id="labelFalta" className='label'>
@@ -435,19 +503,19 @@ function DashboardsPage() {
           {/* Notas */}
           <div id="notas">
             <div id="notasTitle">
-              <img src={PerformIcon} alt="iconePerform"/>
-              <label> 
-                  {dashboardData
-                    ? `Desempenho em ${dashboardData.desempenho[0].materia.materia}` 
-                    : '-'
-                  }
+              <img src={PerformIcon} alt="iconePerform" />
+              <label>
+                {dashboardData
+                  ? `Desempenho em ${dashboardData.desempenho[0].materia.materia}`
+                  : '-'
+                }
               </label>
             </div>
-            <div id="graficoBarra"><Bar data={barChartData} options={optionsBarra}/></div>
+            <div id="graficoBarra"><Bar data={barChartData} options={optionsBarra} /></div>
           </div>
         </div>
 
-        <hr/>
+        <hr />
 
         {/* Insights */}
         <div id="containerInsights">
@@ -455,17 +523,50 @@ function DashboardsPage() {
             <img src={relatoriosIcon} alt="" />
             <h1>Relatórios e Insights por Matéria</h1>
           </div>
+
           <div id="insightsContainer">
-            <div className="insight">
-              <h2>Avaliação de matemática</h2>
-              <h3>01/06/2025</h3>
-              <span>Com excelente compreensão de álgebra e geometria...</span>
-            </div>
-            <div className="insight">
-              <h2>Seminário de Matemática</h2>
-              <h3>26/06/2025</h3>
-              <span>As notas de prova indicam grande domínio...</span>
-            </div>
+            {isLoadingInsights && (
+              <div className="insight">
+                <h2>Carregando insight...</h2>
+                <h3>00/00/0000</h3>
+                <span>...</span>
+              </div>
+            )}
+
+            {insightsError && (
+              <div className="insight">
+                <h2>Erro ao gerar insight</h2>
+                <h3>00/00/0000</h3>
+                <span>Não foi possível gerar os insights</span>
+              </div>
+            )}
+
+            {!isLoadingInsights && !insightsError && (
+              <>
+                {Array.isArray(insights) && insights.length > 0 ? (
+                  insights.map((insight, index) => (
+                    <div className="insight" key={index}>
+                      <h2>{insight.titulo || `Insight ${index + 1}`}</h2>
+                      <h3>{insight.data || "00/00/0000"}</h3>
+                      <span>{insight.conteudo || "⚠️ Nenhum insight disponível para esses filtros."}</span>
+                    </div>
+                  ))
+                ) : insights && insights.titulo ? (
+                  <div className="insight">
+                    <h2>{insights.titulo}</h2>
+                    <h3>{insights.data || "00/00/0000"}</h3>
+                    <span>{insights.conteudo}</span>
+                  </div>
+                ) : (
+                  <div className="insight">
+                    <h2>Erro ao gerar insight</h2>
+                    <h3>00/00/0000</h3>
+                    <span>Não foi possível gerar os insights</span>
+                  </div>
+                )}
+              </>
+            )}
+
           </div>
         </div>
       </div>

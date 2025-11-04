@@ -166,7 +166,7 @@
 }
 
 #telaRanking #containerRanking #tabelaRanking #tabelaBody .tabelaLinhaCensored:last-child td {
-    border-bottom: none;
+    border-bottom: 8px;
 }
 
 #telaRanking #containerRanking #tabelaRanking #tabelaBody .tabelaLinhaUncensored {
