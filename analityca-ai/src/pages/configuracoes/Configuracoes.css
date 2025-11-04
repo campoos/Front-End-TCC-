@@ -16,6 +16,7 @@
 
 #telaConfiguracoes {
     width: 100dvw;
+    min-height: 100dvh;
     display: flex;
 
     gap: 1.25rem;

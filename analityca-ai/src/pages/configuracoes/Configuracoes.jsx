@@ -102,7 +102,10 @@ function ConfiguracoesPage() {
       });
 
       if (!response.ok) {
-        throw new Error("Erro ao salvar as alterações.");
+        const message = response.status === 400 
+          ? "Campos obrigatórios não atendem os requerimentos" 
+          : "Erro ao salvar as alterações.";
+        throw new Error(message);
       }
 
       const result = await response.json();
@@ -116,7 +119,7 @@ function ConfiguracoesPage() {
 
     } catch (error) {
       console.error(error);
-      alert("Erro ao atualizar as informações.");
+      alert(error.message);
     }
   };
 
