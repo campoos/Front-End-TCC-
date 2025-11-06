@@ -186,7 +186,7 @@ function ConfiguracoesPage() {
             <div id="containerAparencia">
               <div id='containerTema'>
                 <div id="containerTextoTema">
-                  <h3>Modo Dark</h3>
+                  <h3>Modo Escuro</h3>
                   <span>Troca as cores da tela para um modo escuro</span>
                 </div>
                 <div className="switch-container">
