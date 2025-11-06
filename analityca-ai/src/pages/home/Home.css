@@ -13,6 +13,8 @@
 
   height: 100vh;
   width: 100vw;
+
+  background-color: var(--background-cinza);
 }
 
 #container1 #header {
@@ -26,7 +28,7 @@
 #container1 #header #logo h1 {
   font-size: 1.5rem;
 
-  color: var(--roxo-primario-modo-claro);
+  color: var(--roxo-primario);
 }
 
 #container1 #header #links {
@@ -38,13 +40,13 @@
   font-size: 1rem;
   text-decoration: none;
 
-  color: var(--texto-preto-modo-claro);
+  color: var(--texto-escuro);
 
   transition: all 0.2s ease-in-out;
 }
 
 #container1 #header #links .link:hover {
-  color: var(--roxo-primario-modo-claro);
+  color: var(--roxo-primario);
 
   text-decoration: underline;
   font-weight: bold;
@@ -56,7 +58,7 @@
   width: 8rem;
   border-radius: 30px;
 
-  background-color: var(--roxo-primario-modo-claro);
+  background-color: var(--roxo-primario);
 
   transition: all 0.2s ease-in-out;
 
@@ -66,15 +68,22 @@
 }
 
 #container1 #header #botaoContainer:hover {
-  background-color: var(--roxo-secundario-modo-claro);
+  background-color: var(--roxo-secundario);
   cursor: pointer;
 }
 
 #container1 #header #botaoContainer #login {
   text-decoration: none;
-  color: var(--texto-branco-modo-claro);
+  color: var(--texto-branco);
 
   font-size: 1rem;
+
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #container1 #containerTextoHome {
@@ -94,7 +103,7 @@
 
   margin-bottom: 1rem;
 
-  color: var(--texto-preto-modo-claro);
+  color: var(--texto-escuro);
 }
 
 #container1 #containerTextoHome h2 {
@@ -103,13 +112,13 @@
 
   margin-bottom: 3rem;
 
-  color: var(--texto-transparente-modo-claro);
+  color: var(--texto-preto);
 }
 
 #container1 #containerTextoHome #botaoContainer {
-  background-color: var(--roxo-primario-modo-claro);
+  background-color: var(--roxo-primario);
   border: none;
-  color: var(--texto-branco-modo-claro);
+  color: var(--texto-branco);
 
   height: 3.5rem;
   width: 13.5rem;
@@ -126,17 +135,24 @@
 }
 
 #container1 #containerTextoHome #botaoContainer:hover {
-  background-color: var(--roxo-secundario-modo-claro);
+  background-color: var(--roxo-secundario);
 
   cursor: pointer;
 }
 
 #container1 #containerTextoHome #botaoContainer #comecarAgora {
-  color: var(--texto-branco-modo-claro);
+  color: var(--texto-branco);
   text-decoration: none;
 
   font-size: 1rem;
   font-weight: 600;
+
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #container2 {
@@ -159,7 +175,7 @@
   margin-bottom: 4.62rem;
 
   font-size: 3rem;
-  color: var(--texto-branco-modo-claro);
+  color: var(--texto-branco);
 }
 
 #container2 #containersRecursos {
@@ -171,7 +187,7 @@
 
 
 #container2 #containersRecursos .containerRecurso {
-  background-color: var(--background-claro-modo-claro);
+  background-color: var(--background-claro);
 
   height: 16rem;
   width: 24.75rem;
@@ -200,7 +216,7 @@
 
 #container2 #containersRecursos .containerRecurso h2 {
   font-size: 1.5rem;
-  color: var(--texto-preto-modo-claro);
+  color: var(--texto-preto);
 
   margin-bottom: 0.625rem;
 }
@@ -209,7 +225,7 @@
   font-size: 1rem;
   font-weight: 400;
   width: 16rem;
-  color: var(--texto-transparente-modo-claro);
+  color: var(--texto-transparente);
 
   display: flex;
   text-align: center;
@@ -223,6 +239,8 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+
+  background-color: var(--background-cinza);
 }
 
 #container3 #containerMain {
@@ -238,7 +256,7 @@
 
 #container3 #containerMain h1 {
   font-size: 3rem;
-  color: var(--texto-preto-modo-claro);
+  color: var(--texto-escuro);
 
   margin-bottom: 8.87rem;
 }
@@ -257,14 +275,14 @@
   font-size: 2.25rem;
   margin-bottom: 1rem;
 
-  color: var(--texto-preto-modo-claro);
+  color: var(--texto-escuro);
 }
 
 #container3 #containerMain #containerTextos .containerTexto span {
   font-size: 1.25rem;
   font-weight: 100;
 
-  color: var(--texto-transparente-modo-claro);
+  color: var(--texto-transparente);
 }
 
 #container3 #footer {
@@ -275,11 +293,11 @@
   padding: 2rem;
   width: 100%;
 
-  box-shadow: 0px -1px 0px 1px var(--texto-transparente-modo-claro);
+  box-shadow: 0px -1px 0px 1px var(--texto-transparente);
 }
 
 #container3 #footer span {
-  color: var(--texto-transparente-modo-claro);
+  color: var(--texto-transparente);
   font-size: 1rem;
   font-weight: 400;
   height: 1.3rem;
@@ -353,7 +371,7 @@
   div #container3 #footer {
     height: 6.5rem;
 
-    box-shadow: 0px -0.5px 0px 0.5px var(--texto-transparente-modo-claro);
+    box-shadow: 0px -0.5px 0px 0.5px var(--texto-transparente);
   }
 
   div #container3 #footer span {

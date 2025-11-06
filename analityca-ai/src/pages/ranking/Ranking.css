@@ -15,7 +15,7 @@
     gap: 1.25rem;
     padding-right: 1.2rem;
 
-    background-color: var(--background-cinza-modo-claro);
+    background-color: var(--background-cinza);
 }
 
 #telaRanking #containerRanking {
@@ -41,13 +41,13 @@
 
     width: 100%;
 
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 }
 
 #telaRanking #containerRanking hr {
     width: 100%;
 
-    color: var(--texto-input-modo-claro);
+    color: var(--texto-input);
 }
 
 #telaRanking #containerRanking #usuarioContainer {
@@ -65,12 +65,12 @@
 
 #telaRanking #containerRanking #usuarioContainer #userContent h1 {
     font-size: 1.25rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 }
 
 #telaRanking #containerRanking #usuarioContainer #userContent span {
     font-size: 1rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 }
 
 #telaRanking #containerRanking #filtros {
@@ -91,7 +91,7 @@
 
 #telaRanking #containerRanking #filtros .filtro label {
     font-size: 1rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 }
 
 #telaRanking #containerRanking #filtros .filtro select {
@@ -103,25 +103,27 @@
 
     border: none;
 
-    background-color: var(--background-claro-modo-claro);
+    background-color: var(--background-claro);
 
-    box-shadow: 2px 2px 4px 0px var(--shadowbox-modo-claro);
+    box-shadow: 2px 2px 4px 0px var(--shadowbox);
+
+    color: var(--texto-preto);
 }
 
 #telaRanking #containerRanking #tabelaRanking {
     border-radius: 8px;
-    box-shadow: 2px 2px 4px 0px var(--shadowbox-modo-claro);
+    box-shadow: 2px 2px 4px 0px var(--shadowbox);
     width: 100%;
     border-collapse: collapse;
-    background-color: var(--background-claro-modo-claro);
+    background-color: var(--background-claro);
 }
 
 #telaRanking #containerRanking #tabelaRanking #tabelaHeader th {
     font-size: 1rem;
     font-weight: 700;
     height: 5.625rem;
-    color: var(--texto-preto-modo-claro);
-    border-bottom: 1px solid var(--shadowbox-modo-claro);
+    color: var(--texto-preto);
+    border-bottom: 1px solid var(--shadowbox);
 }
 
 #telaRanking #containerRanking #tabelaRanking #tabelaBody .tabelaLinhaCensored {
@@ -131,13 +133,13 @@
 }
 
 #telaRanking #containerRanking #tabelaRanking #tabelaBody .tabelaLinhaCensored:hover {
-    background-color: var(--background-cinza-modo-claro);
+    background-color: var(--background-cinza);
 }
 
 #telaRanking #containerRanking #tabelaRanking #tabelaBody .tabelaLinhaCensored td {
     font-size: 1rem;
-    color: var(--texto-preto-modo-claro);
-    border-bottom: 1px solid var(--shadowbox-modo-claro);
+    color: var(--texto-preto);
+    border-bottom: 1px solid var(--shadowbox);
     text-align: center;
 }
 
@@ -170,21 +172,21 @@
 }
 
 #telaRanking #containerRanking #tabelaRanking #tabelaBody .tabelaLinhaUncensored {
-    background-color: var(--roxo-primario-modo-claro);
+    background-color: var(--roxo-primario);
     transition: all 0.2s ease-in-out;
     height: 5.625rem;
 }
 
 #telaRanking #containerRanking #tabelaRanking #tabelaBody .tabelaLinhaUncensored:hover {
-    background-color: var(--roxo-secundario-modo-claro);
+    background-color: var(--roxo-secundario);
     transition: all 0.2s ease-in-out;
     height: 5.625rem;
 }
 
 #telaRanking #containerRanking #tabelaRanking #tabelaBody .tabelaLinhaUncensored td {
     font-size: 1rem;
-    color: var(--texto-branco-modo-claro);
-    border-bottom: 1px solid var(--shadowbox-modo-claro);
+    color: var(--texto-branco);
+    border-bottom: 1px solid var(--shadowbox);
     text-align: center;
 }
 
@@ -196,13 +198,13 @@
 }
 
 #telaRanking #containerRanking #tabelaRanking #tabelaBody .tabelaLinhaUncensoredOutros:hover {
-    background-color: var(--background-cinza-modo-claro);
+    background-color: var(--background-cinza);
 }
 
 #telaRanking #containerRanking #tabelaRanking #tabelaBody .tabelaLinhaUncensoredOutros td {
     font-size: 1rem;
-    color: var(--texto-preto-modo-claro);
-    border-bottom: 1px solid var(--shadowbox-modo-claro);
+    color: var(--texto-preto);
+    border-bottom: 1px solid var(--shadowbox);
     text-align: center;
 }
 
@@ -217,4 +219,8 @@
 
 #telaRanking #containerRanking #tabelaRanking #tabelaBody .tabela-mensagem {
     text-align: center;
+}
+
+#telaRanking #containerRanking #tabelaRanking #tabelaBody .tabela-mensagem td {
+    color: var(--texto-preto);
 }

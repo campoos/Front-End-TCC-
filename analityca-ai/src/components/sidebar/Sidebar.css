@@ -19,7 +19,7 @@
 
   box-shadow: 2px 4px 9.4px 0px rgba(0, 0, 0, 0.2);
 
-  background-color: var(--background-claro-modo-claro);
+  background-color: var(--background-claro);
 }
 
 #containerSidebar #sidebarHeader {
@@ -40,7 +40,7 @@
 #containerSidebar #sidebarHeader span {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--roxo-primario-modo-claro);
+  color: var(--roxo-primario);
 }
 
 #containerSidebar #sidebarMenu {
@@ -69,7 +69,7 @@
 
 #containerSidebar #sidebarMenu .sidebarItem:hover {
   padding-left: 1.5rem;
-  background-color: var(--background-cinza-modo-claro);
+  background-color: var(--background-cinza);
 }
 
 #containerSidebar #sidebarMenu .sidebarItem img {
@@ -82,7 +82,7 @@
 #containerSidebar #sidebarMenu .sidebarItem span {
   font-size: 1.25rem;
   font-weight: bold;
-  color: var(--texto-preto-modo-claro);
+  color: var(--texto-preto);
 
   opacity: 0.9;
 }
@@ -98,13 +98,13 @@
 
   text-decoration: none;
   border-radius: 25px;
-  background-color: var(--roxo-primario-modo-claro);
+  background-color: var(--roxo-primario);
 
   transition: all 0.2s ease-in-out;
 }
 
 #containerSidebar #sidebarMenu .sidebarItem.active:hover {
-  background-color: var(--roxo-secundario-modo-claro);
+  background-color: var(--roxo-secundario);
 }
 
 #containerSidebar #sidebarMenu .sidebarItem.active img {
@@ -118,7 +118,7 @@
 #containerSidebar #sidebarMenu .sidebarItem.active span {
   font-size: 1.25rem;
   font-weight: bold;
-  color: var(--texto-branco-modo-claro);
+  color: var(--texto-branco);
 
   opacity: 1;
 }

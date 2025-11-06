@@ -15,6 +15,8 @@
     display: flex;
 
     gap: 1.25rem;
+
+    background-color: var(--background-cinza);
 }
 
 #telaRecursos #containerRecursos {
@@ -27,4 +29,6 @@
 
 #telaRecursos #containerRecursos h1 {
     font-size: 10rem;
+
+    color: var(--texto-preto);
 }

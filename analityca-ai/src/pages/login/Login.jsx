@@ -98,7 +98,7 @@ function LoginPage() {
   }
   
   return (
-    <main>
+    <main id='main'>
       <div id="loginContainer">
         <Link to={"/"} id='botaoVoltar'>
           <img src={setaVoltar} alt="" />

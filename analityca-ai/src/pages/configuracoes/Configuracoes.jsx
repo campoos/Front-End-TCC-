@@ -6,6 +6,7 @@ import iconPhone from '../../assets/configuracoes-icons/phone-icon.png'
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import { useTheme } from '../../contexts/ThemeContext.jsx';
 
 const FundoEscuro = ({ show }) => {
   if (!show) return null;
@@ -31,8 +32,10 @@ const ModalConfirmacaoLogout = ({ show, onCancel, onConfirm }) => {
 
 function ConfiguracoesPage() {
 
+  const { isDarkMode, toggleDarkMode } = useTheme();
+
   const navigate = useNavigate();
-  const dataUser = JSON.parse(localStorage.getItem("userData"));
+  const dataUser = JSON.parse(localStorage.getItem("userData"))
 
   const [formData, setFormData] = useState({
     nome: dataUser.nome || "",
@@ -190,7 +193,7 @@ function ConfiguracoesPage() {
                   <span>Troca as cores da tela para um modo escuro</span>
                 </div>
                 <div className="switch-container">
-                  <input type="checkbox" id="meuSwitch" className="switch-checkbox" />
+                  <input type="checkbox" id="meuSwitch" className="switch-checkbox" checked={isDarkMode} onChange={() => toggleDarkMode(!isDarkMode)}/>
                   <label htmlFor="meuSwitch" className="switch-label">
                     <span className="switch-slider"></span>
                   </label>

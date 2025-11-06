@@ -21,7 +21,7 @@
 
     gap: 1.25rem;
 
-    background-color: var(--background-cinza-modo-claro);
+    background-color: var(--background-cinza);
 }
 
 #telaConfiguracoes #containerConfiguracoes {
@@ -61,7 +61,7 @@
     display: block;
     white-space: nowrap;
     overflow: hidden;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 }
 
   /* width: 200px;              define uma largura fixa 
@@ -72,7 +72,7 @@
 
 #telaConfiguracoes #containerConfiguracoes #containerTexto #desc {
     font-size: 1.25rem;
-    color: var(--texto-transparente-modo-claro);
+    color: var(--texto-transparente);
 }
 
 #telaConfiguracoes #containerConfiguracoes #configuracoes {
@@ -88,8 +88,8 @@
 }
 
 #telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes {
-    background-color: var(--background-claro-modo-claro);
-    box-shadow: 0px 0px 8px 1px var(--shadowbox-modo-claro);
+    background-color: var(--background-claro);
+    box-shadow: 0px 0px 8px 1px var(--shadowbox);
     padding: 1rem 1.5rem;
     border-radius: 8px;
 }
@@ -101,7 +101,7 @@
     align-items: center;
     
     font-size: 1.5rem;
-    color: var(--roxo-primario-modo-claro);
+    color: var(--roxo-primario);
 }
 
 #telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes .grupoInput { 
@@ -116,18 +116,13 @@
 
 #telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes .grupoInput label {
     font-size: 1.25rem;
+    color: var(--texto-preto);
 }
 
 #telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes .grupoInput .inputContainer {
     width: 100%;
     height: 4.1875rem;
     position: relative;
-}
-
-#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes .grupoInput .inputContainer input {
-    color: var(--texto-preto-modo-claro);
-    
-    font-size: 1rem;
 }
 
 #telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes .grupoInput .inputContainer img {
@@ -147,28 +142,28 @@
 
     border-radius: 15px;
     outline: none;
-    border: 1px solid var(--borda-input-modo-claro);
+    border: 1px solid var(--borda-input);
 
-    background-color: var(--background-input-modo-claro);
+    background-color: var(--background-input);
 
     font-size: 1rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-transparente);
 
     padding-left: 2.5rem;
     padding-right: 1rem;
 }
 
 #telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes .grupoInput .inputContainer input::placeholder {
-    color: var(--texto-input-modo-claro);
+    color: var(--texto-input);
 }
 
 #telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes .grupoInput .inputContainer input:focus {
-    border: 2px solid var(--roxo-primario-modo-claro);
+    border: 2px solid var(--roxo-primario);
 }
 
 #telaConfiguracoes #containerConfiguracoes #configuracoes #containerAparencia {
-    background-color: var(--background-claro-modo-claro);
-    box-shadow: 0px 0px 8px 1px var(--shadowbox-modo-claro);
+    background-color: var(--background-claro);
+    box-shadow: 0px 0px 8px 1px var(--shadowbox);
     padding: 1rem 1.5rem;
     border-radius: 8px;
 }
@@ -192,12 +187,12 @@
     align-items: center;
     
     font-size: 1.5rem;
-    color: var(--roxo-primario-modo-claro);
+    color: var(--roxo-primario);
 }
 
 #telaConfiguracoes #containerConfiguracoes #configuracoes #containerAparencia #containerTema #containerTextoTema span {
     font-size: 1.125rem;
-    color: var(--texto-transparente-modo-claro);
+    color: var(--texto-transparente);
 }
 
 .switch-checkbox {
@@ -211,7 +206,7 @@
     text-indent: -9999px;
     width: 4.5rem; 
     height: 2rem; 
-    background: var(--background-slider-modo-claro); 
+    background: var(--background-slider); 
     display: block;
     border-radius: 25px;
     position: relative;
@@ -232,7 +227,7 @@
 }
 
 .switch-checkbox:checked + .switch-label {
-    background: var(--roxo-primario-modo-claro);
+    background: var(--roxo-primario);
 }
 
 .switch-checkbox:checked + .switch-label .switch-slider {
@@ -255,9 +250,9 @@
 
     border-radius: 35px;
     border: none;
-    background-color: var(--roxo-primario-modo-claro);
+    background-color: var(--roxo-primario);
 
-    color: var(--texto-branco-modo-claro);
+    color: var(--texto-branco);
     font-size: 1rem;
 
     transition: all 0.2s ease-in-out;
@@ -265,7 +260,7 @@
 
 #telaConfiguracoes #containerConfiguracoes #containerButton button:hover {
     cursor: pointer;
-    background-color: var(--roxo-secundario-modo-claro);
+    background-color: var(--roxo-secundario);
 }
 
 #telaConfiguracoes #containerConfiguracoes #containerLogout {
@@ -279,10 +274,10 @@
     width: 11.25rem;
 
     border-radius: 10px;
-    border: 3px solid var(--borda-input-modo-claro);
+    border: 3px solid var(--borda-input);
     background-color: transparent;
 
-    color: var(--texto-transparente-modo-claro);
+    color: var(--texto-transparente);
     font-size: 1rem;
 
     transition: all 0.2s ease-in-out;
@@ -290,8 +285,8 @@
 
 #telaConfiguracoes #containerConfiguracoes #containerLogout button:hover {
     cursor: pointer;
-    background-color: var(--texto-erro-modo-claro);
-    color: var(--texto-branco-modo-claro);
+    background-color: var(--texto-erro);
+    color: var(--texto-branco);
     border: none;
 }
 
@@ -307,7 +302,7 @@
 
     padding: 1.5rem;
 
-    background-color: var(--background-claro-modo-claro);
+    background-color: var(--background-claro);
     border-radius: 15px;
 
     z-index: 2;
@@ -324,17 +319,17 @@
 
 #modalContainer #modalContent h3 {
     font-size: 2rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 }
 
 #modalContainer #modalContent p {
     font-size: 1rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 }
 
 #modalContainer #modalContent p strong {
     font-size: 1rem;
-    color: var(--texto-erro-modo-claro);
+    color: var(--texto-erro);
 }
 
 #modalContainer #modalContent #modalOptions {
@@ -350,7 +345,7 @@
     height: 1.5rem;
     border: none;
     font-size: 1rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
     transition: color 0.2s ease-in-out;
 }
 
@@ -361,7 +356,7 @@
     bottom: 0; /* ajusta a posição do sublinhado */
     width: 0%;
     height: 2px; /* espessura da linha */
-    background-color: var(--texto-preto-modo-claro);
+    background-color: var(--texto-preto);
     transition: width 0.3s ease-in-out;
 }
 
@@ -374,10 +369,10 @@
 }
 
 #modalContainer #modalContent #modalOptions #buttonConfirmar {
-    background-color: var(--texto-erro-modo-claro);
+    background-color: var(--texto-erro);
     border: none;
     font-size: 1rem;
-    color: var(--texto-branco-modo-claro);
+    color: var(--texto-branco);
 
     height: 3.125rem;
     width: 8.5rem;
@@ -388,7 +383,7 @@
 
 #modalContainer #modalContent #modalOptions #buttonConfirmar:hover {
     cursor: pointer;
-    background-color: var(--texto-erro-secundario-modo-claro);
+    background-color: var(--texto-erro-secundario);
 }
 
 #fundoEscuro {

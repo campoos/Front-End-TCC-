@@ -4,6 +4,7 @@ import Sidebar from '../../components/sidebar/Sidebar'
 import UserIcon from "../../assets/usuario-icon.png"
 
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '../../contexts/ThemeContext.jsx'; // Importa o hook
 
 import InfoIcon from "../../assets/dashboards/info-icon.png"
 import CheckIcon from "../../assets/dashboards/check-icon.png"
@@ -28,6 +29,8 @@ import {
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend, ChartDataLabels);
 
 function DashboardsPage() {
+
+
   const [materias, setMaterias] = useState([]);
   const [turmas, setTurmas] = useState([]);
   const [periodos, setPeriodos] = useState([]);
@@ -49,6 +52,8 @@ function DashboardsPage() {
 
   const dataUser = JSON.parse(localStorage.getItem("userData"));
   const userLevel = dataUser.nivel_usuario;
+
+  const { isDarkMode } = useTheme();  
 
   // --- Função genérica para buscar dados da API ---
   const fetchData = async (endpoint, dataKey) => {
@@ -309,12 +314,12 @@ function DashboardsPage() {
     responsive: true,
     layout: { padding: { top: 23 } },
     plugins: {
-      legend: { display: false },
+      legend: { display: false, labels: {color: isDarkMode ? "#fff" : "#000" }},
       datalabels: {
         display: exibirLabels,
         anchor: "end",
         align: "top",
-        color: "#000",
+        color: isDarkMode ? "#fff" : "#000",
         font: { weight: "thin", size: 14 },
         formatter: (v) => v.toFixed(1),
       },
@@ -337,7 +342,7 @@ function DashboardsPage() {
       },
     },
     scales: {
-      x: { ticks: { display: exibirLabels, color: "#000", barPercentage: 0.2, categoryPercentage: 0.5 } },
+      x: { ticks: { display: exibirLabels, color: isDarkMode ? "#fff" : "#000", barPercentage: 0.2, categoryPercentage: 0.5 } },
       y: { grid: { display: false }, beginAtZero: true },
     },
   };
@@ -354,7 +359,7 @@ function DashboardsPage() {
             Number(dashboardData.desempenho[0].frequencia.faltas)
           ],
           backgroundColor: ["rgb(222, 212, 252)", "rgb(125, 83, 243)"],
-          borderColor: ["rgba(255, 255, 255, 1)"],
+          borderColor: isDarkMode ? ["rgba(29, 29, 29, 1)"] : ["rgba(255, 255, 255, 1)"],
           borderWidth: 4
         }
       ]
