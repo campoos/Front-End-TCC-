@@ -9,7 +9,7 @@
     overflow-x: hidden;
 }
 
-main {
+#main {
     height: 100dvh;
     width: 100dvw;
 
@@ -17,11 +17,11 @@ main {
     justify-content: center;
     align-items: center;
 
-    background-color: var(--background-cinza-modo-claro);
+    background-color: var(--background-cinza);
 }
 
 #emailEnviadoContainer {
-    background-color: var(--background-claro-modo-claro);
+    background-color: var(--background-claro);
 
     height: 22.3125rem;
     width: 32.6875rem;
@@ -54,7 +54,7 @@ main {
 
 #emailEnviadoContainer #emailEnviadoConteudo #emailEnviadoDescricao h2 {
     font-size: 2.25rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 
     margin-bottom: 0.6875rem;
 }
@@ -64,7 +64,7 @@ main {
     font-weight: 300;
     text-align: center;
     width: 75%;
-    color: var(--texto-transparente-modo-claro);
+    color: var(--texto-transparente);
     margin: 1rem;
 }
 
@@ -79,9 +79,9 @@ main {
 
     border-radius: 35px;
     border: none;
-    background-color: var(--roxo-primario-modo-claro);
+    background-color: var(--roxo-primario);
 
-    color: var(--texto-branco-modo-claro);
+    color: var(--texto-branco);
     font-size: 1rem;
 
     transition: all 0.2s ease-in-out;
@@ -89,7 +89,7 @@ main {
 
 #emailEnviadoContainer #emailEnviadoConteudo a button:hover {
     cursor: pointer;
-    background-color: var(--roxo-secundario-modo-claro);
+    background-color: var(--roxo-secundario);
 }
 
 #emailEnviadoContainer #emailEnviadoConteudo form #containerErro {

@@ -9,7 +9,7 @@
     overflow-x: hidden;
 }
 
-main {
+#main {
     height: 100dvh;
     width: 100dvw;
 
@@ -17,11 +17,11 @@ main {
     justify-content: center;
     align-items: center;
 
-    background-color: var(--background-cinza-modo-claro);
+    background-color: var(--background-cinza);
 }
 
 #redefinirContainer {
-    background-color: var(--background-claro-modo-claro);
+    background-color: var(--background-claro);
 
     height: 33.75rem;
     width: 32.6875rem;
@@ -71,7 +71,7 @@ main {
 
 #redefinirContainer #redefinirConteudo #redefinirDescricao h2 {
     font-size: 2.25rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 
     margin-bottom: 0.6875rem;
 }
@@ -79,7 +79,7 @@ main {
 #redefinirContainer #redefinirConteudo #redefinirDescricao p {
     font-size: 1rem;
     font-weight: 300;
-    color: var(--texto-transparente-modo-claro);
+    color: var(--texto-transparente);
 }
 
 #redefinirContainer #redefinirConteudo form {
@@ -98,7 +98,7 @@ main {
 }
 
 #redefinirContainer #redefinirConteudo form .grupoInput label {
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
     
     font-size: 1rem;
 
@@ -110,12 +110,12 @@ main {
 
     border-radius: 15px;
     outline: none;
-    border: 1px solid var(--borda-input-modo-claro);
+    border: 1px solid var(--borda-input);
 
-    background-color: var(--background-input-modo-claro);
+    background-color: var(--background-input);
 
     font-size: 1rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 
     padding-left: 1rem;
     padding-right: 1rem;
@@ -123,11 +123,11 @@ main {
 }
 
 #redefinirContainer #redefinirConteudo form .grupoInput input::placeholder {
-    color: var(--texto-input-modo-claro);
+    color: var(--texto-input);
 }
 
 #redefinirContainer #redefinirConteudo form .grupoInput input:focus {
-    border: 2px solid var(--roxo-primario-modo-claro);
+    border: 2px solid var(--roxo-primario);
 }
 
 #redefinirContainer #redefinirConteudo form #opcoesForm {
@@ -147,7 +147,7 @@ main {
 }
 
 #redefinirContainer #redefinirConteudo form #opcoesForm #remember input {
-    accent-color: var(--roxo-primario-modo-claro);
+    accent-color: var(--roxo-primario);
 
     height: 1rem;
     width: 1rem;
@@ -155,12 +155,12 @@ main {
 
 #redefinirContainer #redefinirConteudo form #opcoesForm #remember label {
     font-size: 0.75rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 }
 
 #redefinirContainer #redefinirConteudo form #opcoesForm a {
     font-size: 0.75rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 }
 
 #redefinirContainer #redefinirConteudo form #redefinirSubmitButtonContainer {
@@ -173,9 +173,9 @@ main {
 
     border-radius: 35px;
     border: none;
-    background-color: var(--roxo-primario-modo-claro);
+    background-color: var(--roxo-primario);
 
-    color: var(--texto-branco-modo-claro);
+    color: var(--texto-branco);
     font-size: 1rem;
 
     margin-top: 2rem;
@@ -185,7 +185,7 @@ main {
 
 #redefinirContainer #redefinirConteudo form button:hover {
     cursor: pointer;
-    background-color: var(--roxo-secundario-modo-claro);
+    background-color: var(--roxo-secundario);
 }
 
 #redefinirContainer #redefinirConteudo form #containerErro {
@@ -202,13 +202,13 @@ main {
 
 #redefinirContainer #redefinirConteudo form #containerErro .visibleError {
     opacity: 1;
-    color: var(--texto-erro-modo-claro);
+    color: var(--texto-erro);
     font-size: 0.875rem;
     font-weight: 300;
 }
 
 #redefinirContainerErro {
-    background-color: var(--background-claro-modo-claro);
+    background-color: var(--background-claro);
 
     height: 22.3125rem;
     width: 32.6875rem;
@@ -237,12 +237,12 @@ main {
 }
 
 .erroFatal span {
-    color: var(--texto-erro-modo-claro);
+    color: var(--texto-erro);
 }
 
 .erroFatal p {
     width: 85%;
-    color: var(--texto-transparente-modo-claro);
+    color: var(--texto-transparente);
 }
 
 .erroFatal button {
@@ -251,9 +251,9 @@ main {
 
     border-radius: 35px;
     border: none;
-    background-color: var(--roxo-primario-modo-claro);
+    background-color: var(--roxo-primario);
 
-    color: var(--texto-branco-modo-claro);
+    color: var(--texto-branco);
     font-size: 1rem;
 
     margin-top: 1rem;
@@ -263,7 +263,7 @@ main {
 
 .erroFatal button:hover {
     cursor: pointer;
-    background-color: var(--roxo-secundario-modo-claro);
+    background-color: var(--roxo-secundario);
 }
 
 #redefinirContainerCarregando p {

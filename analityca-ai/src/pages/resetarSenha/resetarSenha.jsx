@@ -117,7 +117,7 @@ function ResetarSenhaPage() {
 
   if (statusToken === "inexistente") {
     return (
-      <main>
+      <main id='main'>
         <div id="redefinirContainerErro">
           <div id="redefinirConteudo" className="erroFatal">
             <h2>Ops!</h2>
@@ -132,7 +132,7 @@ function ResetarSenhaPage() {
 
   if (statusToken === "conexao" || statusToken === "invalido") {
     return (
-      <main>
+      <main id='main'>
         <div id="redefinirContainerErro">
           <div id="redefinirConteudo" className="erroFatal">
             <h2>Ops!</h2>
@@ -151,7 +151,7 @@ function ResetarSenhaPage() {
 
   // ✅ Tela principal (token válido)
   return (
-    <main>
+    <main id='main'>
       <div id="redefinirContainer">
         <div id="redefinirConteudo">
           <div id="redefinirDescricao">

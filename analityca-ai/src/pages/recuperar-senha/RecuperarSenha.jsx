@@ -72,7 +72,7 @@ function RecuperarSenhaPage() {
   }
 
   return (
-    <main>
+    <main id='main'>
       <div id="recuperacaoSenhaContainer">
         <Link to={"/login"} id='botaoVoltar'>
           <img src={setaVoltar} alt="" style={{ pointerEvents: estaCarregando ? 'none' : 'auto' }}/>

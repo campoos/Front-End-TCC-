@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function EmailEnviadoPage() {
   return (
-    <main>
+    <main id='main'>
       <div id="emailEnviadoContainer">
         <div id="emailEnviadoConteudo">
           <div id="emailEnviadoDescricao">

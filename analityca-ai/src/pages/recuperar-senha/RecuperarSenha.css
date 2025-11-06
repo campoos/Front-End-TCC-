@@ -9,7 +9,7 @@
     overflow-x: hidden;
 }
 
-main {
+#main {
     height: 100dvh;
     width: 100dvw;
 
@@ -17,11 +17,11 @@ main {
     justify-content: center;
     align-items: center;
 
-    background-color: var(--background-cinza-modo-claro);
+    background-color: var(--background-cinza);
 }
 
 #recuperacaoSenhaContainer {
-    background-color: var(--background-claro-modo-claro);
+    background-color: var(--background-claro);
 
     height: 26.6875rem;
     width: 32.6875rem;
@@ -71,7 +71,7 @@ main {
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo #recuperacaoSenhaDescricao h2 {
     font-size: 2.25rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 
     margin-bottom: 0.6875rem;
 }
@@ -81,7 +81,7 @@ main {
     font-weight: 300;
     text-align: center;
     width: 75%;
-    color: var(--texto-transparente-modo-claro);
+    color: var(--texto-transparente);
 }
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo form {
@@ -100,7 +100,7 @@ main {
 }
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo form .grupoInput label {
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
     
     font-size: 1rem;
 
@@ -112,12 +112,12 @@ main {
 
     border-radius: 15px;
     outline: none;
-    border: 1px solid var(--borda-input-modo-claro);
+    border: 1px solid var(--borda-input);
 
-    background-color: var(--background-input-modo-claro);
+    background-color: var(--background-input);
 
     font-size: 1rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 
     padding-left: 1rem;
     padding-right: 1rem;
@@ -125,11 +125,11 @@ main {
 }
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo form .grupoInput input::placeholder {
-    color: var(--texto-input-modo-claro);
+    color: var(--texto-input);
 }
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo form .grupoInput input:focus {
-    border: 2px solid var(--roxo-primario-modo-claro);
+    border: 2px solid var(--roxo-primario);
 }
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo form #opcoesForm {
@@ -149,7 +149,7 @@ main {
 }
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo form #opcoesForm #remember input {
-    accent-color: var(--roxo-primario-modo-claro);
+    accent-color: var(--roxo-primario);
 
     height: 1rem;
     width: 1rem;
@@ -157,12 +157,12 @@ main {
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo form #opcoesForm #remember label {
     font-size: 0.75rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 }
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo form #opcoesForm a {
     font-size: 0.75rem;
-    color: var(--texto-preto-modo-claro);
+    color: var(--texto-preto);
 }
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo form #loginSubmitButtonContainer {
@@ -175,9 +175,9 @@ main {
 
     border-radius: 35px;
     border: none;
-    background-color: var(--roxo-primario-modo-claro);
+    background-color: var(--roxo-primario);
 
-    color: var(--texto-branco-modo-claro);
+    color: var(--texto-branco);
     font-size: 1rem;
 
     margin-top: 2rem;
@@ -187,7 +187,7 @@ main {
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo form button:hover {
     cursor: pointer;
-    background-color: var(--roxo-secundario-modo-claro);
+    background-color: var(--roxo-secundario);
 }
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo form #containerErro {
@@ -204,7 +204,7 @@ main {
 
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo form #containerErro .visibleError {
     opacity: 1;
-    color: var(--texto-erro-modo-claro);
+    color: var(--texto-erro);
     font-size: 0.875rem;
     font-weight: 300;
 }

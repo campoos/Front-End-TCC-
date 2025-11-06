@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function SenhaResetadaPage() {
   return (
-    <main>
+    <main id='main'>
       <div id="senhaResetadaContainer">
         <div id="senhaResetadaConteudo">
           <div id="senhaResetadaDescricao">
