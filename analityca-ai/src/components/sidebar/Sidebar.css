@@ -122,3 +122,43 @@
 
   opacity: 1;
 }
+
+@media(max-width:600px){
+  #containerSidebar {
+      height: 3.9375rem;
+      bottom: 0;
+      width: 100%;
+  }
+
+  #containerSidebar #sidebarHeader {
+    display: none;
+  }
+
+  #containerSidebar #sidebarMenu {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #containerSidebar #sidebarMenu .sidebarItem {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #containerSidebar #sidebarMenu .sidebarItem.active img {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  #containerSidebar #sidebarMenu .sidebarItem.active span {
+    font-size: 0.75rem;
+  }
+
+  #containerSidebar #sidebarMenu .sidebarItem img {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  #containerSidebar #sidebarMenu .sidebarItem span {
+    font-size: 0.75rem;
+  }
+}
