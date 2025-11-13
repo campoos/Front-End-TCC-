@@ -11,6 +11,8 @@ import CheckIcon from "../../assets/dashboards/check-icon.png"
 import ChartICon from "../../assets/dashboards/chart-icon.png"
 import PerformIcon from "../../assets/dashboards/perform-icon.png"
 import relatoriosIcon from "../../assets/dashboards/relatorios-insights-icon.png"
+import relatorioIcon from "../../assets/dashboards/relatorios-icon.png"
+import downloadIcon from "../../assets/dashboards/downloads-icon.png"
 
 import { Pie, Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
@@ -50,10 +52,17 @@ function DashboardsPage() {
   const [isLoadingInsights, setIsLoadingInsights] = useState(false);
   const [insightsError, setInsightsError] = useState(null);
 
+  // 🆕 Novo estado para Relatórios
+  const [reportLinks, setReportLinks] = useState({
+    completo: { link: null, isLoading: false, error: null },
+    desempenho: { link: null, isLoading: false, error: null },
+    frequencia: { link: null, isLoading: false, error: null },
+  });
+
   const dataUser = JSON.parse(localStorage.getItem("userData"));
   const userLevel = dataUser.nivel_usuario;
 
-  const { isDarkMode } = useTheme();  
+  const { isDarkMode } = useTheme();
 
   // --- Função genérica para buscar dados da API ---
   const fetchData = async (endpoint, dataKey) => {
@@ -98,6 +107,12 @@ function DashboardsPage() {
   useEffect(() => {
     setInsights(null);
     setInsightsError(null);
+    // Limpa links de relatórios ao mudar o filtro
+    setReportLinks({
+      completo: { link: null, isLoading: false, error: null },
+      desempenho: { link: null, isLoading: false, error: null },
+      frequencia: { link: null, isLoading: false, error: null },
+    });
   }, [selectedMateria, selectedTurma, selectedPeriodo]);
 
   // --- 2️⃣ Restaurar filtros salvos ao carregar a página ---
@@ -176,6 +191,12 @@ function DashboardsPage() {
         if (response.status === 404) {
           console.warn("Nenhum dado encontrado para os filtros selecionados (404)");
           setDashboardData(null);
+          // Limpa relatórios
+          setReportLinks({
+            completo: { link: null, isLoading: false, error: "Nenhum dado de desempenho encontrado" },
+            desempenho: { link: null, isLoading: false, error: "Nenhum dado de desempenho encontrado" },
+            frequencia: { link: null, isLoading: false, error: "Nenhum dado de desempenho encontrado" },
+          });
           return;
         }
 
@@ -199,6 +220,8 @@ function DashboardsPage() {
           console.log("📊 Dashboard carregado com sucesso! IDs atuais:", dashboardIDs);
 
           sendDashboardToAI(dashboardIDs);
+          // 🆕 Chamada para gerar relatórios
+          fetchReports(dashboardIDs);
         }
       } catch (error) {
         console.error(error);
@@ -256,6 +279,125 @@ function DashboardsPage() {
     }
   };
 
+
+  // 🆕 FUNÇÕES PARA RELATÓRIOS (CORRIGIDAS PARA POST)
+
+  const getReportUrl = (reportType, userLevel, filters) => {
+    const baseUrl = 'http://localhost:8080/v1/analytica-ai';
+    const materia = filters.materia;
+    const turma = filters.turma;
+    const semestre = filters.periodo;
+
+    let path = '';
+    let params = '';
+
+    switch (reportType) {
+      case 'completo':
+        path = 'relatorios-completo';
+        break;
+      case 'desempenho':
+        path = 'relatorios-desempenho';
+        break;
+      case 'frequencia':
+        path = 'relatorios-frequencia';
+        break;
+      default:
+        return null;
+    }
+
+    // A URL para o POST precisa dos parâmetros na query string
+    switch (userLevel) {
+      case 'aluno':
+        if (!materia || !semestre) return null;
+        params = `materia=${materia}&semestre=${semestre}`;
+        break;
+      case 'professor':
+        if (!turma || !semestre) return null;
+        params = `turma=${turma}&semestre=${semestre}`;
+        break;
+      case 'gestão':
+        if (!turma || !semestre || !materia) return null;
+        params = `turma=${turma}&semestre=${semestre}&materia=${materia}`;
+        break;
+      default:
+        return null;
+    }
+
+    const userLevelFormatado = userLevel.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+
+    return `${baseUrl}/${path}/${userLevelFormatado}?${params}`;
+  };
+
+  // Esta função agora recebe o dashboardIDs que contém o 'data_dashboard'
+  const fetchAndProcessReport = async (reportType, url, dashboardIDs) => {
+    // 1. Inicia o carregamento
+    setReportLinks(prev => ({ ...prev, [reportType]: { ...prev[reportType], isLoading: true, error: null } }));
+
+    try {
+      const response = await fetch(url, {
+        method: "POST", // 👈 CORREÇÃO: Método POST
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          desempenho: dashboardIDs.data_dashboard, // 👈 CORREÇÃO: Enviando o data_dashboard no body
+        }),
+      });
+
+      // 2. Trata 404/indisponível
+      if (response.status === 404) {
+        throw new Error("Relatório não gerado/disponível (404)");
+      }
+      if (!response.ok) {
+        throw new Error(`Erro ao buscar relatório: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      // 3. Verifica a estrutura da resposta
+      if (data?.relatorio?.link) {
+        setReportLinks(prev => ({
+          ...prev,
+          [reportType]: { link: data.relatorio.link, isLoading: false, error: null }
+        }));
+      } else {
+        throw new Error("Resposta da API incompleta (sem link)");
+      }
+
+    } catch (error) {
+      console.error(`❌ Erro ao gerar ${reportType} report:`, error);
+      setReportLinks(prev => ({
+        ...prev,
+        [reportType]: { link: null, isLoading: false, error: "Indisponível" }
+      }));
+    }
+  };
+
+  // Esta função de controle agora passa o dashboardIDs
+  const fetchReports = (dashboardIDs) => {
+    const reportsToFetch = ['completo', 'desempenho', 'frequencia'];
+    
+    reportsToFetch.forEach(reportType => {
+      const url = getReportUrl(reportType, userLevel, filtersJSON);
+      if (url) {
+        // 👈 Passando dashboardIDs para a função de fetch
+        fetchAndProcessReport(reportType, url, dashboardIDs); 
+      } else {
+        setReportLinks(prev => ({
+          ...prev,
+          [reportType]: { link: null, isLoading: false, error: "Filtros Incompletos" }
+        }));
+      }
+    });
+  };
+  
+  const handleDownload = (link) => {
+    if (link) {
+      // Cria a URL completa do arquivo. Ajuste o prefixo base se necessário.
+      const fullUrl = `http://localhost:8080${link}`; 
+      window.open(fullUrl, '_blank');
+    }
+  };
+
+
   // --- Helpers ---
   const getVisibleFilters = (nivel) => {
     switch (nivel) {
@@ -300,13 +442,12 @@ function DashboardsPage() {
 
   // --- Dados dos gráficos ---
   const emptyPieData = { labels: ["Presença", "Falta"], datasets: [{ data: [80, 20], backgroundColor: ["#d3d3d3", "#b5b5b5"], borderWidth: 2 }] };
-  const emptyBarData = { labels: ["-", "-", "-", "-"], datasets: [{ data: [0, 0, 0, 0], backgroundColor: "#b5b5b5", borderRadius: 2,  barPercentage: 0.7, categoryPercentage: 0.6 }] };
+  const emptyBarData = { labels: ["-", "-", "-", "-"], datasets: [{ data: [0, 0, 0, 0], backgroundColor: "#b5b5b5", borderRadius: 2, barPercentage: 0.7, categoryPercentage: 0.6 }] };
 
   const optionsPizza = { plugins: { legend: { display: false }, datalabels: { display: false } } };
 
   const atividades = dashboardData?.desempenho?.[0]?.atividades || [];
 
-  console.log(atividades)
   const exibirLabels = atividades.length <= 10; // até 10 atividades mostra labels
 
   const optionsBarra = {
@@ -347,8 +488,6 @@ function DashboardsPage() {
     },
   };
 
-  console.log(dashboardData)
-
   const pieChartData = dashboardData
     ? {
       labels: ["Presença", "Falta"],
@@ -381,6 +520,52 @@ function DashboardsPage() {
       ]
     }
     : emptyBarData;
+
+  // 🆕 Componente para o item de relatório
+  const ReportItem = ({ reportType, reportName }) => {
+    const { link, isLoading, error } = reportLinks[reportType];
+    const isDisabled = !link || isLoading || error;
+
+    const buttonStyle = {
+      backgroundColor: isDisabled ? '#8a8a8a' : 'rgb(125, 83, 243)', // Cinza se indisponível/carregando
+      cursor: isLoading ? 'wait' : isDisabled ? 'not-allowed' : 'pointer',
+      opacity: isDisabled ? 0.9 : 1,
+      transition: 'all 0.3s ease',
+    };
+
+    return (
+      <div className="containerRelatorio">
+        <div className="containerTextoRelatorio">
+          <h2>
+            {dashboardData
+              ? <h2>Relátorio {reportName} de <strong>{dashboardData.desempenho[0].materia.materia}</strong></h2>
+              : ''
+            }
+          </h2>
+          <span>
+            {isLoading
+              ? 'Gerando relatório...'
+              : error 
+              ? `Status: ${error}`
+              : 'Pronto para download'
+            }
+          </span>
+          <h3>Última atualização: 18/05/2025</h3> {/* Data Padrão */}
+        </div>
+        <div 
+          className="containerDownloadRelatorio"
+          style={buttonStyle}
+          onClick={() => !isDisabled && handleDownload(link)}
+        >
+          {isLoading ? (
+            <div className="loader"></div> // Você deve implementar o CSS para esta classe
+          ) : (
+            <img src={downloadIcon} alt="Download" />
+          )}
+        </div>
+      </div>
+    );
+  };
 
 
   return (
@@ -579,6 +764,40 @@ function DashboardsPage() {
 
           </div>
         </div>
+
+        <div id="containerRelatorios">
+          <div id="tituloRelatorios">
+            <img src={relatorioIcon} alt="" />
+            <h1>Relatórios para Download</h1>
+          </div>
+          
+          <div id="bodyRelatorios">
+            {!filtersReady && (
+              <div className="containerTextoRelatorio" style={{width: '100%', textAlign: 'center'}}>
+                <p>Selecione todos os filtros necessários (Disciplina, Turma e/ou Período) para gerar os relatórios.</p>
+              </div>
+            )}
+
+            {filtersReady && (
+              <>
+                <ReportItem
+                  reportType="completo"
+                  reportName="Completo"
+                />
+                <ReportItem
+                  reportType="frequencia"
+                  reportName="de Frequência"
+                />
+                <ReportItem
+                  reportType="desempenho"
+                  reportName="de Desempenho"
+                />
+              </>
+            )}
+            
+          </div>
+        </div>
+        
       </div>
     </div>
   );
