@@ -500,4 +500,9 @@
         display: flex;
         flex-direction: column-reverse;
     }
+
+    #telaDashboards #containerDashboards {
+        padding-left: 0px;
+        padding: 1rem;
+    }
 }
