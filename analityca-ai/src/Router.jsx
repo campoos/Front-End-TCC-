@@ -28,8 +28,7 @@ function AppRoutes() {
             <Route path="/email-enviado" element={<EmailEnviadoPage />}></Route>
             <Route path="/resetar-senha" element={<ResetarSenhaPage />}></Route>
             <Route path="/senha-resetada" element={<SenhaResetadaPage />}></Route>
-            <Route path="/recursos-criar" element={<RecursosCriarPage />}></Route>
-            
+            <Route path="/recursos-criar" element={<RecursosCriarPage />}></Route>     
         </Routes>
       </>
     )

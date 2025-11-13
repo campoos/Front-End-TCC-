@@ -65,7 +65,7 @@
     filter: opacity(0.9);
 }
 
-#telaDashboards #containerDashboards #usuarioContainer #userContent h1 {
+#telaDashboards #containerDashboards #usuarioContainer #userContent h2 {
     font-size: 1.25rem;
     color: var(--texto-preto);
 }
@@ -431,7 +431,7 @@
     opacity: 0.9;
 }
 
-#telaDashboards #containerDashboards #containerInsights #headerInsights h1 {
+#telaDashboards #containerDashboards #containerInsights #headerInsights h2 {
     font-size: 1.25rem;
     color: var(--texto-preto);
 }
@@ -510,7 +510,7 @@
     height: 2rem;
 }
 
-#telaDashboards #containerDashboards #containerRelatorios #tituloRelatorios h1 {
+#telaDashboards #containerDashboards #containerRelatorios #tituloRelatorios h2 {
     color: var(--texto-preto);
     font-size: 1.25rem;
 }

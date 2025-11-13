@@ -577,7 +577,7 @@ function DashboardsPage() {
         <div id="usuarioContainer">
           <img src={UserIcon} alt="" />
           <div id="userContent">
-            <h1>{dataUser.nome}</h1>
+            <h2>{dataUser.nome}</h2>
             {dataUser.turma?.turma && <span>{dataUser.turma.turma}</span>}
           </div>
         </div>
@@ -716,7 +716,7 @@ function DashboardsPage() {
         <div id="containerInsights">
           <div id="headerInsights">
             <img src={relatoriosIcon} alt="" />
-            <h1>Relatórios e Insights por Matéria</h1>
+            <h2>Relatórios e Insights por Matéria</h2>
           </div>
 
           <div id="insightsContainer">
@@ -768,7 +768,7 @@ function DashboardsPage() {
         <div id="containerRelatorios">
           <div id="tituloRelatorios">
             <img src={relatorioIcon} alt="" />
-            <h1>Relatórios para Download</h1>
+            <h2 id='tituloRelatorio'>Relatórios para Download</h2>
           </div>
           
           <div id="bodyRelatorios">
