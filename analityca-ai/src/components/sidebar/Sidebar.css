@@ -162,3 +162,9 @@
     font-size: 0.75rem;
   }
 }
+
+@media(min-width:1440px){
+  #containerSidebar {
+      top: 0;
+  }
+}

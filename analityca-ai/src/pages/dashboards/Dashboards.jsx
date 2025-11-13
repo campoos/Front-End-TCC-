@@ -300,7 +300,7 @@ function DashboardsPage() {
 
   // --- Dados dos gráficos ---
   const emptyPieData = { labels: ["Presença", "Falta"], datasets: [{ data: [80, 20], backgroundColor: ["#d3d3d3", "#b5b5b5"], borderWidth: 2 }] };
-  const emptyBarData = { labels: ["-", "-", "-", "-"], datasets: [{ data: [0, 0, 0, 0], backgroundColor: "#b5b5b5", borderRadius: 2, barPercentage: 0.7, categoryPercentage: 0.6 }] };
+  const emptyBarData = { labels: ["-", "-", "-", "-"], datasets: [{ data: [0, 0, 0, 0], backgroundColor: "#b5b5b5", borderRadius: 2,  barPercentage: 0.7, categoryPercentage: 0.6 }] };
 
   const optionsPizza = { plugins: { legend: { display: false }, datalabels: { display: false } } };
 
