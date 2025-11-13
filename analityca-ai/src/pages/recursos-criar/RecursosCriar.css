@@ -4,60 +4,33 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  
 }
 
-
 #telaRecursos {
-  grid-template-columns: 1600px  1fr 200px; 
+  display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: var(--background-cinza, #f4f4f4);
-  gap: 0; 
+  background-color: #f4f4f4;
+  align-items: flex-start; 
+  justify-content: flex-start;
   overflow: hidden;
 }
 
 
 #containerRecursos {
-  background-color:  #fff;
-  border-radius: 20px 0 0 20px;
-  padding: 20rem 1rem;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding-top: 2rem;
-  overflow-y: auto;
-  margin-left: 380px;
-
-}
-
-
-#sidebarDireita {
-  background-color: #fff;
+  flex: 1;
+  background-color: #f4f4f4;
   padding: 2rem;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.05);
-  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  position: relative;
-  border-radius: 0 20px 20px 0;
+  justify-content: flex-start;
+  align-items: flex-start;
   overflow-y: auto;
-  margin-right: 10px;
-}
-
-.cabecalho-sidebar h2 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 1rem;
-  
-}
-
-.atribuicao-campos {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  margin-left: 380px; 
+  height: 100vh;
+  box-sizing: border-box;
+  margin-top: -320px;
 }
 
 
@@ -66,34 +39,55 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin-top: 0;
+  padding-top: 0;
 }
+
 
 .cabecalho-recursos {
   display: flex;
   align-items: center;
   gap: 1rem;
+  width: 100%;
+}
+
+.titulo-com-linha {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.linha-titulo {
+  width: 100%;
+  height: 1px;
+  background-color: #696969;
 }
 
 .cabecalho-recursos h1 {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   color: #333;
-  line-height: 1.4;
+  font-weight: 700;
 }
 
-.btn-voltar {
-  background: none;
-  border: none;
-  color: #4e4e4e ;
-  cursor: pointer;
-  font-weight: bold;
+#sidebarDireita {
+  width: 300px;
+  background-color: #fff;
+  padding: 2rem;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  overflow-y: auto;
+  height: 100vh;
 }
+
 
 .formulario-recursos {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
-  
 }
 
 .campo {
@@ -123,11 +117,6 @@
   border-color: #7D53F3;
 }
 
-.linha-campos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-}
 
 .btn-criar {
   margin-top: auto;
@@ -146,11 +135,6 @@
 .btn-criar:hover {
   background-color: #6e4ad1;
 }
-
-body {
-  display: block;
-}
-
 h1 {
   font-size: 40px !important;
   font-weight: 700;

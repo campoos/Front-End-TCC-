@@ -60,9 +60,12 @@ function RecursosCriarPage() {
                     <div className="conteudo-recursos">
 
                         <div className="cabecalho-recursos">
-                            <button className="btn-voltar">←</button>
-                            <h1>Plano de Atividades - Criação</h1>
-                        </div>
+                           
+                            <div className="titulo-com-linha">
+                            <h1>Plano de Atividade</h1>
+                            <div className="linha-titulo"></div>
+                            </div>
+                         </div>
 
                     
                         <form className="formulario-recursos">
