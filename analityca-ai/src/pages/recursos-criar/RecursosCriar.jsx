@@ -1,5 +1,5 @@
 import React from 'react';
-import './recursosCriar.css';
+import './RecursosCriar.css';
 import Sidebar from '../../components/sidebar/Sidebar'; 
 
 const RightSidebar = () => {
