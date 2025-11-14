@@ -23,12 +23,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd analytica-ai
+          cd analityca-ai
           npm install
 
       - name: Build Vite Project
         run: |
-          cd analytica-ai
+          cd analityca-ai
           npm run build
 
       - name: Deploy to Azure Static Web App
@@ -36,7 +36,7 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WITTY_MOSS_09031EE1E }}
           action: "upload"
-          app_location: "./analytica-ai"
+          app_location: "./analityca-ai"
           output_location: "dist"
 
   close_pull_request_job:
