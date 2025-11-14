@@ -95,7 +95,7 @@
   flex-grow: 1;
 }
 
-#container1 #containerTextoHome h1 {
+#container1 #containerTextoHome h2 {
   font-size: 4rem;
   text-align: center;
 
@@ -106,7 +106,7 @@
   color: var(--texto-escuro);
 }
 
-#container1 #containerTextoHome h2 {
+#container1 #containerTextoHome h3 {
   font-size: 1.5rem;
   font-weight: 500;
 

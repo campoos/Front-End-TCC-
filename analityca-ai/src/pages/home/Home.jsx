@@ -21,8 +21,8 @@ function HomePage() {
           </div>
         </div>
         <div id="containerTextoHome">
-          <h1>A inteligência que transforma dados em resultados</h1>
-          <h2>Transformando dados em aprendizado inteligente.</h2>
+          <h2>A inteligência que transforma dados em resultados</h2>
+          <h3>Transformando dados em aprendizado inteligente.</h3>
           <div id="botaoContainer">
             <Link to="/login" id="comecarAgora">
               Começar Agora
