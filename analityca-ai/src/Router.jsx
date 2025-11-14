@@ -10,7 +10,7 @@ import RecuperarSenhaPage from "./pages/recuperar-senha/RecuperarSenha.jsx";
 import EmailEnviadoPage from "./pages/email-enviado/EmailEnviado.jsx";
 import ResetarSenhaPage from "./pages/resetarSenha/resetarSenha.jsx";
 import SenhaResetadaPage from "./pages/SenhaResetada/senhaResetada.jsx";
-import RecursosCriarPage from "./pages/recursos-criar/recursosCriar.jsx";
+import RecursosCriarPage from "./pages/recursos-criar/RecursosCriar.jsx";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
