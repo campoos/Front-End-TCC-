@@ -53,6 +53,10 @@
     width: 100%;
 }
 
+#recuperacaoSenhaContainer #botaoVoltar img.dark {
+    filter: invert(1);
+}
+
 #recuperacaoSenhaContainer #recuperacaoSenhaConteudo {
     height: 100%;
     width: 100%;

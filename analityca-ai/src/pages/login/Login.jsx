@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react';
 
 import setaVoltar from '../../assets/seta-voltar.png';
 
+import { useTheme } from '../../contexts/ThemeContext.jsx'; // Importa o hook
+
 function LoginPage() {
+
+  const { isDarkMode } = useTheme();  
 
   const navigate = useNavigate()
 
@@ -101,7 +105,7 @@ function LoginPage() {
     <main id='main'>
       <div id="loginContainer">
         <Link to={"/"} id='botaoVoltar'>
-          <img src={setaVoltar} alt="" />
+          <img src={setaVoltar} alt="" className={isDarkMode ? "dark" : "notDark"} />
         </Link>
         <div id="loginConteudo">
           <div id="loginDescricao">

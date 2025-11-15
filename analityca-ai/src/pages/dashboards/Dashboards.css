@@ -65,6 +65,10 @@
     filter: opacity(0.9);
 }
 
+#telaDashboards #containerDashboards #usuarioContainer img.dark {
+    filter: invert(0.9);
+}
+
 #telaDashboards #containerDashboards #usuarioContainer #userContent h2 {
     font-size: 1.25rem;
     color: var(--texto-preto);
@@ -157,6 +161,10 @@
     filter: opacity(0.9);
 }
 
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #informacoesGerais #informacoesTitle img.dark {
+    filter: invert(1);
+}
+
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #informacoesGerais #informacoesTitle label {
     font-weight: bold;
     color: var(--texto-preto);
@@ -200,6 +208,10 @@
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #desempenhoTitle img {
     height: 1.625rem;
     filter: opacity(0.9);
+}
+
+#telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #desempenhoTitle img.dark {
+    filter: invert(1);
 }
 
 #telaDashboards #containerDashboards #dashboards #containerInformacoesDesempenho #desempenho #desempenhoTitle label {
@@ -269,6 +281,10 @@
 #telaDashboards #containerDashboards #dashboards #frequencia #frequenciaTitle img {
     height: 1.625rem;
     filter: opacity(0.9);
+}
+
+#telaDashboards #containerDashboards #dashboards #frequencia #frequenciaTitle img.dark {
+    filter: invert(1);
 }
 
 #telaDashboards #containerDashboards #dashboards #frequencia #frequenciaTitle label {
@@ -398,6 +414,10 @@
     filter: opacity(0.9);
 }
 
+#telaDashboards #containerDashboards #dashboards #notas #notasTitle img.dark {
+    filter: invert(1);
+}
+
 #telaDashboards #containerDashboards #dashboards #notas #notasTitle label {
     font-weight: bold;
 
@@ -429,6 +449,10 @@
     height: 2rem;
     width: 2rem;
     opacity: 0.9;
+}
+
+#telaDashboards #containerDashboards #containerInsights #headerInsights img.dark {
+    filter: invert(1);
 }
 
 #telaDashboards #containerDashboards #containerInsights #headerInsights h2 {
@@ -508,6 +532,10 @@
 
 #telaDashboards #containerDashboards #containerRelatorios #tituloRelatorios img {
     height: 2rem;
+}
+
+#telaDashboards #containerDashboards #containerRelatorios #tituloRelatorios img.dark {
+    filter: invert(1);
 }
 
 #telaDashboards #containerDashboards #containerRelatorios #tituloRelatorios h2 {

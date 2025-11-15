@@ -53,6 +53,10 @@
     width: 100%;
 }
 
+#loginContainer #botaoVoltar img.dark {
+    filter: invert(1);
+}
+
 #loginContainer #loginConteudo {
     height: 100%;
     width: 100%;

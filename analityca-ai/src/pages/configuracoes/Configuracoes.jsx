@@ -143,7 +143,7 @@ function ConfiguracoesPage() {
               <div className='grupoInput'>
                 <label htmlFor="nome">Nome</label>
                 <div className="inputContainer">
-                  <img src={iconUser} alt="" />
+                  <img src={iconUser} alt="" className={isDarkMode ? "dark" : "notDark"}/>
                   <input
                     type="text"
                     id='nome'
@@ -158,7 +158,7 @@ function ConfiguracoesPage() {
               <div className='grupoInput'>
                 <label htmlFor="email">Email de Contato</label>
                 <div className="inputContainer">
-                  <img src={iconEmail} alt="" />
+                  <img src={iconEmail} alt="" className={isDarkMode ? "dark" : "notDark"}/>
                   <input
                     type="email"
                     id='email'
@@ -173,7 +173,7 @@ function ConfiguracoesPage() {
               <div className='grupoInput'>
                 <label htmlFor="telefone">Telefone de Contato</label>
                 <div className="inputContainer">
-                  <img src={iconPhone} alt="" />
+                  <img src={iconPhone} alt="" className={isDarkMode ? "dark" : "notDark"}/>
                   <input
                     type="tel"
                     id='telefone'

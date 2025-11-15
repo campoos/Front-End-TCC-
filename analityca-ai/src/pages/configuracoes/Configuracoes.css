@@ -136,6 +136,10 @@
     filter: opacity(0.5);
 }
 
+#telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes .grupoInput .inputContainer img.dark {
+    filter: invert(1);
+}
+
 #telaConfiguracoes #containerConfiguracoes #configuracoes #containerInformacoes .grupoInput .inputContainer input {
     height: 100%;
     width: 100%;

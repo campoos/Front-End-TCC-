@@ -4,7 +4,10 @@ import { useState } from 'react';
 
 import setaVoltar from '../../assets/seta-voltar.png';
 
+import { useTheme } from '../../contexts/ThemeContext.jsx'; // Importa o hook
+
 function RecuperarSenhaPage() {
+    const { isDarkMode } = useTheme();
 
   const navigate = useNavigate()
 
@@ -75,7 +78,7 @@ function RecuperarSenhaPage() {
     <main id='main'>
       <div id="recuperacaoSenhaContainer">
         <Link to={"/login"} id='botaoVoltar'>
-          <img src={setaVoltar} alt="" style={{ pointerEvents: estaCarregando ? 'none' : 'auto' }}/>
+          <img src={setaVoltar} alt="" style={{ pointerEvents: estaCarregando ? 'none' : 'auto' }} className={isDarkMode ? "dark" : "notDark"}/>
         </Link>
         <div id="recuperacaoSenhaConteudo">
           <div id="recuperacaoSenhaDescricao">

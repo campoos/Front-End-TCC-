@@ -1,10 +1,12 @@
 import './Ranking.css' // Seu CSS de Ranking
 import Sidebar from '../../components/sidebar/Sidebar'
 import UserIcon from "../../assets/usuario-icon.png" 
+import { useTheme } from '../../contexts/ThemeContext.jsx'; // Importa o hook
 
 import React, { useState, useEffect } from 'react';
 
 function RankingPage() {
+    const { isDarkMode } = useTheme();
     // ESTADOS DE FILTRO (Mantidos)
     const [materias, setMaterias] = useState([]);
     const [turmas, setTurmas] = useState([]);
@@ -213,7 +215,7 @@ function RankingPage() {
 
                 {/* Usuário Container */}
                 <div id="usuarioContainer">
-                    <img src={UserIcon} alt="Usuário" />
+                    <img src={UserIcon} alt="Usuário" className={isDarkMode ? "dark" : "notDark"}/>
                     <div id="userContent">
                         <h1>{dataUser.nome}</h1>
                         {dataUser.turma?.turma && <span>{dataUser.turma.turma}</span>}

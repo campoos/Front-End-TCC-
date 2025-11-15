@@ -591,7 +591,7 @@ function DashboardsPage() {
         <h1 id='title'>Dashboard d{dataUser.nivel_usuario === "gestão" ? "a" : "o"} {dataUser.nivel_usuario}: <strong>{dataUser.nome}</strong></h1>
         <hr />
         <div id="usuarioContainer">
-          <img src={UserIcon} alt="" />
+          <img src={UserIcon} alt="" className={isDarkMode ? "dark" : "notDark"}/>
           <div id="userContent">
             <h2>{dataUser.nome}</h2>
             {dataUser.turma?.turma && <span>{dataUser.turma.turma}</span>}
@@ -635,14 +635,14 @@ function DashboardsPage() {
           <div id="containerInformacoesDesempenho">
             <div id="informacoesGerais">
               <div id="informacoesTitle">
-                <img src={InfoIcon} alt="iconeInfo" />
+                <img src={InfoIcon} alt="iconeInfo" className={isDarkMode ? "dark" : "notDark"}/>
                 <label>Informações Gerais</label>
               </div>
               <div id="informacoesContent">{generalInfoContent}</div>
             </div>
             <div id="desempenho">
               <div id="desempenhoTitle">
-                <img src={CheckIcon} alt="iconeDesempenho" />
+                <img src={CheckIcon} alt="iconeDesempenho" className={isDarkMode ? "dark" : "notDark"}/>
                 <label>Desempenho na Matéria</label>
               </div>
               <div id="informacoesContent">
@@ -678,7 +678,7 @@ function DashboardsPage() {
           {/* Frequência */}
           <div id="frequencia">
             <div id="frequenciaTitle">
-              <img src={ChartICon} alt="iconeChart" />
+              <img src={ChartICon} alt="iconeChart" className={isDarkMode ? "dark" : "notDark"}/>
               <label>Frequência no Período</label>
             </div>
             <div id="graficoContainer">
@@ -714,7 +714,7 @@ function DashboardsPage() {
           {/* Notas */}
           <div id="notas">
             <div id="notasTitle">
-              <img src={PerformIcon} alt="iconePerform" />
+              <img src={PerformIcon} alt="iconePerform" className={isDarkMode ? "dark" : "notDark"}/>
               <label>
                 {dashboardData
                   ? `Desempenho em ${dashboardData.desempenho[0].materia.materia}`
@@ -731,7 +731,7 @@ function DashboardsPage() {
         {/* Insights */}
         <div id="containerInsights">
           <div id="headerInsights">
-            <img src={relatoriosIcon} alt="" />
+            <img src={relatoriosIcon} alt="" className={isDarkMode ? "dark" : "notDark"}/>
             <h2>Relatórios e Insights por Matéria</h2>
           </div>
 
@@ -783,7 +783,7 @@ function DashboardsPage() {
 
         <div id="containerRelatorios">
           <div id="tituloRelatorios">
-            <img src={relatorioIcon} alt="" />
+            <img src={relatorioIcon} alt="" className={isDarkMode ? "dark" : "notDark"}/>
             <h2 id='tituloRelatorio'>Relatórios para Download</h2>
           </div>
           

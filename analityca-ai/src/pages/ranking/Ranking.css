@@ -63,6 +63,10 @@
     filter: opacity(0.9);
 }
 
+#telaRanking #containerRanking #usuarioContainer img.dark {
+    filter: invert(1);
+}
+
 #telaRanking #containerRanking #usuarioContainer #userContent h1 {
     font-size: 1.25rem;
     color: var(--texto-preto);

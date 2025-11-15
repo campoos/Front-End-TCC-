@@ -234,6 +234,7 @@
 
 .erroFatal h2 {
     font-size: 2.25rem;
+    color: var(--texto-preto);
 }
 
 .erroFatal span {

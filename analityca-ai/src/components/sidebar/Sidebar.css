@@ -79,6 +79,10 @@
   opacity: 0.9;
 }
 
+#containerSidebar #sidebarMenu .sidebarItem img.dark {
+  filter: invert(1);
+}
+
 #containerSidebar #sidebarMenu .sidebarItem span {
   font-size: 1.25rem;
   font-weight: bold;
