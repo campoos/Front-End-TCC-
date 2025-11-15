@@ -54,10 +54,10 @@ function DashboardsPage() {
 
   // 🆕 Novo estado para Relatórios
   const [reportLinks, setReportLinks] = useState({
-    completo: { link: null, isLoading: false, error: null },
-    desempenho: { link: null, isLoading: false, error: null },
-    frequencia: { link: null, isLoading: false, error: null },
-  });
+    completo: { link: null, isLoading: false, error: null, data: null },
+    desempenho: { link: null, isLoading: false, error: null, data: null },
+    frequencia: { link: null, isLoading: false, error: null, data: null },
+  });
 
   const dataUser = JSON.parse(localStorage.getItem("userData"));
   const userLevel = dataUser.nivel_usuario;
@@ -109,9 +109,9 @@ function DashboardsPage() {
     setInsightsError(null);
     // Limpa links de relatórios ao mudar o filtro
     setReportLinks({
-      completo: { link: null, isLoading: false, error: null },
-      desempenho: { link: null, isLoading: false, error: null },
-      frequencia: { link: null, isLoading: false, error: null },
+      completo: { link: null, isLoading: false, error: null, data: null },
+      desempenho: { link: null, isLoading: false, error: null, data: null },
+      frequencia: { link: null, isLoading: false, error: null, data: null },
     });
   }, [selectedMateria, selectedTurma, selectedPeriodo]);
 
@@ -356,7 +356,7 @@ function DashboardsPage() {
       if (data?.relatorio?.link) {
         setReportLinks(prev => ({
           ...prev,
-          [reportType]: { link: data.relatorio.link, isLoading: false, error: null }
+          [reportType]: { link: data.relatorio.link, isLoading: false, error: null, data: data.relatorio.data || null }
         }));
       } else {
         throw new Error("Resposta da API incompleta (sem link)");
@@ -523,7 +523,7 @@ function DashboardsPage() {
 
   // 🆕 Componente para o item de relatório
   const ReportItem = ({ reportType, reportName }) => {
-    const { link, isLoading, error } = reportLinks[reportType];
+    const { link, isLoading, error, data } = reportLinks[reportType];
     const isDisabled = !link || isLoading || error;
 
     const buttonStyle = {
@@ -532,6 +532,17 @@ function DashboardsPage() {
       opacity: isDisabled ? 0.9 : 1,
       transition: 'all 0.3s ease',
     };
+
+    // 👈 Função para formatar a data (YYYY-MM-DD -> DD/MM/YYYY)
+    const formatReportDate = (dateString) => {
+      if (!dateString || !/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+        return null; // Retorna nulo se a data for inválida ou nula
+      }
+      const [year, month, day] = dateString.split('-');
+      return `${day}/${month}/${year}`;
+    };
+
+    const displayDate = formatReportDate(data);
 
     return (
       <div className="containerRelatorio">
@@ -550,7 +561,12 @@ function DashboardsPage() {
               : 'Pronto para download'
             }
           </span>
-          <h3>Última atualização: 18/05/2025</h3> {/* Data Padrão */}
+            {displayDate
+              ? <h3>Última atualização: {displayDate}</h3>
+              : isLoading
+              ? <h3></h3>
+              : <h3>Data não informada</h3>
+            }
         </div>
         <div 
           className="containerDownloadRelatorio"
