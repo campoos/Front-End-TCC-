@@ -1,7 +1,7 @@
 @import url("../../Main.css");
 
 * {
-    padding: 0;
+    padding: 0; 
     margin: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
@@ -9,9 +9,9 @@
     overflow-x: hidden;
 }
 
-#telaRecursos {
-    height: 100dvh;
+#telaRecursosHome {
     width: 100dvw;
+    min-height: 100dvh;
     display: flex;
 
     gap: 1.25rem;
@@ -19,16 +19,68 @@
     background-color: var(--background-cinza);
 }
 
-#telaRecursos #containerRecursos {
+#telaRecursosHome #containerRecursosHome {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
 
-    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+
+    margin-left: 23.50rem;
+    padding-right: 2.5rem;
+
+    overflow-y: auto;
+    overflow: visible;
 }
 
-#telaRecursos #containerRecursos h1 {
-    font-size: 10rem;
+#telaRecursosHome #containerRecursosHome #containerTexto {
+    height: 4.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
 
+#telaRecursosHome #containerRecursosHome #containerTexto #title {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    width: 98%;
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
     color: var(--texto-preto);
+}
+
+#telaRecursosHome #containerRecursosHome #secoes {
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    font-size: 1.25rem;
+    color: var(--texto-transparente);
+}
+
+#telaRecursosHome #containerRecursosHome #containerAtividades {
+    height: 40rem;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#telaRecursosHome #containerRecursosHome #containerAtividades h2 {
+    font-size: 1.25rem;
+    color: var(--texto-preto);
+}
+
+#telaRecursosHome #containerRecursosHome #containerAtividades span {
+    font-size: 1.25rem;
+    color: var(--texto-transparente);
 }
