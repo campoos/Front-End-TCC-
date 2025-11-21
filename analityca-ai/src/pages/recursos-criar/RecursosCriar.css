@@ -141,3 +141,51 @@ h1 {
   color: #4e4d4d;
   line-height: 1.2;
 }
+
+.btn-editar {
+  background-color: transparent;
+  border: none;
+  color: var(--roxo-primario);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-excluir {
+  margin-top: 1rem;
+  width: 100%;
+  background-color: #ff4b5c;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 108px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.btn-excluir:hover {
+  background-color: #e63c4d;
+}
+
+.btn-voltar {
+  margin-top: 1.5rem;
+  background-color: transparent;
+  border: 1px solid var(--borda-input);
+  color: var(--texto-preto);
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.mensagem-erro {
+  margin-top: 0.5rem;
+  color: var(--texto-erro);
+  font-size: 0.9rem;
+}
+
+.mensagem-sucesso {
+  margin-top: 0.5rem;
+  color: #2e7d32;
+  font-size: 0.9rem;
+}

@@ -28,7 +28,7 @@
 
     width: 100%;
     height: 100%;
-
+    
     margin-left: 23.50rem;
     padding-right: 2.5rem;
 
@@ -56,31 +56,169 @@
     color: var(--texto-preto);
 }
 
-#telaRecursosHome #containerRecursosHome #secoes {
+#telaRecursosHome #containerRecursosHome #headerRecursos {
     width: 100%;
     display: flex;
-    gap: 3rem;
-    font-size: 1.25rem;
-    color: var(--texto-transparente);
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+        overflow: visible;
 }
 
-#telaRecursosHome #containerRecursosHome #containerAtividades {
-    height: 40rem;
-    width: 100%;
 
+#telaRecursosHome #containerRecursosHome #filtrosRecursos {
+    display: flex;
+    gap: 2.5rem;
+        overflow: visible;
+}
+
+#telaRecursosHome #containerRecursosHome #filtrosRecursos .filtro {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: visible;
+}
+
+#telaRecursosHome #containerRecursosHome #filtrosRecursos .filtro label {
+    font-size: 1rem;
+    color: var(--texto-preto);
+}
+
+#telaRecursosHome #containerRecursosHome #filtrosRecursos .filtro select {
+    font-size: 1rem;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--background-claro);
+        box-shadow: 2px 2px 4px 0px var(--shadowbox);
+    color: var(--texto-preto);
+}
+
+#telaRecursosHome #containerRecursosHome #btnCriarRecurso {
+    background-color: var(--roxo-primario);
+    color: var(--texto-branco);
+    border: none;
+    padding: 0.6rem 1.8rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+#telaRecursosHome #containerRecursosHome #btnCriarRecurso:hover {
+    background-color: var(--roxo-secundario);
+    transform: translateY(-1px);
+}
+
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    background-color: aqua;
+    flex-wrap: wrap;
+}
+
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer .mensagemRecursos {
+    grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-
-#telaRecursosHome #containerRecursosHome #containerAtividades h2 {
-    font-size: 1.25rem;
+    padding: 4rem 1rem;
     color: var(--texto-preto);
 }
 
-#telaRecursosHome #containerRecursosHome #containerAtividades span {
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer .mensagemRecursos h2 {
     font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer .mensagemRecursos span {
+    font-size: 1rem;
     color: var(--texto-transparente);
+}
+
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer .recursoCard {
+    background-color: var(--background-claro);
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px 0px var(--shadowbox);
+    padding: 1.5rem 1.5rem 1.25rem 1.5rem;
+    display: flex;
+    width: 50rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: box-shadow 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer .recursoCard:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+    transform: translateY(-2px);
+}
+
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer .recursoCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer .recursoCardHeader h2 {
+    font-size: 1.1rem;
+    color: var(--texto-preto);
+    max-width: 85%;
+}
+
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer .recursoStatusDot {
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 50%;
+    background-color: var(--roxo-terciario);
+}
+
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer .recursoDescricao {
+    font-size: 0.95rem;
+    color: var(--texto-preto);
+    white-space: pre-line;
+}
+
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer .recursoMeta {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--texto-transparente);
+}
+
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer .recursoLinkContainer {
+    margin-top: 0.75rem;
+}
+
+#telaRecursosHome #containerRecursosHome #cardsRecursosContainer .recursoLinkButton {
+    width: 100%;
+    background-color: var(--roxo-primario);
+    color: var(--texto-branco);
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: left;
+}
+
+@media (max-width: 900px) {
+    #telaRecursosHome #containerRecursosHome {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+
+    #telaRecursosHome #containerRecursosHome #headerRecursos {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    #telaRecursosHome #containerRecursosHome #filtrosRecursos {
+        flex-wrap: wrap;
+    }
 }
