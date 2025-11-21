@@ -65,6 +65,7 @@ function ConfiguracoesPage() {
     localStorage.removeItem("lembrarCredencial");
     localStorage.removeItem("dashboardFilters");
     localStorage.removeItem("rankingFilters");
+    localStorage.removeItem("recursosFilters");
     navigate("/login");
   };
 

@@ -251,7 +251,7 @@ function RecursosCriarPage() {
 
     try {
       // Ajuste aqui se o seu back usar outro path (ex: id_recursos em vez de id_professor)
-      const url = `http://localhost:8080/v1/analytica-ai/recurso/${dataUser.id_perfil}`;
+      const url = `http://localhost:8080/v1/analytica-ai/recurso`;
       const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -309,8 +309,6 @@ function RecursosCriarPage() {
   return (
     <>
       <div id="telaRecursos">
-        <Sidebar />
-
         <div id="containerRecursos">
           <div className="conteudo-recursos">
             <div className="cabecalho-recursos">
@@ -333,6 +331,7 @@ function RecursosCriarPage() {
                   value={titulo}
                   onChange={(e) => setTitulo(e.target.value)}
                   disabled={!isEditMode}
+                  required
                 />
               </div>
 
@@ -345,6 +344,7 @@ function RecursosCriarPage() {
                   value={descricao}
                   onChange={(e) => setDescricao(e.target.value)}
                   disabled={!isEditMode}
+                  required
                 ></textarea>
               </div>
 
@@ -357,6 +357,7 @@ function RecursosCriarPage() {
                   value={link}
                   onChange={(e) => setLink(e.target.value)}
                   disabled={!isEditMode}
+                  required
                 />
               </div>
 
