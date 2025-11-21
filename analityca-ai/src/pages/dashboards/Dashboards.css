@@ -362,7 +362,7 @@
 
     border-radius: 50px;
 
-    background-color: #d3d3d3;
+    background-color: var(--background-input);
 }
 
 #telaDashboards #containerDashboards #dashboards #frequencia .label #circleFalta {
@@ -380,7 +380,7 @@
 
     border-radius: 50px;
 
-    background-color: #b5b5b5;
+    background-color: var(--background-input);
 }
 
 #telaDashboards #containerDashboards #dashboards #notas {

@@ -410,11 +410,17 @@ function DashboardsPage() {
 
   const getGeneralInfoContent = (user) => {
     const info = [];
+    let normalizada = "";
+    if(user.data_nascimento){
+      const dataISO = user.data_nascimento
+      const data = new Date(dataISO);
+      normalizada = data.toLocaleDateString("pt-BR");
+    }
     switch (user.nivel_usuario) {
       case 'aluno':
         info.push(
           <span key="matricula">Matrícula: {user.matricula}</span>,
-          <span key="nascimento">Data de Nascimeto: {user.data_nascimento}</span>,
+          <span key="nascimento">Data de Nascimeto: {normalizada}</span>,
           <span key="contato">Contato: {user.telefone}</span>,
           <span key="email">Email: {user.email}</span>
         );
@@ -422,7 +428,7 @@ function DashboardsPage() {
       case 'professor':
         info.push(
           <span key="contato">Contato: {user.telefone}</span>,
-          <span key="nascimento">Data de Nascimeto: {user.data_nascimento}</span>,
+          <span key="nascimento">Data de Nascimeto: {normalizada}</span>,
           <span key="email">Email: {user.email}</span>
         );
         break;

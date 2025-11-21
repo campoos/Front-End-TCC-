@@ -11,7 +11,7 @@
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: #f4f4f4;
+  background-color: var(--background-cinza);
   align-items: flex-start; 
   justify-content: flex-start;
   overflow: hidden;
@@ -21,7 +21,7 @@
 #containerRecursos {
   height: 100%;
   width: 100%;
-  background-color: #f4f4f4;
+  background-color: var(--background-cinza);
   padding: 2rem;
   display: flex;
   overflow-y: auto;
@@ -62,13 +62,13 @@
 
 .cabecalho-recursos h1 {
   font-size: 1.5rem;
-  color: #333;
+  color: var(--texto-preto);
   font-weight: 700;
 }
 
 #sidebarDireita {
   width: 25rem;
-  background-color: #fff;
+  background-color: var(--background-claro);
   padding: 2rem;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.05);
   display: flex;
@@ -78,6 +78,15 @@
   height: 100vh;
   position: fixed;
   right: 0;
+}
+
+#sidebarDireita .cabecalho-sidebar {
+  display: flex;
+  justify-content: space-between;
+}
+
+#sidebarDireita .cabecalho-sidebar h2 {
+  color: var(--texto-preto);
 }
 
 #sidebarDireita .atribuicao-campos {
@@ -101,31 +110,38 @@
 
 .campo label {
   font-weight: bold;
-  color: #333;
+  color: var(--texto-preto);
+}
+
+.campo span {
+  font-weight: thin;
+  color: var(--texto-preto);
 }
 
 .campo input,
 .campo textarea,
 .campo select {
   padding: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--borda-input);
   border-radius: 8px;
   outline: none;
   font-size: 1rem;
+  background-color: var(--background-input);
+  color: var(--texto-preto);
 }
 
 .campo input:focus,
 .campo textarea:focus,
 .campo select:focus {
-  border-color: #7D53F3;
+  border-color: var(--roxo-primario);
 }
 
 
 .btn-criar {
   margin-top: auto;
   width: 100%;
-  background-color: #7D53F3;
-  color: #fff;
+  background-color: var(--roxo-primario);
+  color: var(--texto-branco);
   border: none;
   padding: 0.8rem 2rem;
   border-radius: 108px;
@@ -136,12 +152,13 @@
 }
 
 .btn-criar:hover {
-  background-color: #6e4ad1;
+  background-color: var(--roxo-secundario);
 }
+
 h1 {
   font-size: 40px !important;
   font-weight: 700;
-  color: #4e4d4d;
+  color: var(--texto-preto);
   line-height: 1.2;
 }
 
@@ -150,14 +167,14 @@ h1 {
   border: none;
   color: var(--roxo-primario);
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
 }
 
 .btn-excluir {
   margin-top: 1rem;
   width: 100%;
   background-color: transparent;
-  color: var(--texto-transprante);
+  color: var(--texto-preto);
   border: 1px solid var(--borda-input);
   padding: 0.8rem 2rem;
   border-radius: 108px;

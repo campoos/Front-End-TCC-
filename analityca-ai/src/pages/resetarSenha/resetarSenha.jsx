@@ -1,8 +1,10 @@
 import './resetarSenha.css'
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import { useTheme } from '../../contexts/ThemeContext.jsx'; // Importa o hook
 
 function ResetarSenhaPage() {
+  const { isDarkMode } = useTheme();  
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 

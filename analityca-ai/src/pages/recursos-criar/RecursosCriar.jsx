@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './RecursosCriar.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTheme } from '../../contexts/ThemeContext.jsx'; // Importa o hook
 
 const RightSidebar = ({
   periodos,
@@ -18,6 +19,7 @@ const RightSidebar = ({
   onDelete,
   recurso,
 }) => {
+    const { isDarkMode } = useTheme();  
 
   const getTurmaNome = () => {
     const turma = turmas.find((t) => String(t.id_turma) === String(idTurma));
@@ -43,7 +45,7 @@ const RightSidebar = ({
             className="btn-editar"
             onClick={() => setIsEditMode((prev) => !prev)}
           >
-            ✎ Editar
+            ✎
           </button>
         )}
       </div>
@@ -114,6 +116,7 @@ const RightSidebar = ({
 };
 
 function RecursosCriarPage() {
+    const { isDarkMode } = useTheme();  
   const { state } = useLocation();
   const navigate = useNavigate();
 
