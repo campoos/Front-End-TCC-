@@ -156,18 +156,19 @@ h1 {
 .btn-excluir {
   margin-top: 1rem;
   width: 100%;
-  background-color: #ff4b5c;
-  color: #fff;
-  border: none;
+  background-color: transparent;
+  color: var(--texto-transprante);
+  border: 1px solid var(--borda-input);
   padding: 0.8rem 2rem;
   border-radius: 108px;
   cursor: pointer;
   font-size: 0.95rem;
-  transition: 0.3s;
+  transition: all 0.2s ease-in-out;
 }
 
 .btn-excluir:hover {
-  background-color: #e63c4d;
+  background-color: var(--texto-erro);
+  color: var(--texto-branco);
 }
 
 .btn-voltar {

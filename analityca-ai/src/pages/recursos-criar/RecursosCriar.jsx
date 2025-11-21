@@ -4,11 +4,8 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const RightSidebar = ({
-  materias,
   periodos,
   turmas,
-  idMateria,
-  setIdMateria,
   idTurma,
   setIdTurma,
   idSemestre,
@@ -21,6 +18,7 @@ const RightSidebar = ({
   onDelete,
   recurso,
 }) => {
+
   const getTurmaNome = () => {
     const turma = turmas.find((t) => String(t.id_turma) === String(idTurma));
     return turma ? turma.turma : '';
@@ -33,15 +31,7 @@ const RightSidebar = ({
     return semestre ? semestre.semestre : '';
   };
 
-  const getMateriaNome = () => {
-    if (recurso?.materia) return recurso.materia;
-    const materia = materias.find(
-      (m) => String(m.id_materia) === String(idMateria)
-    );
-    return materia ? materia.materia : '';
-  };
-
-  const canSubmit = !!idTurma && !!idSemestre && !!idMateria;
+  const canSubmit = !!idTurma && !!idSemestre;
 
   return (
     <aside id="sidebarDireita">
@@ -98,33 +88,13 @@ const RightSidebar = ({
             </select>
           )}
         </div>
-
-        <div className="campo">
-          <label htmlFor="materia">Matéria</label>
-          {recurso && !isEditMode && getMateriaNome() ? (
-            <span>{getMateriaNome()}</span>
-          ) : (
-            <select
-              id="materia"
-              value={idMateria || ''}
-              onChange={(e) => setIdMateria(e.target.value || null)}
-            >
-              <option value="">Selecione</option>
-              {materias.map((m) => (
-                <option key={m.id_materia} value={m.id_materia}>
-                  {m.materia}
-                </option>
-              ))}
-            </select>
-          )}
-        </div>
       </div>
 
       <button
         type="button"
         className="btn-criar"
         onClick={onSubmit}
-        disabled={!isEditMode || isSaving || !canSubmit}
+        disabled={!isEditMode || isSaving}
       >
         {isSaving ? 'Salvando...' : recurso ? 'Salvar Recurso' : 'Criar Recurso'}
       </button>
@@ -163,13 +133,9 @@ function RecursosCriarPage() {
       : new Date().toISOString().substring(0, 10)
   );
 
-  const [materias, setMaterias] = useState([]);
   const [turmas, setTurmas] = useState([]);
   const [periodos, setPeriodos] = useState([]);
 
-  const [idMateria, setIdMateria] = useState(
-    recurso?.id_materia || filters.materia || null
-  );
   const [idTurma, setIdTurma] = useState(
     recurso?.id_turma || filters.turma || null
   );
@@ -202,15 +168,13 @@ function RecursosCriarPage() {
     }
   };
 
-  // Carrega listas de matéria / turma / semestre
+  // Carrega listas de turma / semestre
   useEffect(() => {
     const loadLists = async () => {
-      const [mats, turs, sems] = await Promise.all([
-        fetchData('http://localhost:8080/v1/analytica-ai/materia', 'materias'),
+      const [turs, sems] = await Promise.all([
         fetchData('http://localhost:8080/v1/analytica-ai/turma', 'turmas'),
         fetchData('http://localhost:8080/v1/analytica-ai/semestre', 'semestres'),
       ]);
-      setMaterias(mats);
       setTurmas(turs);
       setPeriodos(sems);
     };
@@ -219,14 +183,11 @@ function RecursosCriarPage() {
   }, []);
 
   const validate = () => {
-    if (!titulo || !descricao || !link) {
-      setError('Preencha título, descrição e link do recurso.');
+    if (!titulo || !descricao || !link || !idTurma || !idSemestre) {
+      setError('Campos obrigatórios não preenchidos.');
       return false;
     }
-    if (!idTurma || !idSemestre || !idMateria) {
-      setError('Selecione Turma, Período e Matéria.');
-      return false;
-    }
+
     setError(null);
     return true;
   };
@@ -243,7 +204,6 @@ function RecursosCriarPage() {
       descricao,
       link_criterio: link,
       data_criacao: dataCriacao,
-      id_materia: Number(idMateria),
       id_professor: dataUser.id_perfil,
       id_turma: Number(idTurma),
       id_semestre: Number(idSemestre),
@@ -265,6 +225,22 @@ function RecursosCriarPage() {
       }
 
       setSuccess(data.message || 'Recurso salvo com sucesso.');
+
+      // Atualiza filtros de Recursos (turma e período) no localStorage
+      try {
+        const STORAGE_KEY = 'recursosFilters';
+        const filtrosExistentes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        const novosFiltros = {
+          ...filtrosExistentes,
+          turma: idTurma,
+          periodo: idSemestre,
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(novosFiltros));
+      } catch (e) {
+        console.error('Erro ao atualizar filtros de recursos no localStorage:', e);
+      }
+
+      navigate('/recursos');
     } catch (err) {
       console.error('Erro ao salvar recurso:', err);
       setError('Não foi possível salvar o recurso. Tente novamente.');
@@ -386,11 +362,8 @@ function RecursosCriarPage() {
         </div>
 
         <RightSidebar
-          materias={materias}
           periodos={periodos}
           turmas={turmas}
-          idMateria={idMateria}
-          setIdMateria={setIdMateria}
           idTurma={idTurma}
           setIdTurma={setIdTurma}
           idSemestre={idSemestre}
