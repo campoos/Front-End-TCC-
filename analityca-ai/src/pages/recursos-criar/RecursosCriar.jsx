@@ -159,9 +159,21 @@ function RecursosCriarPage() {
     }
   }, [isProfessor, navigate]);
 
+  const fetchWithTimeout = async (url, options = {}, timeout = 15000) => {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+
+    try {
+      const response = await fetch(url, { ...options, signal: controller.signal });
+      return response;
+    } finally {
+      clearTimeout(id);
+    }
+  };
+
   const fetchData = async (endpoint, dataKey) => {
     try {
-      const response = await fetch(endpoint);
+      const response = await fetchWithTimeout(endpoint);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const data = await response.json();
       return data[dataKey] || [];

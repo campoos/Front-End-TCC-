@@ -26,6 +26,18 @@ function RecursosPage() {
 
   const navigate = useNavigate()
 
+  const fetchWithTimeout = async (url, options = {}, timeout = 15000) => {
+    const controller = new AbortController()
+    const id = setTimeout(() => controller.abort(), timeout)
+
+    try {
+      const response = await fetch(url, { ...options, signal: controller.signal })
+      return response
+    } finally {
+      clearTimeout(id)
+    }
+  }
+
   const fetchData = async (endpoint, dataKey) => {
     try {
       const response = await fetch(endpoint)
@@ -154,7 +166,7 @@ function RecursosPage() {
 
       setLoading(true)
       try {
-        const response = await fetch(url)
+        const response = await fetchWithTimeout(url)
         const data = await response.json()
 
         if (response.status === 404 || data.recursos?.length === 0) {

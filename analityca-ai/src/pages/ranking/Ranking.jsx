@@ -30,6 +30,18 @@ function RankingPage() {
     const userLevel = dataUser.nivel_usuario;
     const userId = dataUser.id_perfil; 
 
+    const fetchWithTimeout = async (url, options = {}, timeout = 15000) => {
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), timeout);
+
+        try {
+            const response = await fetch(url, { ...options, signal: controller.signal });
+            return response;
+        } finally {
+            clearTimeout(id);
+        }
+    };
+
     // --- Função genérica para buscar dados da API (Mantida) ---
     const fetchData = async (endpoint, dataKey) => {
         try {
@@ -164,7 +176,7 @@ function RankingPage() {
             
             setLoading(true);
             try {
-                const response = await fetch(url);
+                const response = await fetchWithTimeout(url);
                 const data = await response.json();
 
                 if (response.status === 400) {

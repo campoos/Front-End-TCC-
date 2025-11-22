@@ -3,7 +3,8 @@ import Sidebar from '../../components/sidebar/Sidebar'
 
 import UserIcon from "../../assets/usuario-icon.png"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+
 import { useTheme } from '../../contexts/ThemeContext.jsx'; // Importa o hook
 
 import InfoIcon from "../../assets/dashboards/info-icon.png"
@@ -53,7 +54,7 @@ function DashboardsPage() {
   const [isLoadingInsights, setIsLoadingInsights] = useState(false);
   const [insightsError, setInsightsError] = useState(null);
 
-  // 🆕 Novo estado para Relatórios
+  // Novo estado para Relatórios
   const [reportLinks, setReportLinks] = useState({
     completo: { link: null, isLoading: false, error: null, data: null },
     desempenho: { link: null, isLoading: false, error: null, data: null },
@@ -249,7 +250,7 @@ function DashboardsPage() {
           console.log("📊 Dashboard carregado com sucesso! IDs atuais:", dashboardIDs);
 
           sendDashboardToAI(dashboardIDs);
-          // 🆕 Chamada para gerar relatórios
+          // Chamada para gerar relatórios
           fetchReports(dashboardIDs);
         }
       } catch (error) {
@@ -278,7 +279,7 @@ function DashboardsPage() {
     try {
       let aiEndpoint = "";
 
-      // 🔹 Define o endpoint correto com base no nível do usuário
+      // Define o endpoint correto com base no nível do usuário
       switch (userLevel) {
         case "aluno":
           aiEndpoint = `http://localhost:8080/v1/analytica-ai/insights/aluno?materia=${dashboardIDs.id_materia}&semestre=${dashboardIDs.id_semestre}`;
@@ -294,7 +295,7 @@ function DashboardsPage() {
           return;
       }
 
-      // 🔹 Faz o POST com os dados do dashboard
+      // Faz o POST com os dados do dashboard
       const response = await fetch(aiEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -319,7 +320,7 @@ function DashboardsPage() {
   };
 
 
-  // 🆕 FUNÇÕES PARA RELATÓRIOS (CORRIGIDAS PARA POST)
+  // FUNÇÕES PARA RELATÓRIOS (CORRIGIDAS PARA POST)
 
   const getReportUrl = (reportType, userLevel, filters) => {
     const baseUrl = 'http://localhost:8080/v1/analytica-ai';
@@ -374,10 +375,10 @@ function DashboardsPage() {
 
     try {
       const response = await fetch(url, {
-        method: "POST", // 👈 CORREÇÃO: Método POST
+        method: "POST", // Método POST
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          desempenho: dashboardIDs.data_dashboard, // 👈 CORREÇÃO: Enviando o data_dashboard no body
+          desempenho: dashboardIDs.data_dashboard, // Enviando o data_dashboard no body
         }),
       });
 
@@ -417,7 +418,7 @@ function DashboardsPage() {
     reportsToFetch.forEach(reportType => {
       const url = getReportUrl(reportType, userLevel, filtersJSON);
       if (url) {
-        // 👈 Passando dashboardIDs para a função de fetch
+        // Passando dashboardIDs para a função de fetch
         fetchAndProcessReport(reportType, url, dashboardIDs); 
       } else {
         setReportLinks(prev => ({
@@ -491,16 +492,19 @@ function DashboardsPage() {
 
   const optionsPizza = { plugins: { legend: { display: false }, datalabels: { display: false } } };
 
-  const atividades = dashboardData?.desempenho?.[0]?.atividades || [];
+  const atividades = useMemo(
+    () => dashboardData?.desempenho?.[0]?.atividades || [],
+    [dashboardData]
+  );
 
   const exibirLabels = atividades.length <= 10; // até 10 atividades mostra labels
 
-  const optionsBarra = {
+  const optionsBarra = useMemo(() => ({
     maintainAspectRatio: false,
     responsive: true,
     layout: { padding: { top: 23 } },
     plugins: {
-      legend: { display: false, labels: {color: isDarkMode ? "#fff" : "#000" }},
+      legend: { display: false, labels: { color: isDarkMode ? "#fff" : "#000" } },
       datalabels: {
         display: exibirLabels,
         anchor: "end",
@@ -531,10 +535,12 @@ function DashboardsPage() {
       x: { ticks: { display: exibirLabels, color: isDarkMode ? "#fff" : "#000", barPercentage: 0.2, categoryPercentage: 0.5 } },
       y: { grid: { display: false }, beginAtZero: true },
     },
-  };
+  }), [exibirLabels, isDarkMode, dashboardData]);
 
-  const pieChartData = dashboardData
-    ? {
+  const pieChartData = useMemo(() => {
+    if (!dashboardData) return emptyPieData;
+
+    return {
       labels: ["Presença", "Falta"],
       datasets: [
         {
@@ -547,11 +553,13 @@ function DashboardsPage() {
           borderWidth: 4
         }
       ]
-    }
-    : emptyPieData;
+    };
+  }, [dashboardData, isDarkMode]);
 
-  const barChartData = dashboardData
-    ? {
+  const barChartData = useMemo(() => {
+    if (!dashboardData) return emptyBarData;
+
+    return {
       labels: atividades.map(a => a.categoria),
       datasets: [
         {
@@ -563,10 +571,11 @@ function DashboardsPage() {
           categoryPercentage: 0.6
         }
       ]
-    }
-    : emptyBarData;
+    };
+  }, [dashboardData, atividades]);
 
-  // 🆕 Componente para o item de relatório
+
+  // Componente para o item de relatório
   const ReportItem = ({ reportType, reportName }) => {
     const { link, isLoading, error, data } = reportLinks[reportType];
     const isDisabled = !link || isLoading || error;
