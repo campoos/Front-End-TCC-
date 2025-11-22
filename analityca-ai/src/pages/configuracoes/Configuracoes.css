@@ -45,7 +45,7 @@
 }
 
 #telaConfiguracoes #containerConfiguracoes #containerTexto {
-    height: 4.5rem;
+    height: 5rem;
     width: 100%;
     display: flex;
     flex-direction: column;
