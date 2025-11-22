@@ -629,6 +629,25 @@
     display: none;
 }
 
+/* Overlay de carregamento geral dos dashboards */
+.dashboards-loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    z-index: 9999;
+    backdrop-filter: blur(2px);
+}
+
+.dashboards-loading-overlay span {
+    color: #fff;
+    font-size: 1rem;
+}
+
 @media(min-width:1800px){
     :root {
         font-size: 17px;

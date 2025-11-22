@@ -45,6 +45,7 @@ function DashboardsPage() {
   const [filtersJSON, setFiltersJSON] = useState(null);
 
   const [dashboardData, setDashboardData] = useState(null);
+  const [isLoadingDashboard, setIsLoadingDashboard] = useState(false);
 
   const [restored, setRestored] = useState(false);
 
@@ -54,15 +55,27 @@ function DashboardsPage() {
 
   // 🆕 Novo estado para Relatórios
   const [reportLinks, setReportLinks] = useState({
-    completo: { link: null, isLoading: false, error: null, data: null },
-    desempenho: { link: null, isLoading: false, error: null, data: null },
-    frequencia: { link: null, isLoading: false, error: null, data: null },
-  });
+    completo: { link: null, isLoading: false, error: null, data: null },
+    desempenho: { link: null, isLoading: false, error: null, data: null },
+    frequencia: { link: null, isLoading: false, error: null, data: null },
+  });
 
   const dataUser = JSON.parse(localStorage.getItem("userData"));
   const userLevel = dataUser.nivel_usuario;
 
   const { isDarkMode } = useTheme();
+
+  const fetchWithTimeout = async (url, options = {}, timeout = 15000) => {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+
+    try {
+      const response = await fetch(url, { ...options, signal: controller.signal });
+      return response;
+    } finally {
+      clearTimeout(id);
+    }
+  };
 
   // --- Função genérica para buscar dados da API ---
   const fetchData = async (endpoint, dataKey) => {
@@ -107,11 +120,12 @@ function DashboardsPage() {
   useEffect(() => {
     setInsights(null);
     setInsightsError(null);
+    setDashboardData(null);
     // Limpa links de relatórios ao mudar o filtro
     setReportLinks({
       completo: { link: null, isLoading: false, error: null, data: null },
-      desempenho: { link: null, isLoading: false, error: null, data: null },
-      frequencia: { link: null, isLoading: false, error: null, data: null },
+      desempenho: { link: null, isLoading: false, error: null, data: null },
+      frequencia: { link: null, isLoading: false, error: null, data: null },
     });
   }, [selectedMateria, selectedTurma, selectedPeriodo]);
 
@@ -122,7 +136,7 @@ function DashboardsPage() {
       setSelectedMateria(savedFilters.materia || null);
       setSelectedTurma(savedFilters.turma || null);
       setSelectedPeriodo(savedFilters.periodo || null);
-      console.log("🧩 Filtros restaurados do localStorage:", savedFilters);
+      console.log(" Filtros restaurados do localStorage:", savedFilters);
     }
     setRestored(true);
   }, []);
@@ -157,7 +171,7 @@ function DashboardsPage() {
       };
       setFiltersJSON(json);
       setFiltersReady(true);
-      console.log("✅ Filtros prontos:", json);
+      console.log(" Filtros prontos:", json);
     } else {
       setFiltersJSON(null);
       setFiltersReady(false);
@@ -170,6 +184,7 @@ function DashboardsPage() {
 
     const fetchDashboardForUser = async () => {
       let url = '';
+
       switch (userLevel) {
         case 'aluno':
           url = `http://localhost:8080/v1/analytica-ai/desempenho/aluno/${filtersJSON.id_perfil}?materia=${filtersJSON.materia}&semestre=${filtersJSON.periodo}`;
@@ -186,7 +201,8 @@ function DashboardsPage() {
       }
 
       try {
-        const response = await fetch(url);
+        setIsLoadingDashboard(true);
+        const response = await fetchWithTimeout(url);
 
         if (response.status === 404) {
           console.warn("Nenhum dado encontrado para os filtros selecionados (404)");
@@ -202,10 +218,23 @@ function DashboardsPage() {
 
         if (!response.ok) throw new Error(`Erro ao buscar dados: ${response.status}`);
         const data = await response.json();
-        setDashboardData(data);
-        console.log('✅ Dados do dashboard:', data);
 
-        if (data?.desempenho?.length > 0) {
+        if (!data || data === false || !data.desempenho || data.desempenho.length === 0) {
+          console.warn("Nenhum dado de desempenho retornado para os filtros selecionados (payload vazio/falso)");
+          setDashboardData(null);
+          setReportLinks({
+            completo: { link: null, isLoading: false, error: "Nenhum dado de desempenho encontrado" },
+            desempenho: { link: null, isLoading: false, error: "Nenhum dado de desempenho encontrado" },
+            frequencia: { link: null, isLoading: false, error: "Nenhum dado de desempenho encontrado" },
+          });
+          return;
+        }
+
+        setDashboardData(data);
+        console.log(' Dados do dashboard:', data);
+
+        if (data.desempenho.length > 0) {
+
           const materiaAtual = data.desempenho[0].materia?.id_materia || filtersJSON.materia;
           const semestreAtual = filtersJSON.periodo;
           const perfilAtual = filtersJSON.id_perfil;
@@ -225,6 +254,16 @@ function DashboardsPage() {
         }
       } catch (error) {
         console.error(error);
+        setDashboardData(null);
+        setInsights(null);
+        setInsightsError(null);
+        setReportLinks({
+          completo: { link: null, isLoading: false, error: "Carregamento interrompido" },
+          desempenho: { link: null, isLoading: false, error: "Carregamento interrompido" },
+          frequencia: { link: null, isLoading: false, error: "Carregamento interrompido" },
+        });
+      } finally {
+        setIsLoadingDashboard(false);
       }
     };
 
@@ -540,13 +579,13 @@ function DashboardsPage() {
     };
 
     // 👈 Função para formatar a data (YYYY-MM-DD -> DD/MM/YYYY)
-    const formatReportDate = (dateString) => {
-      if (!dateString || !/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
-        return null; // Retorna nulo se a data for inválida ou nula
-      }
-      const [year, month, day] = dateString.split('-');
-      return `${day}/${month}/${year}`;
-    };
+    const formatReportDate = (dateString) => {
+      if (!dateString || !/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+        return null; // Retorna nulo se a data for inválida ou nula
+      }
+      const [year, month, day] = dateString.split('-');
+      return `${day}/${month}/${year}`;
+    };
 
     const displayDate = formatReportDate(data);
 
@@ -567,12 +606,12 @@ function DashboardsPage() {
               : 'Pronto para download'
             }
           </span>
-            {displayDate
-              ? <h3>Última atualização: {displayDate}</h3>
-              : isLoading
-              ? <h3></h3>
-              : <h3>Data não informada</h3>
-            }
+          {displayDate
+            ? <h3>Última atualização: {displayDate}</h3>
+            : isLoading
+            ? <h3></h3>
+            : <h3>Data não informada</h3>
+          }
         </div>
         <div 
           className="containerDownloadRelatorio"
@@ -593,7 +632,7 @@ function DashboardsPage() {
   return (
     <div id="telaDashboards">
       <Sidebar />
-      <div id="containerDashboards">
+      <div id="containerDashboards" className={isLoadingDashboard ? "loading" : ""}>
         <h1 id='title'>Dashboard d{dataUser.nivel_usuario === "gestão" ? "a" : "o"} {dataUser.nivel_usuario}: <strong>{dataUser.nome}</strong></h1>
         <hr />
         <div id="usuarioContainer">
@@ -609,7 +648,7 @@ function DashboardsPage() {
           {visibleFilters.materia && (
             <div className="filtro">
               <label htmlFor="disciplina">Disciplina:</label>
-              <select id="disciplina" value={selectedMateria || ""} onChange={(e) => setSelectedMateria(e.target.value || null)}>
+              <select id="disciplina" value={selectedMateria || ""} onChange={(e) => setSelectedMateria(e.target.value || null)} disabled={isLoadingDashboard}>
                 <option value="">Selecione a disciplina</option>
                 {materias.map(m => <option key={m.id_materia} value={m.id_materia}>{m.materia}</option>)}
               </select>
@@ -618,7 +657,7 @@ function DashboardsPage() {
           {visibleFilters.turma && (
             <div className="filtro">
               <label htmlFor="turma">Turma:</label>
-              <select id="turma" value={selectedTurma || ""} onChange={(e) => setSelectedTurma(e.target.value || null)}>
+              <select id="turma" value={selectedTurma || ""} onChange={(e) => setSelectedTurma(e.target.value || null)} disabled={isLoadingDashboard}>
                 <option value="">Seleciona a turma</option>
                 {turmas.map(t => <option key={t.id_turma} value={t.id_turma}>{t.turma}</option>)}
               </select>
@@ -627,7 +666,7 @@ function DashboardsPage() {
           {visibleFilters.periodo && (
             <div className="filtro">
               <label htmlFor="periodo">Período:</label>
-              <select id="periodo" value={selectedPeriodo || ""} onChange={(e) => setSelectedPeriodo(e.target.value || null)}>
+              <select id="periodo" value={selectedPeriodo || ""} onChange={(e) => setSelectedPeriodo(e.target.value || null)} disabled={isLoadingDashboard}>
                 <option value="">Selecione o período</option>
                 {periodos.map(p => <option key={p.id_semestre} value={p.id_semestre}>{p.semestre}</option>)}
               </select>
@@ -821,6 +860,12 @@ function DashboardsPage() {
         </div>
         
       </div>
+      {isLoadingDashboard && (
+        <div className="dashboards-loading-overlay">
+          <div className="loader"></div>
+          <span>Carregando dados do dashboard...</span>
+        </div>
+      )}
     </div>
   );
 }
