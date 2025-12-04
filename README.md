@@ -77,15 +77,15 @@ http://localhost:5173
 ## � Equipe de Desenvolvimento
 
 ### Desenvolvedores
-- **João Victor Campos dos Santos** - [GitHub](https://github.com/campoos) - Frontend
-- **Jheniffer Rodrigues** - [GitHub](https://github.com/jhenifferrodrigues) - Backend
-- **Giovanna Coelho** - [GitHub](https://github.com/VannaGilio) - Backend
+- **João Campos** - [GitHub](https://github.com/campoos) - Full-stack
+- **Jheniffer Rodrigues** - [GitHub](https://github.com/jhenifferrodrigues) - Gestora de Projetos
+- **Giovanna Coelho** - [GitHub](https://github.com/VannaGilio) - Back-end e Banco de Dados
 - **Sofia Carvalho** - [GitHub](https://github.com/sofiascarvalho) - Mobile
-- **Fabricio Camargo** - [GitHub](https://github.com/fabricio1011) - Mobile
+- **Fabricio Camargo** - [GitHub](https://github.com/fabricio1011) - Front-end
 
 ### Orientadores
 - Marcel Teixeira
-- Yuri Silva
+- Yuri Komuta
 - Celso Furtado
 - Fernando Leonid
 
